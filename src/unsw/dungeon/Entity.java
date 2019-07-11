@@ -13,7 +13,6 @@ public class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
-
     /**
      * Create an entity positioned in square (x,y)
      * @param x
