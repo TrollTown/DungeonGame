@@ -45,6 +45,9 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
+    	if (entity != null) {
+    		entity.setDungeon(this);
+    	}
         entities.add(entity);
     }
     
