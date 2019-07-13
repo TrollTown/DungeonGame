@@ -13,14 +13,16 @@ public class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
+    private boolean immovableObject;
     /**
      * Create an entity positioned in square (x,y)
      * @param x
      * @param y
      */
-    public Entity(int x, int y) {
+    public Entity(int x, int y, boolean immovableObject) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.immovableObject = immovableObject;
     }
 
     public IntegerProperty x() {
@@ -38,4 +40,9 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+
+	public boolean isImmovableObject() {
+		return immovableObject;
+	}
+    
 }

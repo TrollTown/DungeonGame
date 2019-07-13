@@ -15,27 +15,27 @@ public class Player extends Entity {
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y);
+        super(x, y, false);
         this.dungeon = dungeon;
     }
 
     public void moveUp() {
-        if (getY() > 0)
+        if (getY() > 0 && !dungeon.isImmovableAtCoord(getX(), getY() - 1))
             y().set(getY() - 1);
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
+        if (getY() < dungeon.getHeight() - 1 && !dungeon.isImmovableAtCoord(getX(), getY() + 1))
             y().set(getY() + 1);
     }
 
     public void moveLeft() {
-        if (getX() > 0)
+        if (getX() > 0 && !dungeon.isImmovableAtCoord(getX() - 1, getY()))
             x().set(getX() - 1);
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1)
+        if (getX() < dungeon.getWidth() - 1 && !dungeon.isImmovableAtCoord(getX() + 1, getY()))
             x().set(getX() + 1);
     }
 }

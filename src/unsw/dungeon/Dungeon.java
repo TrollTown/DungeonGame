@@ -47,4 +47,26 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    
+    public Entity getEntityAtCoord(int x, int y) {
+    	for (Entity entity : this.entities) {
+    		if (entity != null && entity.getX() == x &&
+    			entity.getY() == y) {
+    			return entity;
+    		}
+    	}
+    	return null;
+    }
+    
+    public boolean isImmovableAtCoord(int x, int y) {
+    	Entity entity = getEntityAtCoord(x, y);
+    	if (entity == null) {
+    		
+    		return false;
+    	}
+    	if (entity.isImmovableObject() == true) {
+    		return true;
+    	}
+    	return false;
+    }
 }
