@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
@@ -28,8 +29,9 @@ public class JSONReader {
 		JSONArray jsonEntities = json.getJSONArray("entities");
 		
 		for (int i = 0; i < jsonEntities.length(); i++) {
-			
+			loadEntity(dungeon, jsonEntities.getJSONObject(i));
 		}
+		return dungeon;
 	}
 	
 	private void loadEntity(Dungeon dungeon, JSONObject json) {
@@ -42,14 +44,19 @@ public class JSONReader {
         case "player":
             Player player = new Player(dungeon, x, y);
             dungeon.setPlayer(player);
-            onLoad(player);
+            //onLoad(player);
             entity = player;
             break;
         case "wall":
             Wall wall = new Wall(x, y);
-            onLoad(wall);
+            //onLoad(wall);
             entity = wall;
             break;
+        case "door":
+        	Door door = new Door(x, y);
+        	//onLoad(door);
+        	entity = door;
+        	break;
         }
         dungeon.addEntity(entity);
     }
