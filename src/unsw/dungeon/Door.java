@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Door extends Entity {
+public class Door extends PhysicalObject {
 	private TypeDoor type;
 	public Door (int x, int y) {
 		super(x, y, true);

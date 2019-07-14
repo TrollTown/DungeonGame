@@ -67,9 +67,14 @@ public class Dungeon {
     		
     		return false;
     	}
-    	if (entity.isImmovableObject() == true) {
-    		return true;
+    	if (entity instanceof PhysicalObject) {
+    		PhysicalObject object = (PhysicalObject) entity;
+    		if (object.isImmovableObject() == true) {
+        		return true;
+        	}
     	}
+    	
+    	
     	return false;
     }
 }

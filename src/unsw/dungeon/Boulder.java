@@ -1,9 +1,9 @@
 package unsw.dungeon;
 
-public class Boulder extends Entity {
+public class Boulder extends PhysicalObject {
 
 	public Boulder(int x, int y) {
-		super(x, y, false);
+		super(x, y, true);
 	}
 	
 	private boolean moveToCoords(int x, int y) {

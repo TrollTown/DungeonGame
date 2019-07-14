@@ -21,7 +21,7 @@ public class Player extends Entity {
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y, false);
+        super(x, y);
         this.dungeon = dungeon;
     }
     
@@ -51,26 +51,26 @@ public class Player extends Entity {
     }
 
     public void moveUp() {
-        if (getY() > 0 && !dungeon.isImmovableAtCoord(getX(), getY() - 1) &&
-        		moveBoulderCheck(getX(), getY() - 1, Direction.UP))
+        if (getY() > 0 && (!dungeon.isImmovableAtCoord(getX(), getY() - 1) ||
+        		moveBoulderCheck(getX(), getY() - 1, Direction.UP)))
             y().set(getY() - 1);
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && !dungeon.isImmovableAtCoord(getX(), getY() + 1)
-        		&& moveBoulderCheck(getX(), getY() + 1, Direction.DOWN))
+        if (getY() < dungeon.getHeight() - 1 && (!dungeon.isImmovableAtCoord(getX(), getY() + 1)
+        		|| moveBoulderCheck(getX(), getY() + 1, Direction.DOWN)))
             y().set(getY() + 1);
     }
 
     public void moveLeft() {
-        if (getX() > 0 && !dungeon.isImmovableAtCoord(getX() - 1, getY()) &&
-        		moveBoulderCheck(getX() -1, getY(), Direction.LEFT))
+        if (getX() > 0 && (!dungeon.isImmovableAtCoord(getX() - 1, getY()) ||
+        		moveBoulderCheck(getX() -1, getY(), Direction.LEFT)))
             x().set(getX() - 1);
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && !dungeon.isImmovableAtCoord(getX() + 1, getY())
-        		&& moveBoulderCheck(getX() + 1, getY(), Direction.RIGHT))
+        if (getX() < dungeon.getWidth() - 1 && (!dungeon.isImmovableAtCoord(getX() + 1, getY())
+        		|| moveBoulderCheck(getX() + 1, getY(), Direction.RIGHT)))
             x().set(getX() + 1);
     }
     
