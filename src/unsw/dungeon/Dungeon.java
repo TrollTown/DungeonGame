@@ -74,7 +74,12 @@ public class Dungeon {
     	}
     	
     	
+    	
     	return false;
+    }
+    
+    public void pickUpItem(Item item) {
+    	player.addItem(item);
     }
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
@@ -113,6 +118,11 @@ public class Dungeon {
     		}
     		return true;
 
+    	}
+    	if (entityAtCoord instanceof Item) {
+    		pickUpItem((Item) entityAtCoord);
+    		this.entities.remove(entityAtCoord);
+    		return true;
     	}
     	
     	// If wall or other immovable object in square that player

@@ -85,6 +85,11 @@ public abstract class DungeonLoader {
         	onLoad(sword);
         	entity = sword;
         	break;
+        case "key":
+        	Key key = new Key(x, y, json.getInt("id"));
+        	onLoad(key);
+        	entity = key;
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -103,6 +108,7 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Invincibility invincibility);
 	
 	public abstract void onLoad(Sword sword);
+	public abstract void onLoad(Key key);
 	
     // TODO Create additional abstract methods for the other entities
 

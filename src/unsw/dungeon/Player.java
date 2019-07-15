@@ -62,6 +62,10 @@ public class Player extends Entity {
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
+	
+	public void addItem(Item item) {
+		this.inventory.addItem(item);
+	}
     
     
 }

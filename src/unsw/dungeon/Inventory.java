@@ -24,4 +24,9 @@ public class Inventory {
 		return false;
 	}
 	
+	public void addItem(Item item) {
+		if (item instanceof Key) {
+			this.addKey((Key) item);
+		}
+	}
 }
