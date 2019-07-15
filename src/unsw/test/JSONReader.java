@@ -53,7 +53,7 @@ public class JSONReader {
             entity = wall;
             break;
         case "door":
-        	Door door = new Door(x, y);
+        	Door door = new Door(x, y, json.getInt("id"));
         	//onLoad(door);
         	entity = door;
         	break;

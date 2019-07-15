@@ -7,4 +7,21 @@ public class UnlockedDoor implements TypeDoor {
 		return false;
 	}
 
+	@Override
+	public boolean unlockDoor(Key key) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getID() {
+		return 0;
+	}
+
+	@Override
+	public boolean doorLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

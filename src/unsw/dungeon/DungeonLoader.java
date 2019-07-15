@@ -61,7 +61,7 @@ public abstract class DungeonLoader {
             entity = wall;
             break;
         case "door":
-        	Door door = new Door(x, y);
+        	Door door = new Door(x, y, json.getInt("id"));
         	onLoad(door);
         	entity = door;
         	break;
@@ -69,6 +69,21 @@ public abstract class DungeonLoader {
         	Boulder boulder = new Boulder(x, y);
         	onLoad(boulder);
         	entity = boulder;
+        	break;
+        case "treasure":
+        	Treasure treasure = new Treasure(x, y);
+        	onLoad(treasure);
+        	entity = treasure;
+        	break;
+        case "invincibility":
+        	Invincibility invincibility = new Invincibility(x, y);
+        	onLoad(invincibility);
+        	entity = invincibility;
+        	break;
+        case "sword":
+        	Sword sword = new Sword(x, y);
+        	onLoad(sword);
+        	entity = sword;
         	break;
         // TODO Handle other possible entities
         }
@@ -82,6 +97,13 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Door door);
 	
 	public abstract void onLoad(Boulder boulder);
+	
+	public abstract void onLoad(Treasure treasure);
+	
+	public abstract void onLoad(Invincibility invincibility);
+	
+	public abstract void onLoad(Sword sword);
+	
     // TODO Create additional abstract methods for the other entities
 
 }
