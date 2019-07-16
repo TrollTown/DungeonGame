@@ -26,8 +26,6 @@ public class Player extends Entity {
         this.setInventory(new Inventory());
     }
     
-    
-
     public void moveUp() {
         if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP))
             y().set(getY() - 1);
@@ -57,14 +55,19 @@ public class Player extends Entity {
 		return inventory;
 	}
 
-
-
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 	
 	public void addItem(Item item) {
 		this.inventory.addItem(item);
+	}
+	
+	public void placeBomb() {
+		if (this.inventory.useBomb() == true) {
+			LitBomb bomb = new LitBomb(this.getX(), this.getY());
+			bomb.detonateBomb();
+		}
 	}
     
     
