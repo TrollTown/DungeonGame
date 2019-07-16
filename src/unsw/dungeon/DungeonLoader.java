@@ -92,7 +92,7 @@ public abstract class DungeonLoader {
         	break;
         case "bomb":
         	System.out.println("BOMB FOUND");
-        	Bomb bomb = new UnlitBomb(x,y);
+        	UnlitBomb bomb = new UnlitBomb(x,y);
         	onLoad(bomb);
         	entity = bomb;
         	break;

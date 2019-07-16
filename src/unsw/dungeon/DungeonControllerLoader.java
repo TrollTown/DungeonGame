@@ -101,6 +101,8 @@ public class DungeonControllerLoader extends DungeonLoader {
 		ImageView view = new ImageView(unlitBombImage);
 		addEntity(bomb, view);
 	}
+	
+	
 
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
