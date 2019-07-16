@@ -1,14 +1,9 @@
 package unsw.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.FileNotFoundException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 
 class Test1 {

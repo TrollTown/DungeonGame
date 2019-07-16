@@ -28,6 +28,9 @@ public class Dungeon {
         this.player = null;
     }
 
+    public List<Entity> getEntities() {
+    	return this.entities;
+    }
     public int getWidth() {
         return width;
     }
@@ -45,6 +48,7 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
+    	System.out.println(entity);
     	if (entity != null) {
     		entity.setDungeon(this);
     	}
@@ -84,7 +88,8 @@ public class Dungeon {
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
-
+    	System.out.println(x);
+    	System.out.println(y);
 
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
@@ -124,7 +129,9 @@ public class Dungeon {
     		this.entities.remove(entityAtCoord);
     		return true;
     	}
-    	
+    	if (entityAtCoord instanceof Exit) {
+    		
+    	}
     	// If wall or other immovable object in square that player
     	// wants to walk to
     	if (isImmovableAtCoord(x, y)) {
