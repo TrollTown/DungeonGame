@@ -6,5 +6,9 @@ public class Bomb extends Item {
 		super(x, y);
 		
 	}
+	
+	public void causeDamage() {
+		super.causeDamage();
+	}
 
 }

@@ -30,10 +30,15 @@ public class LitBomb extends Bomb {
 		            @Override
 		            public void run() {
 		            	state.next(LitBomb.this);
-		            	System.out.println(state instanceof ExplodedState);	
+		            	System.out.println(state instanceof ExplodedState);
+		            	LitBomb.this.causeDamage();
 		            }
 		        }, 
 		        5000 
 		);
+	}
+	
+	public void causeDamage() {
+		super.causeDamage();
 	}
 }

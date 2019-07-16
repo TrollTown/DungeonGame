@@ -139,4 +139,44 @@ public class Dungeon {
     	}
     	return true;
     }
+    
+    public void causeDamage(int x, int y) {
+    	System.out.println("INNER CALLED");
+    	if (tileInDungeon(x, y-1)) {
+    		processDamage(x, y-1);
+    	}
+    	if (tileInDungeon(x-1,y)) {
+    		processDamage(x-1,y);
+    		
+    	}
+    	if (tileInDungeon(x+1,y+1)) {
+    		processDamage(x+1,y+1);
+    	}
+    	if (tileInDungeon(x+1,y)) {
+    		processDamage(x+1,y);
+    	}
+    }
+
+    private boolean tileInDungeon(int x, int y) {
+    	if (x < 0 || y < 0 || x >= width || y >= width) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+    public void processDamage(int x, int y) {
+    	Entity entity = getEntityAtCoord(x,y);
+    	if (entity instanceof Player) {
+    		// kill the player
+    		;
+    	}
+//    	else if (entity instanceof Enemy) {
+//    		;
+//    	}
+    	else if (entity instanceof Boulder) {
+    		// destroy boulder
+    		System.out.println("Attempts to destroy boulder at: " + x + "," + "y");
+    	}
+    }
+    
 }

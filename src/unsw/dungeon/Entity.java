@@ -56,8 +56,6 @@ public class Entity {
     	this.y().set(y);
     }
 
-
-
 	public boolean isImmovableAtCoord(int x, int y) {
 		return dungeon.isImmovableAtCoord(x, y);
 	}
@@ -68,5 +66,11 @@ public class Entity {
     
     public int getDungeonHeight() {
     	return dungeon.getHeight();
+    }
+    
+    public void causeDamage() {
+    	System.out.println("Called");
+    	System.out.println(this.dungeon);
+    	this.dungeon.causeDamage(this.getX(), this.getY());
     }
 }
