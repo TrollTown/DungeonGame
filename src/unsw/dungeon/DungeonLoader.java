@@ -90,6 +90,12 @@ public abstract class DungeonLoader {
         	onLoad(key);
         	entity = key;
         	break;
+        case "bomb":
+        	System.out.println("BOMB FOUND");
+        	Bomb bomb = new UnlitBomb(x,y);
+        	onLoad(bomb);
+        	entity = bomb;
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -108,7 +114,10 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Invincibility invincibility);
 	
 	public abstract void onLoad(Sword sword);
+	
 	public abstract void onLoad(Key key);
+	
+	public abstract void onLoad(UnlitBomb bomb);
 	
     // TODO Create additional abstract methods for the other entities
 
