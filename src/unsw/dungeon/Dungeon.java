@@ -88,8 +88,6 @@ public class Dungeon {
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
-    	System.out.println(x);
-    	System.out.println(y);
 
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
@@ -175,7 +173,7 @@ public class Dungeon {
 //    	}
     	else if (entity instanceof Boulder) {
     		// destroy boulder
-    		System.out.println("Attempts to destroy boulder at: " + x + "," + "y");
+    		System.out.println("Destroys boulder at: " + x + "," + y);
     	}
     }
     

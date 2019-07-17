@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import static org.junit.Assert.assertNotNull;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -70,6 +72,7 @@ public class Entity {
     
     public void causeDamage() {
     	System.out.println("Called");
+    	assertNotNull(this.dungeon);
     	System.out.println(this.dungeon);
     	this.dungeon.causeDamage(this.getX(), this.getY());
     }

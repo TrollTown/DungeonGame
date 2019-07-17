@@ -99,6 +99,7 @@ public abstract class DungeonLoader {
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
+        System.out.println("THIS");
     }
 
     public abstract void onLoad(Entity player);

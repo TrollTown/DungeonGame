@@ -66,6 +66,7 @@ public class Player extends Entity {
 	public void placeBomb() {
 		if (this.inventory.useBomb() == true) {
 			LitBomb bomb = new LitBomb(this.getX(), this.getY());
+			bomb.setDungeon(this.dungeon);
 			bomb.detonateBomb();
 		}
 	}
