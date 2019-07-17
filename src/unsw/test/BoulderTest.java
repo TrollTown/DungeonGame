@@ -37,7 +37,6 @@ class BoulderTest {
 		player.moveRight();
 		assert player.getX() == 4 && player.getY() == 2;
 		assert dungeon.getEntityAtCoord(5,2) instanceof Boulder;
-
 	}
 	
 }

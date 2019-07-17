@@ -20,12 +20,14 @@ public class Dungeon {
     private int width, height;
     private List<Entity> entities;
     private Player player;
+    private List<GoalInterface> goals;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        this.setGoals(new ArrayList<GoalInterface>());
     }
 
     public List<Entity> getEntities() {
@@ -64,7 +66,6 @@ public class Dungeon {
     	}
     	return null;
     }
-    
     public boolean isImmovableAtCoord(int x, int y) {
     	Entity entity = getEntityAtCoord(x, y);
     	if (entity == null) {
@@ -176,5 +177,17 @@ public class Dungeon {
     		System.out.println("Destroys boulder at: " + x + "," + y);
     	}
     }
+
+	public List<GoalInterface> getGoals() {
+		return goals;
+	}
+
+	public void setGoals(List<GoalInterface> goals) {
+		this.goals = goals;
+	}
+	
+	public void addGoal(GoalInterface goal) {
+		this.goals.add(goal);
+	}
     
 }
