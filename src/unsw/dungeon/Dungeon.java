@@ -165,6 +165,7 @@ public class Dungeon {
     	if (tileInDungeon(x+1,y)) {
     		processDamage(x+1,y);
     	}
+    	processDamage(x,y);
     }
 
     private boolean tileInDungeon(int x, int y) {
@@ -178,7 +179,7 @@ public class Dungeon {
     	Entity entity = getEntityAtCoord(x,y);
     	if (entity instanceof Player) {
     		// kill the player
-    		;
+    		this.player.killPlayer();
     	}
 //    	else if (entity instanceof Enemy) {
 //    		;
@@ -205,6 +206,7 @@ public class Dungeon {
 		this.enemies = enemies;
 	}
 
+
 	public boolean isCompletedDungeon() {
 		return completedDungeon;
 	}
@@ -212,5 +214,13 @@ public class Dungeon {
 	public void setCompletedDungeon(boolean completedDungeon) {
 		this.completedDungeon = completedDungeon;
 	}
+
+	
+	public void reloadDungeon() {
+		System.out.println("Reloading Dungeon");
+		System.exit(0);
+	}
+
+
     
 }

@@ -121,6 +121,10 @@ public abstract class DungeonLoader {
         }
         dungeon.addEntity(entity);
     }
+    
+    public void reloadDungeon(Dungeon dungeon) {
+    	;
+    }
 
     public abstract void onLoad(Entity player);
 
