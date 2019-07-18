@@ -15,6 +15,7 @@ public class Player extends Entity {
 
     private Dungeon dungeon;
     private Inventory inventory;
+    private boolean isAlive;
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -24,6 +25,7 @@ public class Player extends Entity {
         super(x, y);
         this.dungeon = dungeon;
         this.setInventory(new Inventory());
+        this.isAlive = true;
     }
     
     public void moveUp() {
@@ -69,6 +71,11 @@ public class Player extends Entity {
 			bomb.setDungeon(this.dungeon);
 			bomb.detonateBomb();
 		}
+	}
+	
+	public void killPlayer() {
+		this.isAlive = false;
+		this.dungeon.reloadDungeon();
 	}
     
     

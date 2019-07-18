@@ -19,13 +19,17 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Enemy> enemies;
     private Player player;
+    private GoalInterface goal;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.setEnemies(new ArrayList<>());
         this.player = null;
+        this.goal = null;
     }
 
     public List<Entity> getEntities() {
@@ -64,7 +68,6 @@ public class Dungeon {
     	}
     	return null;
     }
-    
     public boolean isImmovableAtCoord(int x, int y) {
     	Entity entity = getEntityAtCoord(x, y);
     	if (entity == null) {
@@ -88,7 +91,6 @@ public class Dungeon {
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
-
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
     		// Convert to boulder object
@@ -128,7 +130,7 @@ public class Dungeon {
     		return true;
     	}
     	if (entityAtCoord instanceof Exit) {
-    		
+    		return true;
     	}
     	// If wall or other immovable object in square that player
     	// wants to walk to
@@ -153,6 +155,7 @@ public class Dungeon {
     	if (tileInDungeon(x+1,y)) {
     		processDamage(x+1,y);
     	}
+    	processDamage(x,y);
     }
 
     private boolean tileInDungeon(int x, int y) {
@@ -166,7 +169,7 @@ public class Dungeon {
     	Entity entity = getEntityAtCoord(x,y);
     	if (entity instanceof Player) {
     		// kill the player
-    		;
+    		this.player.killPlayer();
     	}
 //    	else if (entity instanceof Enemy) {
 //    		;
@@ -174,7 +177,28 @@ public class Dungeon {
     	else if (entity instanceof Boulder) {
     		// destroy boulder
     		System.out.println("Destroys boulder at: " + x + "," + y);
+    		getEntities().remove(entity);
     	}
     }
+
+    public GoalInterface getGoal() {
+    	return this.goal;
+    }
+	public void setGoal(GoalInterface goal) {
+		this.goal = goal;
+	}
+	
+	public List<Enemy> getEnemies() {
+		return this.enemies;
+	}
+
+	public void setEnemies(List<Enemy> enemies) {
+		this.enemies = enemies;
+	}
+	
+	public void reloadDungeon() {
+		System.out.println("Reloading Dungeon");
+		System.exit(0);
+	}
     
 }
