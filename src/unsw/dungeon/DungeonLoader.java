@@ -40,6 +40,7 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        dungeon.initiateEnemyAI();
         return dungeon;
     }
     private void loadGoals(Dungeon dungeon, JSONObject goals) {
@@ -116,6 +117,12 @@ public abstract class DungeonLoader {
         	onLoad(bomb);
         	entity = bomb;
         	break;
+        case "enemy":
+        	Enemy enemy = new Enemy(x,y);
+        	onLoad(enemy);
+        	entity = enemy;
+        	dungeon.addEnemy(enemy);
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -142,6 +149,8 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Key key);
 	
 	public abstract void onLoad(UnlitBomb bomb);
+	
+	public abstract void onLoad(Enemy enemy);
 	
     // TODO Create additional abstract methods for the other entities
 

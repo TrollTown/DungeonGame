@@ -634,6 +634,11 @@
       "x": 1,
       "y": 3,
       "type": "bomb"
+    },
+    {
+      "x": 1,
+      "y": 14,
+      "type": "enemy"
     }
   ],
   "goal-condition": {

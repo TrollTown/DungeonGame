@@ -171,9 +171,9 @@ public class Dungeon {
     		// kill the player
     		this.player.killPlayer();
     	}
-//    	else if (entity instanceof Enemy) {
-//    		;
-//    	}
+    	else if (entity instanceof Enemy) {
+    		
+    	}
     	else if (entity instanceof Boulder) {
     		// destroy boulder
     		System.out.println("Destroys boulder at: " + x + "," + y);
@@ -196,9 +196,17 @@ public class Dungeon {
 		this.enemies = enemies;
 	}
 	
+	public void addEnemy(Enemy enemy) {
+		this.enemies.add(enemy);
+	}
+	
 	public void reloadDungeon() {
 		System.out.println("Reloading Dungeon");
 		System.exit(0);
+	}
+	
+	public void initiateEnemyAI() {
+		EnemyAITimer ai = new EnemyAITimer(1, this.getEnemies(), this.getPlayer());
 	}
 
     
