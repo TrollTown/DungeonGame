@@ -21,7 +21,7 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Enemy> enemies;
     private Player player;
-    private List<GoalInterface> goals;
+    private GoalInterface goal;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -29,8 +29,7 @@ public class Dungeon {
         this.entities = new ArrayList<>();
         this.setEnemies(new ArrayList<>());
         this.player = null;
-        
-        this.setGoals(new ArrayList<GoalInterface>());
+        this.goal = null;
     }
 
     public List<Entity> getEntities() {
@@ -131,7 +130,7 @@ public class Dungeon {
     		return true;
     	}
     	if (entityAtCoord instanceof Exit) {
-    		
+    		return true;
     	}
     	// If wall or other immovable object in square that player
     	// wants to walk to
@@ -181,20 +180,11 @@ public class Dungeon {
     	}
     }
 
-	public List<GoalInterface> getGoals() {
-		return goals;
-	}
-
-	public void setGoals(List<GoalInterface> goals) {
-		this.goals = goals;
-	}
-	
-	public void addGoal(GoalInterface goal) {
-		this.goals.add(goal);
-	}
-
-	public List<Enemy> getEnemies() {
-		return enemies;
+    public GoalInterface getGoal() {
+    	return this.goal;
+    }
+	public void setGoal(GoalInterface goal) {
+		this.goal = goal;
 	}
 
 	public void setEnemies(List<Enemy> enemies) {
