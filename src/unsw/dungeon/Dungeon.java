@@ -195,10 +195,13 @@ public class Dungeon {
 	public void setEnemies(List<Enemy> enemies) {
 		this.enemies = enemies;
 	}
+<<<<<<< HEAD
 	
 	public void reloadDungeon() {
 		System.out.println("Reloading Dungeon");
 		System.exit(0);
 	}
+=======
+>>>>>>> c84cf7882d3b96948e3fdb8436c1f7136f451cac
     
 }
