@@ -119,13 +119,10 @@ public abstract class DungeonLoader {
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
-<<<<<<< HEAD
     }
     
     public void reloadDungeon(Dungeon dungeon) {
     	;
-=======
->>>>>>> c84cf7882d3b96948e3fdb8436c1f7136f451cac
     }
 
     public abstract void onLoad(Entity player);
