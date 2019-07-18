@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Inventory {
 	private ArrayList<Key> keys;
 	private ArrayList<UnlitBomb> bombs;
+	private ArrayList<Treasure> treasure;
 	
 	public Inventory() {
 		this.keys = new ArrayList<Key>();
 		this.bombs = new ArrayList<UnlitBomb>();
+		this.treasure = new ArrayList<Treasure>();
 	}
 	public void addKey(Key key) {
 		this.keys.add(key);
@@ -16,6 +18,14 @@ public class Inventory {
 	
 	public void addUnlitBomb(UnlitBomb bomb) {
 		this.bombs.add(bomb);
+	}
+	
+	public void addTreasure(Treasure treasure) {
+		this.treasure.add(treasure);
+	}
+	
+	public int getNumTreasure() {
+		return this.treasure.size();
 	}
 	public ArrayList<Key> getKeys() {
 		return this.keys;

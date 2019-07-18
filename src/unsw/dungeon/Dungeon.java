@@ -19,6 +19,7 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Enemy> enemies;
     private Player player;
     private List<GoalInterface> goals;
 
@@ -26,7 +27,9 @@ public class Dungeon {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.setEnemies(new ArrayList<>());
         this.player = null;
+        
         this.setGoals(new ArrayList<GoalInterface>());
     }
 
@@ -89,7 +92,6 @@ public class Dungeon {
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
-
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
     		// Convert to boulder object
@@ -175,6 +177,7 @@ public class Dungeon {
     	else if (entity instanceof Boulder) {
     		// destroy boulder
     		System.out.println("Destroys boulder at: " + x + "," + y);
+    		getEntities().remove(entity);
     	}
     }
 
@@ -188,6 +191,14 @@ public class Dungeon {
 	
 	public void addGoal(GoalInterface goal) {
 		this.goals.add(goal);
+	}
+
+	public List<Enemy> getEnemies() {
+		return enemies;
+	}
+
+	public void setEnemies(List<Enemy> enemies) {
+		this.enemies = enemies;
 	}
     
 }
