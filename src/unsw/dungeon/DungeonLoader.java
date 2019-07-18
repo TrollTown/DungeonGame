@@ -46,8 +46,22 @@ public abstract class DungeonLoader {
     	String mainGoal = goals.getString("goal");
     	switch (mainGoal) {
     	case "exit":
-    		dungeon.addGoal(new ExitGoal());
+    		dungeon.setGoal(new ExitGoal());
+    		break;
+    	case "enemies":
+    		dungeon.setGoal(new EnemyGoal());
+    		break;
+    	case "treasure":
+    		dungeon.setGoal(new TreasureGoal());
+    		break;
+    	case "AND":
+    		dungeon.setGoal(new AndGoal(goals.getJSONArray("subgoals")));
+    		break;
+    	case "OR":
+    		dungeon.setGoal(new OrGoal(goals.getJSONArray("subgoals")));
+    		break;
     	}
+    	
     }
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");

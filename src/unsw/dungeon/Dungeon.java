@@ -186,6 +186,10 @@ public class Dungeon {
 	public void setGoal(GoalInterface goal) {
 		this.goal = goal;
 	}
+	
+	public List<Enemy> getEnemies() {
+		return this.enemies;
+	}
 
 	public void setEnemies(List<Enemy> enemies) {
 		this.enemies = enemies;
