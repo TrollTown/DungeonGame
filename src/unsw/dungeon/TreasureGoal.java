@@ -16,4 +16,9 @@ public class TreasureGoal implements GoalInterface {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "TreasureGoal []";
+	}
+
 }

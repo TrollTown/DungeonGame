@@ -12,6 +12,7 @@ public class Enemy extends Entity {
 	public boolean isDead() {
 		return !this.isAlive;
 	}
+<<<<<<< HEAD
 	
 	public void moveTowardsPlayer(Player player) {
 		int distanceToPlayer = this.computePathLength(player, this.getX(), this.getY());
@@ -75,4 +76,9 @@ public class Enemy extends Entity {
 	private void reportPosition() {
 		System.out.println("Enemy position is now " + this.getX() +"," + this.getY());
 	}
+=======
+    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    	return true;
+    }
+>>>>>>> 52bc116051678742c54d0378e218b8a09c58b284
 }

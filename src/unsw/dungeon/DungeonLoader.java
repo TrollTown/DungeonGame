@@ -43,6 +43,7 @@ public abstract class DungeonLoader {
         dungeon.initiateEnemyAI();
         return dungeon;
     }
+    
     private void loadGoals(Dungeon dungeon, JSONObject goals) {
     	String mainGoal = goals.getString("goal");
     	switch (mainGoal) {
@@ -62,7 +63,7 @@ public abstract class DungeonLoader {
     		dungeon.setGoal(new OrGoal(goals.getJSONArray("subgoals")));
     		break;
     	}
-    	
+    	System.out.println(dungeon.getGoal());
     }
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");

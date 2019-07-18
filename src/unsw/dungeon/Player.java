@@ -72,6 +72,11 @@ public class Player extends Entity {
 			bomb.detonateBomb();
 		}
 	}
+
+    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    	return true;
+    }
+
 	
 	public void killPlayer() {
 		this.isAlive = false;
