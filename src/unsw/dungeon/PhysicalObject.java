@@ -32,6 +32,9 @@ public class PhysicalObject extends Entity {
 	public int getY() {
 		return super.getY();
 	}
-	
+    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    	System.out.println("moveEntityCheck: am physical object");
+    	return true;
+    }
 
 }

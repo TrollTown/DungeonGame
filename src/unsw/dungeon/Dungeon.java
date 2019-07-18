@@ -22,6 +22,7 @@ public class Dungeon {
     private List<Enemy> enemies;
     private Player player;
     private GoalInterface goal;
+    private boolean completedDungeon;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -30,6 +31,7 @@ public class Dungeon {
         this.setEnemies(new ArrayList<>());
         this.player = null;
         this.goal = null;
+        this.setCompletedDungeon(false);
     }
 
     public List<Entity> getEntities() {
@@ -90,7 +92,15 @@ public class Dungeon {
     }
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
+    	
+    	if (this.getGoal().hasMetGoal(this, this.player)) {
+    		this.completedDungeon = true;
+    	}
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
+    	if (entityAtCoord != null) {
+        	entityAtCoord.moveEntityCheck(x, y, direction);
+    	}
+
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
     		// Convert to boulder object
@@ -193,6 +203,14 @@ public class Dungeon {
 
 	public void setEnemies(List<Enemy> enemies) {
 		this.enemies = enemies;
+	}
+
+	public boolean isCompletedDungeon() {
+		return completedDungeon;
+	}
+
+	public void setCompletedDungeon(boolean completedDungeon) {
+		this.completedDungeon = completedDungeon;
 	}
     
 }
