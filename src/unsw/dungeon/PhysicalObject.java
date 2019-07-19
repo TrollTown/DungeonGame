@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class PhysicalObject extends Entity {
+public abstract class PhysicalObject extends Entity {
 	private boolean isImmovableObject;
 	public PhysicalObject(int x, int y, boolean isImmovableObject) {
 		super(x, y);
@@ -32,9 +32,12 @@ public class PhysicalObject extends Entity {
 	public int getY() {
 		return super.getY();
 	}
-    public boolean moveEntityCheck(int x, int y, Direction direction) {
-    	System.out.println("moveEntityCheck: am physical object");
-    	return true;
-    }
+	
+	public boolean checkGoal() {
+		return super.checkGoal();
+	}
+	
+    public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
+    
 
 }

@@ -73,7 +73,7 @@ public class Player extends Entity {
 		}
 	}
 
-    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
 

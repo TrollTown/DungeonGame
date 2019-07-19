@@ -12,7 +12,7 @@ public class Enemy extends Entity {
 	public boolean isDead() {
 		return !this.isAlive;
 	}
-    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
 }

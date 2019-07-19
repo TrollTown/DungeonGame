@@ -9,7 +9,7 @@ public class Item extends Entity {
 	public void causeDamage() {
 		super.causeDamage();
 	}
-    public boolean moveEntityCheck(int x, int y, Direction direction) {
+    public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
 }

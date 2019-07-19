@@ -57,6 +57,7 @@ public abstract class Entity {
     public void setY(int y) {
     	this.y().set(y);
     }
+    
 
 	public boolean isImmovableAtCoord(int x, int y) {
 		return dungeon.isImmovableAtCoord(x, y);
@@ -77,5 +78,9 @@ public abstract class Entity {
     	this.dungeon.causeDamage(this.getX(), this.getY());
     }
     
-    public abstract boolean moveEntityCheck(int x, int y, Direction direction);
+    public boolean checkGoal() {
+    	return dungeon.checkGoal();
+    }
+    
+    public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
 }

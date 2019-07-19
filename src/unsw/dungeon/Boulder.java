@@ -44,5 +44,24 @@ public class Boulder extends PhysicalObject {
 		}
 		return false;
 	}
+	
+	 public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
+ 		
+ 		if (direction == Direction.UP) {
+ 			// Checks if boulder can move as well, if can move then it will move
+ 			return this.moveUp();
+ 		}
+ 		else if (direction == Direction.RIGHT) {
+ 			return this.moveRight();
+ 		}
+ 		else if (direction == Direction.DOWN) {
+ 			return this.moveDown();
+ 		}
+ 		else if (direction == Direction.LEFT) {
+ 			return this.moveLeft();
+ 		}
+ 		// Boulder cannot move, so player will not move
+ 		return false;
+	 }
 
 }

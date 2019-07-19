@@ -25,4 +25,15 @@ public class Door extends PhysicalObject {
 	public boolean Locked() {
 		return this.type.doorLocked();
 	}
+	
+	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
+		if (this.Locked() == true) {
+    		if (inventory.checkKeys(this.getId())) {
+    			this.unlockDoor();
+    			return true;
+    		}
+    		return false;
+		}
+		return true;
+	}
 }

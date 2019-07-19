@@ -97,41 +97,13 @@ public class Dungeon {
     		this.completedDungeon = true;
     	}
     	Entity entityAtCoord = this.getEntityAtCoord(x, y);
-    	if (entityAtCoord != null) {
-        	entityAtCoord.moveEntityCheck(x, y, direction);
-    	}
 
     	// If boulder in square
     	if (entityAtCoord instanceof Boulder) {
-    		// Convert to boulder object
-    		Boulder boulderEntity = (Boulder) entityAtCoord;
-    		
-    		if (direction == Direction.UP && boulderEntity.moveUp()) {
-    			// Checks if boulder can move as well, if can move then it will move
-    			return true;
-    		}
-    		else if (direction == Direction.RIGHT && boulderEntity.moveRight()) {
-    			return true;
-    		}
-    		else if (direction == Direction.DOWN && boulderEntity.moveDown()) {
-    			return true;
-    		}
-    		else if (direction == Direction.LEFT && boulderEntity.moveLeft()) {
-    			return true;
-    		}
-    		// Boulder cannot move, so player will not move
-    		return false;
+    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
     	}
     	if (entityAtCoord instanceof Door) {
-    		Door door = (Door) entityAtCoord;
-    		if (door.Locked() == true) {
-        		if (player.checkKeys(door.getId())) {
-        			door.unlockDoor();
-        			return true;
-        		}
-        		return false;
-    		}
-    		return true;
+    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
 
     	}
     	if (entityAtCoord instanceof Item) {
@@ -140,7 +112,7 @@ public class Dungeon {
     		return true;
     	}
     	if (entityAtCoord instanceof Exit) {
-    		return true;
+    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
     	}
     	// If wall or other immovable object in square that player
     	// wants to walk to
@@ -200,6 +172,14 @@ public class Dungeon {
 	
 	public List<Enemy> getEnemies() {
 		return this.enemies;
+	}
+	
+	public boolean checkGoal() {
+		if (this.isCompletedDungeon()) {
+			return true;
+		} else {
+			return this.goal.hasMetGoal(this, player);
+		}
 	}
 
 	public void setEnemies(List<Enemy> enemies) {
