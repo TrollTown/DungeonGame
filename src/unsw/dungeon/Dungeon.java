@@ -142,11 +142,12 @@ public class Dungeon {
     	List<Entity> entities = getEntityAtCoord(x,y);
     	for (Entity entity: entities) {
         	if (entity instanceof Player) {
-        		// kill the player
-        		this.player.killPlayer();
+        		if (((Player) entity).getInvincibilityStatus() == false) {
+        			this.player.killPlayer();
+        		}
         	}
         	if (entity instanceof Enemy) {
-        		
+        		((Enemy) entity).kill();
         	}
         	if (entity instanceof Boulder) {
         		// destroy boulder
