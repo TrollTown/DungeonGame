@@ -132,13 +132,11 @@ public class JSONReader {
 	    	Exit exit = new Exit(x, y);
 //	    	onLoad(exit);
 	    	entity = exit;
-	    	dungeon.addEntity(exit);
 	    	break;
         case "switch":
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
 //        	onLoad(floorswitch);
         	entity = floorswitch;
-        	dungeon.addEntity(floorswitch);
         }
         dungeon.addEntity(entity);
     }

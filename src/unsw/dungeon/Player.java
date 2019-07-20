@@ -23,24 +23,47 @@ public class Player extends Entity {
     }
     
     public void moveUp() {
-        if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP))
+        if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP)) {
+
             y().set(getY() - 1);
+        	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
+        		dungeon.setCompletedDungeon(true);
+        		System.out.println("Completed Dungeon!");
+        	}
+        }
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN))
-            y().set(getY() + 1);
+        if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN)) {
+
+        	y().set(getY() + 1);
+        	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.DOWN)) {
+        		dungeon.setCompletedDungeon(true);
+        		System.out.println("Completed Dungeon!");
+        	}
+        }
     }
 
     public void moveLeft() {
-        if (getX() > 0 && dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT))
+        if (getX() > 0 && dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT)) {
+
             x().set(getX() - 1);
+        	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
+        		dungeon.setCompletedDungeon(true);
+        		System.out.println("Completed Dungeon!");
+        	}
+        }
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT))
-            x().set(getX() + 1);
+        if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT)) {
 
+        	x().set(getX() + 1);
+        	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
+        		dungeon.setCompletedDungeon(true);
+        		System.out.println("Completed Dungeon!");
+        	}
+        }
     }
     
     public boolean checkKeys(int id) {
@@ -84,6 +107,12 @@ public class Player extends Entity {
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+	}
+	
+	public void useSword() {
+		if (this.inventory.containsSword()) {
+			dungeon.killEnemies(getX(), getY());
+		}
 	}
 
 

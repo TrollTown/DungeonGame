@@ -6,6 +6,6 @@ public class Exit extends PhysicalObject {
 	}
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
 		
-		return super.checkGoal();
+		return true;
 	}
 }

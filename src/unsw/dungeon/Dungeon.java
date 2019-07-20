@@ -94,12 +94,6 @@ public class Dungeon {
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	
-    	if (this.getGoal().hasMetGoal(this, this.player, direction)) {
-    		this.completedDungeon = true;
-    		System.out.println("Completed Dungeon!");
-    	}
-    	System.out.println("Checked goal");
-    	
     	List<Entity> entitiesAtCoord = this.getEntityAtCoord(x, y);
     	for (Entity entityAtCoord: entitiesAtCoord) {
     		System.out.println("entityAtCoord");
@@ -119,6 +113,7 @@ public class Dungeon {
         		return false;
         	}
     	}
+
 
     	return true;
     }
@@ -206,11 +201,26 @@ public class Dungeon {
 	
 	public void reloadDungeon() {
 		System.out.println("Reloading Dungeon");
-		System.exit(0);
+//		System.exit(0);
 	}
 	
 	public void initiateEnemyAI() {
 		EnemyAITimer ai = new EnemyAITimer(1, this.getEnemies(), this.getPlayer());
+	}
+	
+	public void killEnemies(int x, int y) {
+		for (int i = x - 1; i <= x + 1; i++) {
+			for (Enemy enemy: enemies) {
+				if (enemy.getX() == i && enemy.getY() == y)
+					enemy.kill();
+			}
+		}
+		for (int k = y - 1; k <= y + 1; k++) {
+			for (Enemy enemy: enemies) {
+				if (enemy.getX() == x && enemy.getY() == k)
+					enemy.kill();
+			}
+		}
 	}
 
 

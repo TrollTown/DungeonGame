@@ -6,12 +6,7 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 
-import unsw.dungeon.Boulder;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
-import unsw.dungeon.FloorSwitch;
-import unsw.dungeon.Key;
-import unsw.dungeon.Player;
+import unsw.dungeon.*;
 
 class FloorSwitchTest {
 

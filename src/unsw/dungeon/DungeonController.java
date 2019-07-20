@@ -64,6 +64,10 @@ public class DungeonController {
             break;
         case E:
         	player.placeBomb();
+        	break;
+        case K:
+        	player.useSword();
+        	break;
         default:
             break;
         }

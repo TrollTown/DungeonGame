@@ -19,7 +19,7 @@ public class ExitGoal implements GoalInterface {
 		} else {
 			futureX += 1;
 		}
-		for (Entity entity: dungeon.getEntityAtCoord(futureX, futureY)) {
+		for (Entity entity: dungeon.getEntityAtCoord(player.getX(), player.getY())) {
 			if (entity instanceof Exit) {
 				return true;
 			}

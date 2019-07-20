@@ -1,7 +1,5 @@
 package unsw.dungeon;
 
-import java.util.List;
-
 public class FloorSwitch extends PhysicalObject {
 	private boolean activated;
 	public FloorSwitch (int x, int y) {

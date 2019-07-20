@@ -6,11 +6,13 @@ public class Inventory {
 	private ArrayList<Key> keys;
 	private ArrayList<UnlitBomb> bombs;
 	private ArrayList<Treasure> treasure;
+	private ArrayList<Sword> swords;
 	
 	public Inventory() {
 		this.keys = new ArrayList<Key>();
 		this.bombs = new ArrayList<UnlitBomb>();
 		this.treasure = new ArrayList<Treasure>();
+		this.swords = new ArrayList<Sword>();
 	}
 	public void addKey(Key key) {
 		this.keys.add(key);
@@ -22,6 +24,10 @@ public class Inventory {
 	
 	public void addTreasure(Treasure treasure) {
 		this.treasure.add(treasure);
+	}
+	
+	public void addSword(Sword sword) {
+		this.swords.add(sword);
 	}
 	
 	public int getNumTreasure() {
@@ -44,7 +50,6 @@ public class Inventory {
 	
 	public void addItem(Item item) {
 		if (item instanceof Key) {
-			System.out.println("Adding Key");
 			this.addKey((Key) item);
 		}
 		else if (item instanceof UnlitBomb) {
@@ -52,6 +57,9 @@ public class Inventory {
 		}
 		else if (item instanceof Treasure) {
 			this.addTreasure((Treasure) item);
+		}
+		else if (item instanceof Sword) {
+			this.addSword((Sword) item);
 		}
 	}
 	
@@ -61,5 +69,9 @@ public class Inventory {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean containsSword() {
+		return !this.swords.isEmpty();
 	}
 }
