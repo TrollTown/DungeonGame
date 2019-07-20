@@ -40,6 +40,7 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        System.out.println("Initiating Dungeon");
         dungeon.initiateEnemyAI();
         return dungeon;
     }
@@ -122,6 +123,7 @@ public abstract class DungeonLoader {
         	break;
         case "enemy":
         	Enemy enemy = new Enemy(x,y);
+        	dungeon.addEnemy(enemy);
         	onLoad(enemy);
         	entity = enemy;
         	break;
