@@ -127,8 +127,8 @@ public class Dungeon {
     		processDamage(x-1,y);
     		
     	}
-    	if (tileInDungeon(x+1,y+1)) {
-    		processDamage(x+1,y+1);
+    	if (tileInDungeon(x,y+1)) {
+    		processDamage(x,y+1);
     	}
     	if (tileInDungeon(x+1,y)) {
     		processDamage(x+1,y);
@@ -146,14 +146,15 @@ public class Dungeon {
     public void processDamage(int x, int y) {
     	List<Entity> entities = getEntityAtCoord(x,y);
     	for (Entity entity: entities) {
+    		System.out.println("processDamage: " + entity + ", x/y:" + x + ", " + y);
         	if (entity instanceof Player) {
         		// kill the player
         		this.player.killPlayer();
         	}
-        	else if (entity instanceof Enemy) {
+        	if (entity instanceof Enemy) {
         		
         	}
-        	else if (entity instanceof Boulder) {
+        	if (entity instanceof Boulder) {
         		// destroy boulder
         		System.out.println("Destroys boulder at: " + x + "," + y);
         		getEntities().remove(entity);
