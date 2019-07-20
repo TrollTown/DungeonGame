@@ -102,5 +102,9 @@ public abstract class Entity {
     	return null;
     }
     
+    public void killEnemy(Enemy enemy) {
+    	this.dungeon.killEnemy(enemy);
+    }
+    
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
 }

@@ -25,7 +25,7 @@ public class Player extends Entity {
     }
     
     public void moveUp() {
-        if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP)) {
+        if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP) && this.isAlive) {
 
             y().set(getY() - 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
@@ -35,7 +35,7 @@ public class Player extends Entity {
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN)) {
+        if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN) && this.isAlive) {
 
         	y().set(getY() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.DOWN)) {
@@ -45,7 +45,7 @@ public class Player extends Entity {
     }
 
     public void moveLeft() {
-        if (getX() > 0 && dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT)) {
+        if (getX() > 0 && dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT) && this.isAlive) {
 
             x().set(getX() - 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
@@ -55,7 +55,7 @@ public class Player extends Entity {
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT)) {
+        if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT) && this.isAlive) {
 
         	x().set(getX() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {

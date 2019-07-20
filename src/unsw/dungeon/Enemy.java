@@ -2,27 +2,23 @@ package unsw.dungeon;
 
 public class Enemy extends Entity {
 	private boolean isAlive;
+	
 	public Enemy(int x, int y) {
 		super(x, y);
 		isAlive = true;
+		
 	}
 	public void kill() {
 		this.isAlive = false;
+		super.killEnemy(this);
 	}
 	public boolean isDead() {
 		return !this.isAlive;
 	}
 	
 	public void moveTowardsPlayer(Player player) {
-		int distanceToPlayer = this.computePathLength(player, this.getX(), this.getY());
 		
 		// Debugging
-		if (distanceToPlayer == 0) {
-			System.out.println("Player has been reached by enemy");
-			player.killPlayer();
-			return;
-		}
-		
 		int distanceAfterMoveUp = this.computePathLength(player, this.getX(), this.getY()-1);
 		int distanceAfterMoveDown = this.computePathLength(player, this.getX(), this.getY()+1);
 		int distanceAfterMoveLeft = this.computePathLength(player, this.getX()-1, this.getY());
@@ -30,7 +26,7 @@ public class Enemy extends Entity {
 		int distances[] = new int[] {distanceAfterMoveUp, distanceAfterMoveDown, distanceAfterMoveLeft, distanceAfterMoveRight};
 		int move = -1;
 		for (int i = 0; i < distances.length; i++) {
-			if (distances[i] < distanceToPlayer && distances[i] != -1) {
+			if (distances[i] < this.getDistanceToPlayer(player) && distances[i] != -1) {
 				move = i;
 				break;
 			}
@@ -58,7 +54,8 @@ public class Enemy extends Entity {
 				 //System.out.println("Enemy not moved");
 				break;
 		}
-		
+		// Check player not reached by enemy
+		getDistanceToPlayer(player);
 	}
 	
 	// Simple path length calculator, using Manhattan Distance (planning to implement proper pathfinding algorithm later)
@@ -79,5 +76,14 @@ public class Enemy extends Entity {
 	
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
+    }
+    
+    private int getDistanceToPlayer(Player player) {
+    	int distanceToPlayer = this.computePathLength(player, this.getX(), this.getY());
+    	if (distanceToPlayer == 0) {
+			System.out.println("Player has been reached by enemy");
+			player.getDungeon().processPlayerEnemyCollision(player, this);
+		}
+    	return distanceToPlayer;
     }
 }

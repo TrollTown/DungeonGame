@@ -101,6 +101,10 @@ public class Dungeon {
     		if (!entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory())) {
     			return false;
     		}
+    		if (entityAtCoord instanceof Enemy) {
+    			processPlayerEnemyCollision(this.player, (Enemy) entityAtCoord);
+    			return true;
+    		}
     		if (entityAtCoord instanceof Item) {
         		pickUpItem((Item) entityAtCoord);
         		this.entities.remove(entityAtCoord);
@@ -109,8 +113,6 @@ public class Dungeon {
         		return false;
         	}
     	}
-
-
     	return true;
     }
     
@@ -218,6 +220,20 @@ public class Dungeon {
 		}
 	}
 
-
+	public void processPlayerEnemyCollision(Player player, Enemy enemy) {
+		if (!enemy.isDead()) {
+			if (this.player.getInvincibilityStatus() == true) {
+				enemy.kill();
+			}
+			else {
+				this.player.killPlayer();
+			}
+		}
+	}
+	
+	public void killEnemy(Enemy enemy) {
+		this.enemies.remove(enemy);
+		this.entities.remove(enemy);
+	}
     
 }
