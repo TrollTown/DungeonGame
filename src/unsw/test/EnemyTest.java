@@ -20,7 +20,7 @@ class EnemyTest {
 		System.out.println(dungeon.getEnemies());
 		Enemy enemy = dungeon.getEnemies().get(0);
 		System.out.println("Enemy: " + enemy.getX() + ", " + enemy.getY());
-		assert enemy.getX() == 1 && enemy.getY() == 9;
+		assert enemy.getX() == 1 && enemy.getY() == 10;
 		assert player.isAlive() == true;
 		Thread.sleep(10000);
 		assert player.isAlive() == false;

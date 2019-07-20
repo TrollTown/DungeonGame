@@ -48,6 +48,7 @@ public class JSONReader {
 		for (int i = 0; i < jsonEntities.length(); i++) {
 			loadEntity(dungeon, jsonEntities.getJSONObject(i));
 		}
+		dungeon.initiateEnemyAI();
 		return dungeon;
 	}
 	 private void loadGoals(Dungeon dungeon, JSONObject goals) {
@@ -143,7 +144,7 @@ public class JSONReader {
         	dungeon.addEnemy(enemy);
         	entity = enemy;
         }
-        dungeon.initiateEnemyAI();
+        
         dungeon.addEntity(entity);
     }
 }
