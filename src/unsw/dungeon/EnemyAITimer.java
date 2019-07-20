@@ -13,24 +13,4 @@ public class EnemyAITimer {
 		this.timer = new Timer();
 		this.timer.schedule(new MakeMove(enemies, player), 0, seconds * 1000);
 	}
-	
-	class MakeMove extends TimerTask {
-		List<Enemy> enemies;
-		Player player;
-		
-		public MakeMove(List<Enemy> enemies, Player player) {
-			this.enemies = enemies;
-			this.player = player;
-		}
-		
-		@Override
-		public void run() {
-			// Insert code to run repeatedly
-			for (Enemy enemy : this.enemies) {
-				if (enemy.isDead() == false) {
-					enemy.moveTowardsPlayer(player);
-				}
-			}
-		}
-	}
 }
