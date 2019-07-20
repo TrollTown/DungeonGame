@@ -10,6 +10,7 @@ public class Player extends Entity {
     private Dungeon dungeon;
     private Inventory inventory;
     private boolean isAlive;
+    private InvincibilityStatus invincibility;
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -20,6 +21,7 @@ public class Player extends Entity {
         this.dungeon = dungeon;
         this.setInventory(new Inventory());
         this.setAlive(true);
+        this.invincibility = new InvincibilityStatus();
     }
     
     public void moveUp() {
@@ -76,6 +78,9 @@ public class Player extends Entity {
 	}
 	
 	public void addItem(Item item) {
+		if (item instanceof Invincibility) {
+			this.invincibility.refreshInvincibility(); 
+		}
 		this.inventory.addItem(item);
 	}
 	
@@ -110,7 +115,8 @@ public class Player extends Entity {
 			dungeon.killEnemies(getX(), getY());
 		}
 	}
-
-
-    
+	
+	public boolean getInvincibilityStatus() {
+		return this.invincibility.getStatus();
+	}
 }
