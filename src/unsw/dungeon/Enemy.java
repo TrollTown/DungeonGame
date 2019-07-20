@@ -26,7 +26,12 @@ public class Enemy extends Entity {
 		int move = -1;
 		// Check if player is invincible
 		if (player.getInvincibilityStatus()) {
-			;
+			for (int i = 0; i < distances.length; i++){
+				if (distances[i] > this.getDistanceToPlayer(player) && distances[i] != -1) {
+					move = i;
+					break;
+				}
+			}
 		}
 		else {
 			// Very basic move towards player AI with no pathfinding (will get stuck behind obstacles)
