@@ -113,6 +113,11 @@
       "type": "player"
     },
     {
+      "x": 1,
+      "y": 2,
+      "type": "treasure"
+    },
+    {
       "x": 2,
       "y": 1,
       "type": "wall"
@@ -923,8 +928,8 @@
       "type": "wall"
     },
     {
-      "x": 18,
-      "y": 16,
+      "x": 1,
+      "y": 3,
       "type": "exit"
     },
     {
@@ -1035,6 +1040,21 @@
     }
   ],
   "goal-condition": {
-    "goal": "exit"
+    "goal": "AND",
+    "subgoals":
+      [{
+        "goal": "exit"
+      },
+      {"goal": "OR",
+      "subgoals":
+        [{
+          "goal": "enemies"
+         },
+         {
+          "goal": "treasure"
+         }
+        ]
+      }]
   }
 }
+

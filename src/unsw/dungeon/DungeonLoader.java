@@ -127,8 +127,20 @@ public abstract class DungeonLoader {
         	entity = enemy;
         	dungeon.addEnemy(enemy);
         	break;
+        case "exit":
+        	Exit exit = new Exit(x, y);
+        	onLoad(exit);
+        	entity = exit;
+        	dungeon.addEntity(exit);
+        	break;
+        case "switch":
+        	FloorSwitch floorswitch = new FloorSwitch(x, y);
+        	onLoad(floorswitch);
+        	entity = floorswitch;
+        	dungeon.addEntity(floorswitch);
         // TODO Handle other possible entities
         }
+        
         dungeon.addEntity(entity);
     }
     
@@ -155,6 +167,10 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(UnlitBomb bomb);
 	
 	public abstract void onLoad(Enemy enemy);
+	
+	public abstract void onLoad(Exit exit);
+	
+	public abstract void onLoad(FloorSwitch floorswitch);
 	
     // TODO Create additional abstract methods for the other entities
 

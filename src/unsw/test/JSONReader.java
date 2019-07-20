@@ -15,7 +15,9 @@ import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.EnemyGoal;
 import unsw.dungeon.Entity;
+import unsw.dungeon.Exit;
 import unsw.dungeon.ExitGoal;
+import unsw.dungeon.FloorSwitch;
 import unsw.dungeon.Invincibility;
 import unsw.dungeon.Key;
 import unsw.dungeon.OrGoal;
@@ -126,6 +128,17 @@ public class JSONReader {
 //	     	onLoad(bomb);
 	     	entity = bomb;
 	     	break;
+		case "exit":
+	    	Exit exit = new Exit(x, y);
+//	    	onLoad(exit);
+	    	entity = exit;
+	    	dungeon.addEntity(exit);
+	    	break;
+        case "switch":
+        	FloorSwitch floorswitch = new FloorSwitch(x, y);
+//        	onLoad(floorswitch);
+        	entity = floorswitch;
+        	dungeon.addEntity(floorswitch);
         }
         dungeon.addEntity(entity);
     }

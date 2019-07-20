@@ -51,9 +51,9 @@ public class AndGoal implements GoalInterface {
 	}
 
 	@Override
-	public boolean hasMetGoal(Dungeon dungeon, Player player) {
+	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {
-			if (goal.hasMetGoal(dungeon, player) == false) {
+			if (goal.hasMetGoal(dungeon, player, directionMovingTowards) == false) {
 				return false;
 			}
 		}

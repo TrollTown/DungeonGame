@@ -17,7 +17,7 @@ class SetUpTest {
 		JSONReader jsonReader;
 		jsonReader = new JSONReader("maze.json");
 		Dungeon dungeon = jsonReader.load();
-		Player testEntity = (Player) dungeon.getEntityAtCoord(1,1);
+		Player testEntity = dungeon.getPlayer();
 		assert(testEntity != null);
 		// Does nothing
 		testEntity.moveUp();

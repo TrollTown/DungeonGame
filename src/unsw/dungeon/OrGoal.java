@@ -17,7 +17,7 @@ public class OrGoal implements GoalInterface {
 	}
 	
 	public OrGoal(JSONArray subgoals) {
-		
+		this.goals = new ArrayList<GoalInterface>();
 		for (int i = 0; i < subgoals.length(); i++) {
 			String goal = subgoals.getJSONObject(i).getString("goal");
 	    	switch (goal) {
@@ -46,9 +46,9 @@ public class OrGoal implements GoalInterface {
 	}
 
 	@Override
-	public boolean hasMetGoal(Dungeon dungeon, Player player) {
+	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {
-			if (goal.hasMetGoal(dungeon, player) == true) {
+			if (goal.hasMetGoal(dungeon, player, directionMovingTowards) == true) {
 				return true;
 			}
 		}

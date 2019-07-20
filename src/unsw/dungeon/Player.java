@@ -40,6 +40,7 @@ public class Player extends Entity {
     public void moveRight() {
         if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT))
             x().set(getX() + 1);
+
     }
     
     public boolean checkKeys(int id) {
@@ -84,6 +85,7 @@ public class Player extends Entity {
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-    
+
+
     
 }

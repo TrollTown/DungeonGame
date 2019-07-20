@@ -4,11 +4,11 @@ import java.util.List;
 
 public class FloorSwitch extends PhysicalObject {
 	private boolean activated;
-	public FloorSwitch (int x, int y, boolean boulderOnTop) {
+	public FloorSwitch (int x, int y) {
 		super(x, y, false);
-		this.setActivated(boulderOnTop);
 	}
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
+		System.out.println("Checking boulder on top");
 		if(super.checkBoulderOnTop()) {
 			this.activated = true;
 		} else {
