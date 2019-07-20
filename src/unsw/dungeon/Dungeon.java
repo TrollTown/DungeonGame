@@ -54,7 +54,6 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
-    	System.out.println(entity);
     	if (entity != null) {
     		entity.setDungeon(this);
     	}
@@ -96,8 +95,6 @@ public class Dungeon {
     	
     	List<Entity> entitiesAtCoord = this.getEntityAtCoord(x, y);
     	for (Entity entityAtCoord: entitiesAtCoord) {
-    		System.out.println("entityAtCoord");
-    		System.out.println(entityAtCoord);
     		if (entityAtCoord == null) {
     			continue;
     		}
@@ -105,7 +102,6 @@ public class Dungeon {
     			return false;
     		}
     		if (entityAtCoord instanceof Item) {
-    			System.out.println(entityAtCoord);
         		pickUpItem((Item) entityAtCoord);
         		this.entities.remove(entityAtCoord);
         	}
@@ -119,7 +115,6 @@ public class Dungeon {
     }
     
     public void causeDamage(int x, int y) {
-    	System.out.println("INNER CALLED");
     	if (tileInDungeon(x, y-1)) {
     		processDamage(x, y-1);
     	}
@@ -155,7 +150,6 @@ public class Dungeon {
         	}
         	if (entity instanceof Boulder) {
         		// destroy boulder
-        		System.out.println("Destroys boulder at: " + x + "," + y);
         		getEntities().remove(entity);
         	}
     	}

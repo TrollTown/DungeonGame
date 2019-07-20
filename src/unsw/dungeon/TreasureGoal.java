@@ -10,7 +10,6 @@ public class TreasureGoal implements GoalInterface {
 				countTreasure++;
 			}
 		}
-		System.out.println("Checking treasure goal");
 		if (player.getInventory().getNumTreasure() == countTreasure) {
 			return true;
 		}

@@ -8,8 +8,6 @@ public class Boulder extends PhysicalObject {
 	
 	private boolean moveToCoords(int x, int y) {
 		if (!super.isImmovableAtCoord(x, y)) {
-			System.out.println(x);
-			System.out.println(y);
 			checkFloorSwitch(x, y);
 			super.setX(x);
 			super.setY(y);

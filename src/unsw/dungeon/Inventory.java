@@ -38,10 +38,8 @@ public class Inventory {
 	}
 	
 	public boolean checkKeys(int id) {
-		System.out.println("Checking Keys");
 		for (Key key: this.keys) {
 			if (key.getId() == id) {
-				System.out.println("YOU MAY PASS");
 				return true;
 			}
 		}

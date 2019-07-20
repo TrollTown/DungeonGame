@@ -28,7 +28,6 @@ public class Player extends Entity {
             y().set(getY() - 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
-        		System.out.println("Completed Dungeon!");
         	}
         }
     }
@@ -39,7 +38,6 @@ public class Player extends Entity {
         	y().set(getY() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.DOWN)) {
         		dungeon.setCompletedDungeon(true);
-        		System.out.println("Completed Dungeon!");
         	}
         }
     }
@@ -50,7 +48,6 @@ public class Player extends Entity {
             x().set(getX() - 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
-        		System.out.println("Completed Dungeon!");
         	}
         }
     }
@@ -61,7 +58,6 @@ public class Player extends Entity {
         	x().set(getX() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
-        		System.out.println("Completed Dungeon!");
         	}
         }
     }

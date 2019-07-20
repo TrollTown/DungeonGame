@@ -24,13 +24,11 @@ public class LitBomb extends Bomb {
 	}
 	
 	public void detonateBomb() {
-		System.out.println("Bomb placed");
 		new Timer().schedule( 
 		        new TimerTask() {
 		            @Override
 		            public void run() {
 		            	state.next(LitBomb.this);
-		            	System.out.println(state instanceof ExplodedState);
 		            	LitBomb.this.causeDamage();
 		            }
 		        }, 

@@ -74,9 +74,7 @@ public abstract class Entity {
     }
     
     public void causeDamage() {
-    	System.out.println("Called");
     	assertNotNull(this.dungeon);
-    	System.out.println(this.dungeon);
     	this.dungeon.causeDamage(this.getX(), this.getY());
     }
     

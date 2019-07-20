@@ -66,7 +66,6 @@ public abstract class DungeonLoader {
     		dungeon.setGoal(new OrGoal(goals.getJSONArray("subgoals")));
     		break;
     	}
-    	System.out.println(dungeon.getGoal());
     }
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
