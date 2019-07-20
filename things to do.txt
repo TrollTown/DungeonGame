@@ -1,0 +1,4 @@
+1. try to push multiple boulders
+2. push boulder off floor switch
+3. sword test
+4. remove key from inventory when used
