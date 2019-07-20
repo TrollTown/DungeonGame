@@ -7,6 +7,7 @@ public class Inventory {
 	private ArrayList<UnlitBomb> bombs;
 	private ArrayList<Treasure> treasure;
 	private ArrayList<Sword> swords;
+	private ArrayList<Invincibility> invincibility;
 	
 	public Inventory() {
 		this.keys = new ArrayList<Key>();
@@ -28,6 +29,10 @@ public class Inventory {
 	
 	public void addSword(Sword sword) {
 		this.swords.add(sword);
+	}
+	
+	public void addInvincibility(Invincibility invincibility) {
+		this.invincibility.add(invincibility);
 	}
 	
 	public int getNumTreasure() {
@@ -58,6 +63,9 @@ public class Inventory {
 		}
 		else if (item instanceof Sword) {
 			this.addSword((Sword) item);
+		}
+		else if (item instanceof Invincibility) {
+			this.addInvincibility((Invincibility) item);
 		}
 	}
 	
