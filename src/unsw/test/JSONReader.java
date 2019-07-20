@@ -13,6 +13,7 @@ import unsw.dungeon.Boulder;
 import unsw.dungeon.BoulderGoal;
 import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Enemy;
 import unsw.dungeon.EnemyGoal;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
@@ -137,7 +138,12 @@ public class JSONReader {
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
 //        	onLoad(floorswitch);
         	entity = floorswitch;
+        case "enemy":
+        	Enemy enemy = new Enemy(x, y);
+        	dungeon.addEnemy(enemy);
+        	entity = enemy;
         }
+        dungeon.initiateEnemyAI();
         dungeon.addEntity(entity);
     }
 }

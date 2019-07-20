@@ -146,7 +146,6 @@ public class Dungeon {
     public void processDamage(int x, int y) {
     	List<Entity> entities = getEntityAtCoord(x,y);
     	for (Entity entity: entities) {
-    		System.out.println("processDamage: " + entity + ", x/y:" + x + ", " + y);
         	if (entity instanceof Player) {
         		// kill the player
         		this.player.killPlayer();

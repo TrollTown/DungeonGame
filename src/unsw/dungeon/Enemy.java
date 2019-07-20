@@ -19,6 +19,7 @@ public class Enemy extends Entity {
 		// Debugging
 		if (distanceToPlayer == 0) {
 			System.out.println("Player has been reached by enemy");
+			player.killPlayer();
 			return;
 		}
 		
@@ -34,27 +35,27 @@ public class Enemy extends Entity {
 				break;
 			}
 		}
-		//System.out.println(move);
+		System.out.println(move);
 		switch(move) {
 			case 0:
 				this.setY(this.getY()-1);
-				//this.reportPosition();
+				this.reportPosition();
 				break;
 			case 1:
 				this.setY(this.getY()+1);
-				//this.reportPosition();
+				this.reportPosition();
 				break;
 			case 2:
 				this.setX(this.getX()-1);
-				//this.reportPosition();
+				this.reportPosition();
 				break;
 			case 3:
 				this.setX(this.getX()+1);
-				//this.reportPosition();
+				this.reportPosition();
 				break;
 			// Debugging
 			default:
-				// System.out.println("Enemy not moved");
+				 System.out.println("Enemy not moved");
 				break;
 		}
 		

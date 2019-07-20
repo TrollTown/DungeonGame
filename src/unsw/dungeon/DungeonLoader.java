@@ -125,19 +125,16 @@ public abstract class DungeonLoader {
         	Enemy enemy = new Enemy(x,y);
         	onLoad(enemy);
         	entity = enemy;
-        	dungeon.addEnemy(enemy);
         	break;
         case "exit":
         	Exit exit = new Exit(x, y);
         	onLoad(exit);
         	entity = exit;
-        	dungeon.addEntity(exit);
         	break;
         case "switch":
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
         	onLoad(floorswitch);
         	entity = floorswitch;
-        	dungeon.addEntity(floorswitch);
         // TODO Handle other possible entities
         }
         
