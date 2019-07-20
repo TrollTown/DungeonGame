@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -80,6 +82,16 @@ public abstract class Entity {
     
     public boolean checkGoal() {
     	return dungeon.checkGoal();
+    }
+    
+    public boolean checkBoulderOnTop() {
+    	List<Entity> entities = dungeon.getEntityAtCoord(getX(), getY());
+    	for (Entity entity: entities) {
+    		if (entity instanceof Boulder) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
     
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);

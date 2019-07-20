@@ -8,15 +8,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.AndGoal;
 import unsw.dungeon.Boulder;
+import unsw.dungeon.BoulderGoal;
 import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.EnemyGoal;
 import unsw.dungeon.Entity;
+import unsw.dungeon.ExitGoal;
 import unsw.dungeon.Invincibility;
 import unsw.dungeon.Key;
+import unsw.dungeon.OrGoal;
 import unsw.dungeon.Player;
 import unsw.dungeon.Sword;
 import unsw.dungeon.Treasure;
+import unsw.dungeon.TreasureGoal;
 import unsw.dungeon.UnlitBomb;
 import unsw.dungeon.Wall;
 
@@ -34,12 +40,37 @@ public class JSONReader {
 		Dungeon dungeon = new Dungeon(width, height);
 		
 		JSONArray jsonEntities = json.getJSONArray("entities");
-		
+		JSONObject goals = json.getJSONObject("goal-condition");
+        loadGoals(dungeon, goals);
 		for (int i = 0; i < jsonEntities.length(); i++) {
 			loadEntity(dungeon, jsonEntities.getJSONObject(i));
 		}
 		return dungeon;
 	}
+	 private void loadGoals(Dungeon dungeon, JSONObject goals) {
+	    	String mainGoal = goals.getString("goal");
+	    	switch (mainGoal) {
+	    	case "exit":
+	    		dungeon.setGoal(new ExitGoal());
+	    		break;
+	    	case "enemies":
+	    		dungeon.setGoal(new EnemyGoal());
+	    		break;
+	    	case "treasure":
+	    		dungeon.setGoal(new TreasureGoal());
+	    		break;
+	    	case "boulders":
+	    		dungeon.setGoal(new BoulderGoal());
+	    		break;
+	    	case "AND":
+	    		dungeon.setGoal(new AndGoal(goals.getJSONArray("subgoals")));
+	    		break;
+	    	case "OR":
+	    		dungeon.setGoal(new OrGoal(goals.getJSONArray("subgoals")));
+	    		break;
+	    	}
+	    	System.out.println(dungeon.getGoal());
+	    }
 	
 	private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");

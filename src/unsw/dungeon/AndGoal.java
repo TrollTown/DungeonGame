@@ -30,6 +30,9 @@ public class AndGoal implements GoalInterface {
 	    	case "treasure":
 	    		this.goals.add(new TreasureGoal());
 	    		break;
+	    	case "boulders":
+	    		this.goals.add(new BoulderGoal());
+	    		break;
 	    	case "AND":
 	    		this.goals.add(new AndGoal(subgoals.getJSONObject(i).getJSONArray("subgoals")));
 	    		break;

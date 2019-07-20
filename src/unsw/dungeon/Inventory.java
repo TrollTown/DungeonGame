@@ -32,8 +32,10 @@ public class Inventory {
 	}
 	
 	public boolean checkKeys(int id) {
+		System.out.println("Checking Keys");
 		for (Key key: this.keys) {
 			if (key.getId() == id) {
+				System.out.println("YOU MAY PASS");
 				return true;
 			}
 		}
@@ -42,10 +44,14 @@ public class Inventory {
 	
 	public void addItem(Item item) {
 		if (item instanceof Key) {
+			System.out.println("Adding Key");
 			this.addKey((Key) item);
 		}
 		else if (item instanceof UnlitBomb) {
 			this.addUnlitBomb((UnlitBomb) item);
+		}
+		else if (item instanceof Treasure) {
+			this.addTreasure((Treasure) item);
 		}
 	}
 	

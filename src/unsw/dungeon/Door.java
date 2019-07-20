@@ -3,7 +3,7 @@ package unsw.dungeon;
 public class Door extends PhysicalObject {
 	private TypeDoor type;
 	public Door (int x, int y, int id) {
-		super(x, y, true);
+		super(x, y, false);
 		this.setType(new ClosedDoor(id));
 		// By Default
 	}
@@ -29,6 +29,7 @@ public class Door extends PhysicalObject {
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
 		if (this.Locked() == true) {
     		if (inventory.checkKeys(this.getId())) {
+    			
     			this.unlockDoor();
     			return true;
     		}

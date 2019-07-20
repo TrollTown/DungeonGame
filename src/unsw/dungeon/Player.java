@@ -1,11 +1,5 @@
 package unsw.dungeon;
 
-enum Direction {
-	LEFT,
-	RIGHT,
-	UP,
-	DOWN,
-}
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -25,7 +19,7 @@ public class Player extends Entity {
         super(x, y);
         this.dungeon = dungeon;
         this.setInventory(new Inventory());
-        this.isAlive = true;
+        this.setAlive(true);
     }
     
     public void moveUp() {
@@ -79,8 +73,16 @@ public class Player extends Entity {
 
 	
 	public void killPlayer() {
-		this.isAlive = false;
+		this.setAlive(false);
 		this.dungeon.reloadDungeon();
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
     
     

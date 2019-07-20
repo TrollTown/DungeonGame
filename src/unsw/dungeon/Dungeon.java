@@ -61,28 +61,29 @@ public class Dungeon {
         entities.add(entity);
     }
     
-    public Entity getEntityAtCoord(int x, int y) {
+    public List<Entity> getEntityAtCoord(int x, int y) {
+    	List<Entity> listEntity = new ArrayList<Entity>();
     	for (Entity entity : this.entities) {
     		if (entity != null && entity.getX() == x &&
     			entity.getY() == y) {
-    			return entity;
+    			listEntity.add(entity);
     		}
     	}
-    	return null;
+    	return listEntity;
     }
     public boolean isImmovableAtCoord(int x, int y) {
-    	Entity entity = getEntityAtCoord(x, y);
-    	if (entity == null) {
+    	List<Entity> listOfEntities = getEntityAtCoord(x, y);
+    	if (listOfEntities.isEmpty()) {
     		return false;
     	}
-    	if (entity instanceof PhysicalObject) {
-    		PhysicalObject object = (PhysicalObject) entity;
-    		if (object.isImmovableObject() == true) {
-        		return true;
+    	for (Entity entity: listOfEntities) {
+        	if (entity instanceof PhysicalObject) {
+        		PhysicalObject object = (PhysicalObject) entity;
+        		if (object.isImmovableObject() == true) {
+            		return true;
+            	}
         	}
     	}
-    	
-    	
     	
     	return false;
     }
@@ -92,33 +93,32 @@ public class Dungeon {
     }
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
-    	
+    	System.out.println("Running Entity Check");
     	if (this.getGoal().hasMetGoal(this, this.player)) {
     		this.completedDungeon = true;
     	}
-    	Entity entityAtCoord = this.getEntityAtCoord(x, y);
+    	System.out.println("Checked goal");
+    	
+    	List<Entity> entitiesAtCoord = this.getEntityAtCoord(x, y);
+    	for (Entity entityAtCoord: entitiesAtCoord) {
+    		System.out.println("entityAtCoord");
+    		System.out.println(entityAtCoord);
+    		if (entityAtCoord == null) {
+    			continue;
+    		}
+    		if (!entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory())) {
+    			return false;
+    		}
+    		if (entityAtCoord instanceof Item) {
+    			System.out.println(entityAtCoord);
+        		pickUpItem((Item) entityAtCoord);
+        		this.entities.remove(entityAtCoord);
+        	}
+        	if (isImmovableAtCoord(x, y)) {
+        		return false;
+        	}
+    	}
 
-    	// If boulder in square
-    	if (entityAtCoord instanceof Boulder) {
-    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
-    	}
-    	if (entityAtCoord instanceof Door) {
-    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
-
-    	}
-    	if (entityAtCoord instanceof Item) {
-    		pickUpItem((Item) entityAtCoord);
-    		this.entities.remove(entityAtCoord);
-    		return true;
-    	}
-    	if (entityAtCoord instanceof Exit) {
-    		return entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory());
-    	}
-    	// If wall or other immovable object in square that player
-    	// wants to walk to
-    	if (isImmovableAtCoord(x, y)) {
-    		return false;
-    	}
     	return true;
     }
     
@@ -148,19 +148,22 @@ public class Dungeon {
     }
     
     public void processDamage(int x, int y) {
-    	Entity entity = getEntityAtCoord(x,y);
-    	if (entity instanceof Player) {
-    		// kill the player
-    		this.player.killPlayer();
+    	List<Entity> entities = getEntityAtCoord(x,y);
+    	for (Entity entity: entities) {
+        	if (entity instanceof Player) {
+        		// kill the player
+        		this.player.killPlayer();
+        	}
+        	else if (entity instanceof Enemy) {
+        		
+        	}
+        	else if (entity instanceof Boulder) {
+        		// destroy boulder
+        		System.out.println("Destroys boulder at: " + x + "," + y);
+        		getEntities().remove(entity);
+        	}
     	}
-//    	else if (entity instanceof Enemy) {
-//    		;
-//    	}
-    	else if (entity instanceof Boulder) {
-    		// destroy boulder
-    		System.out.println("Destroys boulder at: " + x + "," + y);
-    		getEntities().remove(entity);
-    	}
+
     }
 
     public GoalInterface getGoal() {
@@ -196,9 +199,17 @@ public class Dungeon {
 	}
 
 	
+	public void addEnemy(Enemy enemy) {
+		this.enemies.add(enemy);
+	}
+	
 	public void reloadDungeon() {
 		System.out.println("Reloading Dungeon");
 		System.exit(0);
+	}
+	
+	public void initiateEnemyAI() {
+		EnemyAITimer ai = new EnemyAITimer(1, this.getEnemies(), this.getPlayer());
 	}
 
 

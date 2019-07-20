@@ -40,6 +40,7 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        dungeon.initiateEnemyAI();
         return dungeon;
     }
     
@@ -54,6 +55,9 @@ public abstract class DungeonLoader {
     		break;
     	case "treasure":
     		dungeon.setGoal(new TreasureGoal());
+    		break;
+    	case "boulders":
+    		dungeon.setGoal(new BoulderGoal());
     		break;
     	case "AND":
     		dungeon.setGoal(new AndGoal(goals.getJSONArray("subgoals")));
@@ -117,6 +121,12 @@ public abstract class DungeonLoader {
         	onLoad(bomb);
         	entity = bomb;
         	break;
+        case "enemy":
+        	Enemy enemy = new Enemy(x,y);
+        	onLoad(enemy);
+        	entity = enemy;
+        	dungeon.addEnemy(enemy);
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -143,6 +153,8 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Key key);
 	
 	public abstract void onLoad(UnlitBomb bomb);
+	
+	public abstract void onLoad(Enemy enemy);
 	
     // TODO Create additional abstract methods for the other entities
 

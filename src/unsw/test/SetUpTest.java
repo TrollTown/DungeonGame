@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
 
-class Test1 {
+class SetUpTest {
 
 	@BeforeEach
 	void setUp() throws Exception {	
