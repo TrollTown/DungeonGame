@@ -93,8 +93,7 @@ public class Dungeon {
     }
     
     public boolean moveEntityCheck(int x, int y, Direction direction) {
-    	System.out.println("Running Entity Check");
-    	System.out.println(this.getGoal());
+    	
     	if (this.getGoal().hasMetGoal(this, this.player, direction)) {
     		this.completedDungeon = true;
     		System.out.println("Completed Dungeon!");

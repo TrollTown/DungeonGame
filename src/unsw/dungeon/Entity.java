@@ -94,5 +94,17 @@ public abstract class Entity {
     	return false;
     }
     
+    public FloorSwitch getFloorSwitch(int x, int y) {
+    	System.out.println(x + " " + y);
+    	List<Entity> entities = dungeon.getEntityAtCoord(getX(), getY());
+    	for (Entity entity: entities) {
+    		System.out.println("found: " + entity);
+    		if (entity instanceof FloorSwitch) {
+    			return (FloorSwitch) entity;
+    		}
+    	}
+    	return null;
+    }
+    
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
 }

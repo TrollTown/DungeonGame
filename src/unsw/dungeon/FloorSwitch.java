@@ -8,7 +8,7 @@ public class FloorSwitch extends PhysicalObject {
 		super(x, y, false);
 	}
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
-		System.out.println("Checking boulder on top");
+		
 		if(super.checkBoulderOnTop()) {
 			this.activated = true;
 		} else {
@@ -17,6 +17,7 @@ public class FloorSwitch extends PhysicalObject {
 
 		return true;
 	}
+	
 	public boolean isActivated() {
 		return activated;
 	}

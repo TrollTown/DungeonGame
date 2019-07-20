@@ -8,17 +8,27 @@ public class Boulder extends PhysicalObject {
 	
 	private boolean moveToCoords(int x, int y) {
 		if (!super.isImmovableAtCoord(x, y)) {
+			System.out.println(x);
+			System.out.println(y);
+			checkFloorSwitch(x, y);
 			super.setX(x);
 			super.setY(y);
 			
-			System.out.println("Move to coords boulder: " + x + ", " + y);
 			return true;
 		}
 		return false;
 	}
 	
+	private void checkFloorSwitch(int x, int y) {
+		FloorSwitch floorswitch = super.getFloorSwitch(x, y);
+		if (floorswitch != null) {
+			floorswitch.setActivated(true);
+		}
+	}
+	
 	public boolean moveLeft() {
 		if (super.getX() > 0) {
+			
 			return moveToCoords(super.getX() - 1, super.getY());
 		}
 		return false;
@@ -44,8 +54,10 @@ public class Boulder extends PhysicalObject {
 		}
 		return false;
 	}
+
 	
 	 public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
+ 		
  		
  		if (direction == Direction.UP) {
  			// Checks if boulder can move as well, if can move then it will move
