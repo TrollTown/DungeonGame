@@ -230,10 +230,4 @@ public class Dungeon {
 			}
 		}
 	}
-	
-	public void killEnemy(Enemy enemy) {
-		this.enemies.remove(enemy);
-		this.entities.remove(enemy);
-	}
-    
 }

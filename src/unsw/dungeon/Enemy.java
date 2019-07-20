@@ -10,7 +10,6 @@ public class Enemy extends Entity {
 	}
 	public void kill() {
 		this.isAlive = false;
-		super.killEnemy(this);
 	}
 	public boolean isDead() {
 		return !this.isAlive;
@@ -25,33 +24,32 @@ public class Enemy extends Entity {
 		int distanceAfterMoveRight = this.computePathLength(player, this.getX()+1, this.getY());
 		int distances[] = new int[] {distanceAfterMoveUp, distanceAfterMoveDown, distanceAfterMoveLeft, distanceAfterMoveRight};
 		int move = -1;
-		for (int i = 0; i < distances.length; i++) {
-			if (distances[i] < this.getDistanceToPlayer(player) && distances[i] != -1) {
-				move = i;
-				break;
+		// Check if player is invincible
+		if (player.getInvincibilityStatus()) {
+			;
+		}
+		else {
+			// Very basic move towards player AI with no pathfinding (will get stuck behind obstacles)
+			for (int i = 0; i < distances.length; i++) {
+				if (distances[i] < this.getDistanceToPlayer(player) && distances[i] != -1) {
+					move = i;
+					break;
+				}
 			}
 		}
-		//System.out.println(move);
+		
 		switch(move) {
 			case 0:
 				this.setY(this.getY()-1);
-				//this.reportPosition();
 				break;
 			case 1:
 				this.setY(this.getY()+1);
-				//this.reportPosition();
 				break;
 			case 2:
 				this.setX(this.getX()-1);
-				//this.reportPosition();
 				break;
 			case 3:
 				this.setX(this.getX()+1);
-				//this.reportPosition();
-				break;
-			// Debugging
-			default:
-				 //System.out.println("Enemy not moved");
 				break;
 		}
 		// Check player not reached by enemy
@@ -67,11 +65,6 @@ public class Enemy extends Entity {
 		int playerY = player.getY();
 		int manhattanDistance = Math.abs(playerX - x) + Math.abs(playerY - y);
 		return manhattanDistance;
-	}
-	
-	// For debugging only
-	private void reportPosition() {
-		System.out.println("Enemy position is now " + this.getX() +"," + this.getY());
 	}
 	
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
