@@ -17,6 +17,9 @@ public class Inventory {
 	public void addKey(Key key) {
 		this.keys.add(key);
 	}
+	public ArrayList<UnlitBomb> getBombs() {
+		return this.bombs;
+	}
 	
 	public void addUnlitBomb(UnlitBomb bomb) {
 		this.bombs.add(bomb);

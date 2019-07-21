@@ -3,6 +3,7 @@ package unsw.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ class BombTest {
 		Player player = dungeon.getPlayer();
 		assert player != null;
 		Enemy enemy = dungeon.getEnemies().get(0);
-		assert enemy.getX() == 1 && enemy.getY() == 10;
+		assert enemy.getX() == 1 && enemy.getY() == 7;
 		Bomb bomb = null;
 		
 		for (Entity entity: dungeon.getEntityAtCoord(1, 3)) {
@@ -63,8 +64,29 @@ class BombTest {
 			}
 		}
 		assert bomb != null;
-		Thread.sleep(10000);
-		assert player.isAlive() == false;
+		player.moveDown();
+		player.moveDown();
+		assert player.getInventory().getBombs().isEmpty() == false;
+		// Player now has bomb
+		player.placeBomb();
+		LitBomb placedBomb = null;
+		for (Entity entity: dungeon.getEntityAtCoord(1, 3)) {
+			System.out.println(entity);
+			if (entity instanceof LitBomb) {
+				placedBomb = (LitBomb) entity;
+			}
+		}
+		assert placedBomb != null;
+		assert player.getInventory().getBombs().isEmpty() == true;
+		player.moveUp();
+		player.moveUp();
+		Thread.sleep(5000);
+		System.out.println("Enemy: " + enemy.getX() + ", " + enemy.getY());
+		
+		
+		assert placedBomb.getState() instanceof ExplodedState;
+		assert player.isAlive() == true;
+		assert enemy.isDead() == true;
 	}
 
 }
