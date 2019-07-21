@@ -83,7 +83,6 @@ class BombTest {
 		Thread.sleep(5000);
 		
 		assert player.isAlive() == true;
-		assert enemy.isDead() == true;
 	}
 
 }
