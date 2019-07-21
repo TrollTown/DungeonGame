@@ -6,13 +6,13 @@ public class Inventory {
 	private ArrayList<Key> keys;
 	private ArrayList<UnlitBomb> bombs;
 	private ArrayList<Treasure> treasure;
-	private ArrayList<Sword> swords;
+	private Sword sword;
 	
 	public Inventory() {
 		this.keys = new ArrayList<Key>();
 		this.bombs = new ArrayList<UnlitBomb>();
 		this.treasure = new ArrayList<Treasure>();
-		this.swords = new ArrayList<Sword>();
+		this.sword = null;
 	}
 	public void addKey(Key key) {
 		this.keys.add(key);
@@ -27,7 +27,7 @@ public class Inventory {
 	}
 	
 	public void addSword(Sword sword) {
-		this.swords.add(sword);
+		this.sword = sword;
 	}
 	
 	public int getNumTreasure() {
@@ -71,14 +71,13 @@ public class Inventory {
 	}
 	
 	public Sword containsSword() {
-		if (swords.isEmpty()) {
+		if (this.sword == null) {
 			return null;
 		}
-		for (Sword sword: swords) {
-			if (sword.getNumHits() < 5) {
-				return sword;
-			}
+		if (sword.getNumHits() < 5) {
+			return sword;
 		}
+		
 		return null;
 	}
 }
