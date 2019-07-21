@@ -137,14 +137,20 @@ public class JSONReader {
 	    	break;
         case "switch":
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
+        	System.out.println("floorswitch: x, " + x + ", y " + y);
 //        	onLoad(floorswitch);
         	entity = floorswitch;
+        	break;
         case "enemy":
         	Enemy enemy = new Enemy(x, y);
         	dungeon.addEnemy(enemy);
         	entity = enemy;
+        	break;
         }
         
+        if (entity instanceof FloorSwitch) {
+        	System.out.println("Adding floor switch!");
+        }
         dungeon.addEntity(entity);
     }
 }

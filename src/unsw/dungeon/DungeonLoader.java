@@ -136,6 +136,7 @@ public abstract class DungeonLoader {
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
         	onLoad(floorswitch);
         	entity = floorswitch;
+        	break;
         // TODO Handle other possible entities
         }
         

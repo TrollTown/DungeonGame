@@ -14,7 +14,7 @@ import unsw.dungeon.Door;
 import unsw.dungeon.ClosedDoor;
 import unsw.dungeon.UnlockedDoor;
 
-class DoorTest {
+class DoorKeyTest {
 
 	@Test
 	void PlayerCanWalkThroughDoorTest() throws FileNotFoundException {

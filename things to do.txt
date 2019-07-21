@@ -2,3 +2,5 @@
 2. push boulder off floor switch
 3. sword test
 4. remove key from inventory when used
+5. drop items
+6. POTION TEST!!!!

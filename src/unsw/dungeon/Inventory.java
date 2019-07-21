@@ -42,6 +42,7 @@ public class Inventory {
 			if (key.getId() == id) {
 				return true;
 			}
+			
 		}
 		return false;
 	}
@@ -69,7 +70,15 @@ public class Inventory {
 		return false;
 	}
 	
-	public boolean containsSword() {
-		return !this.swords.isEmpty();
+	public Sword containsSword() {
+		if (swords.isEmpty()) {
+			return null;
+		}
+		for (Sword sword: swords) {
+			if (sword.getNumHits() < 5) {
+				return sword;
+			}
+		}
+		return null;
 	}
 }

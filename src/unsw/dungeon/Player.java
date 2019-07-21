@@ -111,7 +111,9 @@ public class Player extends Entity {
 	}
 	
 	public void useSword() {
-		if (this.inventory.containsSword()) {
+		Sword sword = this.inventory.containsSword();
+		if (sword != null) {
+			sword.increaseNumHits();
 			dungeon.killEnemies(getX(), getY());
 		}
 	}
