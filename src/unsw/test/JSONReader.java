@@ -125,7 +125,6 @@ public class JSONReader {
 	     	entity = key;
 	     	break;
 	    case "bomb":
-	     	System.out.println("BOMB FOUND");
 	     	UnlitBomb bomb = new UnlitBomb(x,y);
 //	     	onLoad(bomb);
 	     	entity = bomb;

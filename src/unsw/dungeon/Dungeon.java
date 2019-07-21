@@ -4,6 +4,8 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,9 +62,21 @@ public class Dungeon {
         entities.add(entity);
     }
     
+    private ArrayList<Entity> copyEntityList(List<Entity> entityList) {
+    	ArrayList<Entity> newEntityList = new ArrayList<Entity>(entityList.size());
+    	for (Entity entity: entityList) {
+    		newEntityList.add(entity);
+    	}
+    	return newEntityList;
+    }
+    
     public List<Entity> getEntityAtCoord(int x, int y) {
     	List<Entity> listEntity = new ArrayList<Entity>();
-    	for (Entity entity : this.entities) {
+    	
+    	List<Entity> copyOfEntities = copyEntityList(this.entities); // Avoid co-modification error
+    	Iterator it = copyOfEntities.iterator();
+    	while (it.hasNext()) {
+    		Entity entity = (Entity) it.next();
     		if (entity != null && entity.getX() == x &&
     			entity.getY() == y) {
     			listEntity.add(entity);

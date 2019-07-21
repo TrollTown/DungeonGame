@@ -19,6 +19,9 @@ class MakeMove extends TimerTask {
 			if (enemy.isDead() == false) {
 				enemy.moveTowardsPlayer(player);
 			}
+			else {
+				this.cancel(); // Kill task
+			}
 		}
 	}
 }

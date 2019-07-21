@@ -37,13 +37,11 @@ class InvincibilityTest {
 		assert player.getInvincibilityStatus() == true;
 		
 		assert player.getX() == 1 && player.getY() == 3;
-		player.moveDown();
-		player.moveDown();
-		player.moveDown();
-		player.moveDown();
-		player.moveDown();
-		player.moveDown();
-		player.moveDown();
+		int count = 0;
+		while (enemy.isDead() != true && count < 10) {
+			player.moveDown();
+			count++;
+		}
 		assert enemy.isDead() == true;
 	}
 
