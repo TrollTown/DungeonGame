@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+// Represents actual physical objects like Wall
 public abstract class PhysicalObject extends Entity {
 	private boolean isImmovableObject;
 	public PhysicalObject(int x, int y, boolean isImmovableObject) {
@@ -17,7 +18,7 @@ public abstract class PhysicalObject extends Entity {
 		return super.isImmovableAtCoord(x, y);
 	}
 	
-	
+	// Method forwarding
 	public void setX(int x) {
 		super.setX(x);
 	}
@@ -36,7 +37,7 @@ public abstract class PhysicalObject extends Entity {
 	public boolean checkGoal() {
 		return super.checkGoal();
 	}
-	
+	// Must be implemented by all physical entities
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
     
 

@@ -16,6 +16,7 @@ public class AndGoal implements GoalInterface {
 		this.goals.add(goal2);
 	}
 	
+	// Set up the goals given JSON array
 	public AndGoal(JSONArray subgoals) {
 		this.goals = new ArrayList<GoalInterface>();
 		for (int i = 0; i < subgoals.length(); i++) {
@@ -45,11 +46,13 @@ public class AndGoal implements GoalInterface {
 		
 	}
 
+	// For debugging
 	@Override
 	public String toString() {
 		return "AndGoal [goals=" + goals + "]";
 	}
 
+	// Check if both goals have been met
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {

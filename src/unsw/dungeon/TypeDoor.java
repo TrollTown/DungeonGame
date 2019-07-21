@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+// State pattern for ClosedDoor/UnlockedDoor
 public interface TypeDoor {
 	boolean getImmovable();
 	

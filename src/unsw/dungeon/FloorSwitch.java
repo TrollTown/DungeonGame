@@ -5,6 +5,8 @@ public class FloorSwitch extends PhysicalObject {
 	public FloorSwitch (int x, int y) {
 		super(x, y, false);
 	}
+	
+	// If boulder is on top of floor switch, then activate switch
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
 		
 		if(super.checkBoulderOnTop()) {

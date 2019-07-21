@@ -6,9 +6,12 @@ public class Item extends Entity {
 		super(x, y);
 	}
 	
+	
 	public void causeDamage() {
 		super.causeDamage();
 	}
+	
+	// Item will not block player from moving onto square
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }

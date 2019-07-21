@@ -32,7 +32,7 @@ class SwordTest {
 		}
 		assert enemy != null;
 		player.moveDown();
-		Thread.sleep(7000); // Enemy takes a second to move a square
+		Thread.sleep(6500); // Enemy takes a second to move a square
 		player.useSword();
 		assert enemy.isDead() == true;
 		assert player.isAlive() == true;

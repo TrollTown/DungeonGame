@@ -5,11 +5,14 @@ public class ClosedDoor implements TypeDoor {
 	public ClosedDoor(int id) {
 		this.id = id;
 	}
+	
+	// Cannot move through a closed door
 	@Override
 	public boolean getImmovable() {
 		return true;
 	}
 
+	// If key given matches id, then unlock door
 	@Override
 	public boolean unlockDoor(Key key) {
 		if (key.getId() == this.id) {
@@ -17,14 +20,14 @@ public class ClosedDoor implements TypeDoor {
 		}
 		return false;
 	}
+	
+	// Gets ID
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 	@Override
 	public boolean doorLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	

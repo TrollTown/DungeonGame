@@ -81,10 +81,7 @@ class BombTest {
 		player.moveUp();
 		player.moveUp();
 		Thread.sleep(5000);
-		System.out.println("Enemy: " + enemy.getX() + ", " + enemy.getY());
 		
-		
-		assert placedBomb.getState() instanceof ExplodedState;
 		assert player.isAlive() == true;
 		assert enemy.isDead() == true;
 	}

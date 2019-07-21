@@ -9,7 +9,6 @@ public class UnlockedDoor implements TypeDoor {
 
 	@Override
 	public boolean unlockDoor(Key key) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -20,7 +19,6 @@ public class UnlockedDoor implements TypeDoor {
 
 	@Override
 	public boolean doorLocked() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

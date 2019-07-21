@@ -23,6 +23,7 @@ public class LitBomb extends Bomb {
 		return this.state;
 	}
 	
+	// Detonate a bomb
 	public void detonateBomb() {
 		new Timer().schedule( 
 		        new TimerTask() {

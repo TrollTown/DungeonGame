@@ -8,6 +8,7 @@ public class Enemy extends Entity {
 		isAlive = true;
 		
 	}
+	// Kill the enemy
 	public void kill() {
 		this.isAlive = false;
 	}
@@ -15,9 +16,10 @@ public class Enemy extends Entity {
 		return !this.isAlive;
 	}
 	
+	// Move enemy towards player
 	public void moveTowardsPlayer(Player player) {
 		
-		// Debugging
+		// Get distances in all four directions
 		int distanceAfterMoveUp = this.computePathLength(player, this.getX(), this.getY()-1);
 		int distanceAfterMoveDown = this.computePathLength(player, this.getX(), this.getY()+1);
 		int distanceAfterMoveLeft = this.computePathLength(player, this.getX()-1, this.getY());
@@ -43,6 +45,7 @@ public class Enemy extends Entity {
 			}
 		}
 		
+		// Decide where to move
 		switch(move) {
 			case 0:
 				this.setY(this.getY()-1);
@@ -72,14 +75,15 @@ public class Enemy extends Entity {
 		return manhattanDistance;
 	}
 	
+	// Can move through enemy
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
     
+    // Get the distance betwene enemy and player
     private int getDistanceToPlayer(Player player) {
     	int distanceToPlayer = this.computePathLength(player, this.getX(), this.getY());
     	if (distanceToPlayer == 0) {
-			System.out.println("Player has been reached by enemy");
 			player.getDungeon().processPlayerEnemyCollision(player, this);
 		}
     	return distanceToPlayer;

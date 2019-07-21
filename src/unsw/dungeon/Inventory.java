@@ -25,6 +25,7 @@ public class Inventory {
 		this.bombs.add(bomb);
 	}
 	
+	// Add treasure object
 	public void addTreasure(Treasure treasure) {
 		this.treasure.add(treasure);
 	}
@@ -40,6 +41,7 @@ public class Inventory {
 		return this.keys;
 	}
 	
+	// Check if keys match given id
 	public boolean checkKeys(int id) {
 		for (Key key: this.keys) {
 			if (key.getId() == id) {
@@ -65,6 +67,7 @@ public class Inventory {
 		}
 	}
 	
+	// If there are bombs in inventory, remove bomb when using one
 	public boolean useBomb() {
 		if (this.bombs.size() > 0) {
 			this.bombs.remove(0);
@@ -73,6 +76,7 @@ public class Inventory {
 		return false;
 	}
 	
+	// If sword has been used less than 5 times and there is a sword, return true
 	public Sword containsSword() {
 		if (this.sword == null) {
 			return null;

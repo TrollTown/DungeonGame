@@ -3,6 +3,7 @@ package unsw.dungeon;
 import java.util.List;
 import java.util.TimerTask;
 
+// Used for multithreading for enemy to move
 class MakeMove extends TimerTask {
 	List<Enemy> enemies;
 	Player player;

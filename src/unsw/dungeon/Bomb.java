@@ -6,7 +6,7 @@ public class Bomb extends Item {
 		super(x, y);
 		
 	}
-	
+	// Cause damage on squares around bomb
 	public void causeDamage() {
 		super.causeDamage();
 	}
