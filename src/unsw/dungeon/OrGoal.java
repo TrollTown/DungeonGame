@@ -45,6 +45,7 @@ public class OrGoal implements GoalInterface {
 		
 	}
 
+	// If either goal has been met, return true
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {

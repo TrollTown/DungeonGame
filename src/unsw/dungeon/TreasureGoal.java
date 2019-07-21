@@ -2,6 +2,7 @@ package unsw.dungeon;
 
 public class TreasureGoal implements GoalInterface {
 
+	// If number of treasure in inventory equals number of treasure in dungeon
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		int countTreasure = 0;

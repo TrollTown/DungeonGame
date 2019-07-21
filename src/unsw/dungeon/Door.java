@@ -18,16 +18,20 @@ public class Door extends PhysicalObject {
 		return this.type.getID();
 	}
 	
+	// Unlocks the door by setting a new type and allowing door to be moved through
 	public void unlockDoor() {
 		this.setType(new UnlockedDoor());
 		this.setImmovableObject(false);
 		
 	}
 	
+	// Is door locked?
 	public boolean Locked() {
 		return this.type.doorLocked();
 	}
 	
+	// If door is locked, check if player's key matches door id
+	// if it does, then unlock door
 	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
 		if (this.Locked() == true) {
     		if (inventory.checkKeys(this.getId())) {

@@ -7,6 +7,8 @@ public class Sword extends Item {
 		numHits = 0;
 		
 	}
+	
+	// Get number of times sword has been used
 	public int getNumHits() {
 		return numHits;
 	}

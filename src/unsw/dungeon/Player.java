@@ -24,16 +24,19 @@ public class Player extends Entity {
         this.invincibility = new InvincibilityStatus();
     }
     
+    // Player moves up
     public void moveUp() {
+    	// Checks if within dungeon height and width and if it can move to the square
         if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP) && this.isAlive) {
 
             y().set(getY() - 1);
+            // If the goal has been met
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
         	}
         }
     }
-
+    // Below functions are similar to above
     public void moveDown() {
         if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN) && this.isAlive) {
 
@@ -64,6 +67,7 @@ public class Player extends Entity {
         }
     }
     
+    // Check if any keys in inventory match the id given
     public boolean checkKeys(int id) {
     	return this.inventory.checkKeys(id);
     }
@@ -77,13 +81,15 @@ public class Player extends Entity {
 		this.inventory = inventory;
 	}
 	
+	// Add an item to the inventory
 	public void addItem(Item item) {
+		// If invincibility potion
 		if (item instanceof Invincibility) {
 			this.invincibility.refreshInvincibility(); 
 		}
 		this.inventory.addItem(item);
 	}
-	
+	// Places a bomb
 	public void placeBomb() {
 		if (this.inventory.useBomb() == true) {
 			LitBomb bomb = new LitBomb(this.getX(), this.getY());
@@ -93,11 +99,12 @@ public class Player extends Entity {
 		}
 	}
 
+	// This function is implemented due to polymorphism and how Player inherits from Entity
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
 
-	
+	// Kill the player
 	public void killPlayer() {
 		this.setAlive(false);
 		this.dungeon.reloadDungeon();
@@ -112,13 +119,15 @@ public class Player extends Entity {
 	}
 	
 	public void useSword() {
+		
 		Sword sword = this.inventory.containsSword();
-		if (sword != null) {
-			sword.increaseNumHits();
+		if (sword != null) { // If there is a sword
+			sword.increaseNumHits(); // increase number of hits
 			dungeon.killEnemies(getX(), getY());
 		}
 	}
 	
+	// Get whether player is still invincible
 	public boolean getInvincibilityStatus() {
 		return this.invincibility.getStatus();
 	}

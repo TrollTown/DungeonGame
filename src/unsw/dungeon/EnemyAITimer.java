@@ -8,7 +8,7 @@ import java.util.TimerTask;
 public class EnemyAITimer {
 	Toolkit toolkit;
 	Timer timer;
-	
+	// Creates a new timer for enemy movement
 	public EnemyAITimer(int seconds, List<Enemy> enemies, Player player) {
 		this.timer = new Timer();
 		this.timer.schedule(new MakeMove(enemies, player), 0, seconds * 1000);

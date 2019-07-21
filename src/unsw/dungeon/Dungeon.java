@@ -54,7 +54,8 @@ public class Dungeon {
     public void setPlayer(Player player) {
         this.player = player;
     }
-
+    
+    // Adds an entity to the dungeon
     public void addEntity(Entity entity) {
     	if (entity != null) {
     		entity.setDungeon(this);
@@ -62,6 +63,8 @@ public class Dungeon {
         entities.add(entity);
     }
     
+    // Makes a copy of an entity list
+    // Used to avoid the co-modification error that the Timer class kept producing
     private ArrayList<Entity> copyEntityList(List<Entity> entityList) {
     	ArrayList<Entity> newEntityList = new ArrayList<Entity>(entityList.size());
     	for (Entity entity: entityList) {
@@ -70,10 +73,12 @@ public class Dungeon {
     	return newEntityList;
     }
     
+    // Gets a list of all the entities at this coordinate
     public List<Entity> getEntityAtCoord(int x, int y) {
     	List<Entity> listEntity = new ArrayList<Entity>();
     	
     	List<Entity> copyOfEntities = copyEntityList(this.entities); // Avoid co-modification error
+    	// Iterator used to avoid co-modification error
     	Iterator it = copyOfEntities.iterator();
     	while (it.hasNext()) {
     		Entity entity = (Entity) it.next();
@@ -84,6 +89,7 @@ public class Dungeon {
     	}
     	return listEntity;
     }
+    // Checks if the player can move on the same square as the entity on this square
     public boolean isImmovableAtCoord(int x, int y) {
     	List<Entity> listOfEntities = getEntityAtCoord(x, y);
     	if (listOfEntities.isEmpty()) {
@@ -101,10 +107,13 @@ public class Dungeon {
     	return false;
     }
     
+    // Pick up an entity
     public void pickUpItem(Item item) {
     	player.addItem(item);
     }
     
+    // Run every time the player moves
+    // Checks if the player can move to the square it wants to go to
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	
     	List<Entity> entitiesAtCoord = this.getEntityAtCoord(x, y);
@@ -112,17 +121,22 @@ public class Dungeon {
     		if (entityAtCoord == null) {
     			continue;
     		}
+    		// Polymorphism
+    		// Every single entity has this function
     		if (!entityAtCoord.moveEntityCheck(x, y, direction, player.getInventory())) {
     			return false;
     		}
+    		// If the player encounters an enemy
     		if (entityAtCoord instanceof Enemy) {
     			processPlayerEnemyCollision(this.player, (Enemy) entityAtCoord);
     			return true;
     		}
+    		// If the player encounters an item
     		if (entityAtCoord instanceof Item) {
         		pickUpItem((Item) entityAtCoord);
         		this.entities.remove(entityAtCoord);
         	}
+    		// If the object at this square is immovable or not
         	if (isImmovableAtCoord(x, y)) {
         		return false;
         	}
@@ -130,6 +144,8 @@ public class Dungeon {
     	return true;
     }
     
+    // Given coords, causes damage on everything around that coordinate
+    // Bombs use this
     public void causeDamage(int x, int y) {
     	if (tileInDungeon(x, y-1)) {
     		processDamage(x, y-1);
@@ -146,7 +162,8 @@ public class Dungeon {
     	}
     	processDamage(x,y);
     }
-
+    
+    // If the tile exists within the dungeon's width and height
     private boolean tileInDungeon(int x, int y) {
     	if (x < 0 || y < 0 || x >= width || y >= width) {
     		return false;
@@ -154,6 +171,7 @@ public class Dungeon {
     	return true;
     }
     
+    // Causes damage at a specific coordinate
     public void processDamage(int x, int y) {
     	List<Entity> entities = getEntityAtCoord(x,y);
     	for (Entity entity: entities) {
@@ -173,17 +191,22 @@ public class Dungeon {
 
     }
 
+    // Gets dungeon's goal
     public GoalInterface getGoal() {
     	return this.goal;
     }
+    
+    // Sets dungeon's goal
 	public void setGoal(GoalInterface goal) {
 		this.goal = goal;
 	}
 	
+	// Gets dungeon's enemies
 	public List<Enemy> getEnemies() {
 		return this.enemies;
 	}
 	
+	// Checks if dungeon's goal has been met
 	public boolean checkGoal() {
 		if (this.isCompletedDungeon()) {
 			return true;
@@ -192,6 +215,7 @@ public class Dungeon {
 		}
 	}
 
+	
 	public void setEnemies(List<Enemy> enemies) {
 		this.enemies = enemies;
 	}
@@ -210,15 +234,24 @@ public class Dungeon {
 		this.enemies.add(enemy);
 	}
 	
+	// In the future, implement this function
 	public void reloadDungeon() {
 		System.out.println("Reloading Dungeon");
 //		System.exit(0);
 	}
 	
+	// Start the enemy AI
 	public void initiateEnemyAI() {
 		EnemyAITimer ai = new EnemyAITimer(1, this.getEnemies(), this.getPlayer());
 	}
 	
+	// Kill enemies around these coordinates
+	// This is why there are two for loops:
+	
+//	    X
+//	 X  X  X
+//	    X
+	// The middle coordinate is the coordinate given, and it kills everything at these coordinates
 	public void killEnemies(int x, int y) {
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (Enemy enemy: enemies) {
@@ -234,6 +267,7 @@ public class Dungeon {
 		}
 	}
 
+	// Process player and enemy colliding
 	public void processPlayerEnemyCollision(Player player, Enemy enemy) {
 		if (!enemy.isDead()) {
 			if (this.player.getInvincibilityStatus() == true) {

@@ -6,6 +6,7 @@ public class Boulder extends PhysicalObject {
 		super(x, y, true);
 	}
 	
+	// Check if boulder can move to these coordinates
 	private boolean moveToCoords(int x, int y) {
 		if (!super.isImmovableAtCoord(x, y)) {
 			checkFloorSwitch(x, y);
@@ -17,16 +18,18 @@ public class Boulder extends PhysicalObject {
 		return false;
 	}
 	
+	// Check if floor switch under boulder
 	private void checkFloorSwitch(int x, int y) {
 		FloorSwitch floorswitch = super.getFloorSwitch(x, y);
-		if (floorswitch != null) {
+		if (floorswitch != null) { // If there is a floor switch then activate it
 			floorswitch.setActivated(true);
 		}
 	}
 	
+	// Move boulder left
 	public boolean moveLeft() {
 		if (super.getX() > 0) {
-			
+			// Check if can move to these coords
 			return moveToCoords(super.getX() - 1, super.getY());
 		}
 		return false;
@@ -54,7 +57,8 @@ public class Boulder extends PhysicalObject {
 	}
 
 	
-	 public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
+	// Run if player wants to move towards boulder
+	public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
  		
  		
  		if (direction == Direction.UP) {

@@ -60,7 +60,7 @@ public abstract class Entity {
     	this.y().set(y);
     }
     
-
+    // Method forwarding for method in dungeon
 	public boolean isImmovableAtCoord(int x, int y) {
 		return dungeon.isImmovableAtCoord(x, y);
 	}
@@ -82,6 +82,7 @@ public abstract class Entity {
     	return dungeon.checkGoal();
     }
     
+    // Check if boulder is on top of this entity
     public boolean checkBoulderOnTop() {
     	List<Entity> entities = dungeon.getEntityAtCoord(getX(), getY());
     	for (Entity entity: entities) {
@@ -92,6 +93,7 @@ public abstract class Entity {
     	return false;
     }
     
+    // Get floor switch at given coords
     public FloorSwitch getFloorSwitch(int x, int y) {
     	List<Entity> entities = dungeon.getEntityAtCoord(x, y);
     	for (Entity entity: entities) {
@@ -102,5 +104,6 @@ public abstract class Entity {
     	return null;
     }
     
+    // Must be implemented by all Entity classes
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
 }
