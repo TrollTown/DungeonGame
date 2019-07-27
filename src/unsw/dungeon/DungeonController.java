@@ -95,6 +95,7 @@ public class DungeonController {
     	Label label = new Label("This is the menu");
     	label.setStyle(" -fx-background-color: green");
     	popup.getContent().add(label);
+    	popup.setAutoHide(true);
     	this.menu = popup;
     }
     private void toggleMenu() {
