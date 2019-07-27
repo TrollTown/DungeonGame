@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -15,9 +18,13 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class DungeonController {
+	
+	private Stage primaryStage;
 
     @FXML
     private GridPane squares;
+    
+    private Popup menu;
 
     private List<ImageView> initialEntities;
 
@@ -30,9 +37,16 @@ public class DungeonController {
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
     }
+    
+    public void setPrimaryStage(Stage primaryStage) {
+    	this.primaryStage = primaryStage;
+    }
 
     @FXML
     public void initialize() {
+    	// Initialise the menu popup
+    	this.initialiseMenu();
+    	
         Image ground = new Image("/dirt_0_new.png");
 
         // Add the ground first so it is below all other entities
@@ -44,7 +58,7 @@ public class DungeonController {
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
-
+        
     }
 
     @FXML
@@ -68,9 +82,29 @@ public class DungeonController {
         case K:
         	player.useSword();
         	break;
+        case ESCAPE:
+        	this.toggleMenu();
+        	break;
         default:
             break;
         }
+    }
+    
+    private void initialiseMenu() {
+    	Popup popup = new Popup();
+    	Label label = new Label("This is the menu");
+    	label.setStyle(" -fx-background-color: green");
+    	popup.getContent().add(label);
+    	this.menu = popup;
+    }
+    private void toggleMenu() {
+    	if (!this.menu.isShowing()) {
+    		menu.show(this.primaryStage);
+    	}
+    	else {
+    		menu.hide();
+    	}
+    	
     }
 
 }

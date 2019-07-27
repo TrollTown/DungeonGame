@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
@@ -18,7 +19,7 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class DungeonControllerLoader extends DungeonLoader {
-
+	
     private List<ImageView> entities;
 
     //Images
@@ -55,6 +56,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         switchImage = new Image("/pressure_plate.png");
     }
     
+   
     
     @Override
     public void onLoad(Entity player) {
