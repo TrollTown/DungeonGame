@@ -129,7 +129,18 @@ public class DungeonControllerLoader extends DungeonLoader {
 
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
+        hideEntity(entity, view);
         entities.add(view);
+    }
+    
+    private void hideEntity(Entity entity, Node node) {
+    	entity.getShow().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable,
+                    Boolean oldValue, Boolean newValue) {
+                node.setVisible(false);
+            }
+    	});
     }
 
     /**

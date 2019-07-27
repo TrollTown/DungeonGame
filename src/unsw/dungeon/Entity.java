@@ -4,7 +4,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -17,6 +19,7 @@ public abstract class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
+    private BooleanProperty show;
     private Dungeon dungeon;
     /**
      * Create an entity positioned in square (x,y)
@@ -26,6 +29,7 @@ public abstract class Entity {
     public Entity(int x, int y) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.show = new SimpleBooleanProperty(true);
     }
 
     public Dungeon getDungeon() {
@@ -106,4 +110,12 @@ public abstract class Entity {
     
     // Must be implemented by all Entity classes
     public abstract boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory);
+
+	public BooleanProperty getShow() {
+		return show;
+	}
+
+	public void setShow(boolean show) {
+		this.show.set(show);
+	}
 }

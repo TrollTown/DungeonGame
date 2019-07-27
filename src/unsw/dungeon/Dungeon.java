@@ -4,7 +4,6 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,7 +78,7 @@ public class Dungeon {
     	
     	List<Entity> copyOfEntities = copyEntityList(this.entities); // Avoid co-modification error
     	// Iterator used to avoid co-modification error
-    	Iterator it = copyOfEntities.iterator();
+    	Iterator<Entity> it = copyOfEntities.iterator();
     	while (it.hasNext()) {
     		Entity entity = (Entity) it.next();
     		if (entity != null && entity.getX() == x &&
@@ -106,9 +105,9 @@ public class Dungeon {
     	
     	return false;
     }
-    
     // Pick up an entity
     public void pickUpItem(Item item) {
+    	item.setShow(false);
     	player.addItem(item);
     }
     
