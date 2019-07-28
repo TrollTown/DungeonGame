@@ -4,8 +4,10 @@
     -fx-background-radius: 10;
 }
 
-.label {
+.button {
+
 }
 
-.button {
+.label {
+    font-color: white;
 }
