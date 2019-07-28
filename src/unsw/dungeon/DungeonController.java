@@ -81,31 +81,26 @@ public class DungeonController {
             break;
         }
     }
-    private void updateImage(Entity entity) {
-    	for (Node child: squares.getChildren()) {
-    		if (GridPane.getColumnIndex(child) == entity.getX() &&
-    			GridPane.getRowIndex(child) == entity.getY()) {
-    			
-    			
-    			((ImageView) child).imageProperty().set(new Image("/bomb_lit_4.png"));
-    			break;
-    		}
-    	}
-    }
     
     public void updateView(Entity entity) {
     	if (entity instanceof LitBomb) {
     		LitBomb bomb = (LitBomb) entity;
     		if (bomb.getState() instanceof LitState) {
-    			Node newView = new ImageView("/bomb_lit_1.png");
+    			ImageView newView = new ImageView("/bomb_lit_1.png");
     			squares.add(newView, bomb.getX(), bomb.getY());
-    			bomb.hasExploded().addListener(new ChangeListener<Object>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Object> observable,
-                            Object oldValue, Object newValue) {
-                        updateImage(entity);
-                    }
-            	});
+    	        bomb.getStateProperty().addListener(new ChangeListener<LitBombState>() {
+    	            @Override
+    	            public void changed(ObservableValue<? extends LitBombState> observable,
+    	                    LitBombState oldValue, LitBombState newValue) {
+    	            	if (newValue instanceof ExplodedState) {
+    	            		newView.setImage(new Image("/bomb_lit_4.png"));
+    	            	} else {
+    	            		newView.setVisible(false);
+    	            	}
+    	                
+    	            }
+    	        });
+    			
     		}
         	
     	}
