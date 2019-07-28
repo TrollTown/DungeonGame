@@ -235,7 +235,6 @@ public class Dungeon {
 	
 	// In the future, implement this function
 	public void reloadDungeon() {
-		System.out.println("Reloading Dungeon");
 //		System.exit(0);
 	}
 	

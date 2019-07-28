@@ -26,6 +26,9 @@ import javafx.stage.Stage;
 public class DungeonController {
 	
 	private Stage primaryStage;
+	
+	@FXML
+	private AnchorPane anchor;
 
     @FXML
     private GridPane squares;
@@ -70,16 +73,21 @@ public class DungeonController {
             squares.getChildren().add(entity);
         
         this.BackToGameButton.setOnAction(event -> {
-        	try {
-        		this.flow.setVisible(false);
-        	} catch (Exception e) {
-        		e.printStackTrace();
-        	}
+        	event.consume();
+        	this.toggleMenu();
+        	this.anchor.requestFocus();
+        	
         });
+        
+        this.anchor.setOnKeyPressed(event -> {
+        	this.handleKeyPress(event);
+        });
+        
     }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
+    	System.out.println(event.getCode());
         switch (event.getCode()) {
         case UP:
             player.moveUp();
