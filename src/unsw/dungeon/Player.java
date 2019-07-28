@@ -106,6 +106,7 @@ public class Player extends Entity {
 
 	// Kill the player
 	public void killPlayer() {
+		super.setShow(false);
 		this.setAlive(false);
 		this.dungeon.reloadDungeon();
 	}
