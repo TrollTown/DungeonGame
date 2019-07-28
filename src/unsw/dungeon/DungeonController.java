@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -91,16 +95,20 @@ public class DungeonController {
     }
     
     private void initialiseMenu() {
+    	FlowPane pane = new FlowPane(Orientation.VERTICAL);
     	Popup popup = new Popup();
-    	Label label = new Label("This is the menu");
+    	Label label = new Label("Game Menu");
+    	Button backToGame = new Button("Back to Game");
     	label.setStyle(" -fx-background-color: green");
-    	popup.getContent().add(label);
+    	pane.getChildren().addAll(label, backToGame);
+    	popup.getContent().add(pane);
     	popup.setAutoHide(true);
     	this.menu = popup;
     }
     private void toggleMenu() {
     	if (!this.menu.isShowing()) {
     		menu.show(this.primaryStage);
+    		// TODO: implement pausing enemy AI movement (pause game) - using javafx timeline?
     	}
     	else {
     		menu.hide();
