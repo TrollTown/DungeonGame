@@ -1,4 +1,9 @@
 .menu-pane {
-    -fx-background-color: #ff0000;
     -fx-padding: 10;
+    -fx-background-color: rgba(0, 100, 100, 0.5); 
+    -fx-background-radius: 10;
+}
+
+.label {
+
 }

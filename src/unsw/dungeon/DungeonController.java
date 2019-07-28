@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -95,6 +96,7 @@ public class DungeonController {
     }
     
     private void initialiseMenu() {
+    	//AnchorPane pane = new AnchorPane();
     	FlowPane pane = new FlowPane(Orientation.VERTICAL);
     	pane.getStyleClass().add("menu-pane");
     	pane.setVgap(10);
@@ -102,7 +104,6 @@ public class DungeonController {
     	Label label = new Label("Game Menu");
     	label.getStyleClass().add("label");
     	Button backToGame = new Button("Back to Game");
-    	
     	pane.getChildren().addAll(label, backToGame);
     	popup.getContent().add(pane);
     	this.menu = popup;

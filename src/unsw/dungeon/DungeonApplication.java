@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -22,11 +23,12 @@ public class DungeonApplication extends Application {
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("ExplodeEnemy.json");
 
         DungeonController controller = dungeonLoader.loadController();
+        //AnchorPane root = new AnchorPane();
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
-        
+        //root.getChildren().add(dungeonGridPane);
         controller.setPrimaryStage(primaryStage);
         
         
