@@ -3,6 +3,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -32,8 +33,9 @@ public class DungeonController {
     @FXML
     private FlowPane flow;
     
-    //private Popup menu;
-
+    @FXML
+    private Button BackToGameButton;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -67,6 +69,13 @@ public class DungeonController {
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
         
+        this.BackToGameButton.setOnAction(event -> {
+        	try {
+        		this.flow.setVisible(false);
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}
+        });
     }
 
     @FXML
@@ -132,6 +141,5 @@ public class DungeonController {
     		this.flow.setVisible(true);
     	}
     }
-
 }
 
