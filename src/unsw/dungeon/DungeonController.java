@@ -29,7 +29,10 @@ public class DungeonController {
     @FXML
     private GridPane squares;
     
-    private Popup menu;
+    @FXML
+    private Label label;
+    
+    //private Popup menu;
 
     private List<ImageView> initialEntities;
 
@@ -50,7 +53,7 @@ public class DungeonController {
     @FXML
     public void initialize() {
     	// Initialise the menu popup
-    	this.initialiseMenu();
+    	//this.initialiseMenu();
     	
         Image ground = new Image("/dirt_0_new.png");
 
@@ -95,29 +98,39 @@ public class DungeonController {
         }
     }
     
-    private void initialiseMenu() {
-    	//AnchorPane pane = new AnchorPane();
-    	FlowPane pane = new FlowPane(Orientation.VERTICAL);
-    	pane.getStyleClass().add("menu-pane");
-    	pane.setVgap(10);
-    	Popup popup = new Popup();
-    	Label label = new Label("Game Menu");
-    	label.getStyleClass().add("label");
-    	Button backToGame = new Button("Back to Game");
-    	pane.getChildren().addAll(label, backToGame);
-    	popup.getContent().add(pane);
-    	this.menu = popup;
-    }
+//    private void initialiseMenu() {
+//    	//AnchorPane pane = new AnchorPane();
+//    	FlowPane pane = new FlowPane(Orientation.VERTICAL);
+//    	pane.getStyleClass().add("menu-pane");
+//    	pane.setVgap(10);
+//    	Popup popup = new Popup();
+//    	Label label = new Label("Game Menu");
+//    	label.getStyleClass().add("label");
+//    	Button backToGame = new Button("Back to Game");
+//    	pane.getChildren().addAll(label, backToGame);
+//    	popup.getContent().add(pane);
+//    	this.menu = popup;
+//    }
+//    
+//    private void toggleMenu() {
+//    	if (!this.menu.isShowing()) {
+//    		menu.show(this.primaryStage);
+//    		// TODO: implement pausing enemy AI movement (pause game) - using javafx timeline?
+//    	}
+//    	else {
+//    		menu.hide();
+//    	}
+//   	
+//    }
     
+    @FXML
     private void toggleMenu() {
-    	if (!this.menu.isShowing()) {
-    		menu.show(this.primaryStage);
-    		// TODO: implement pausing enemy AI movement (pause game) - using javafx timeline?
+    	if (this.label.isVisible()) {
+    		this.label.setVisible(false);
     	}
     	else {
-    		menu.hide();
+    		this.label.setVisible(true);
     	}
-    	
     }
 
 }

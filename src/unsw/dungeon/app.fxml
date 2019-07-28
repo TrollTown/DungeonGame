@@ -4,20 +4,20 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
 
-
-<AnchorPane fx:id="anchor" onKeyPressed="#handleKeyPress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-	   <GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-		   <columnConstraints>
-		      <ColumnConstraints />
-		   </columnConstraints>
-		   <rowConstraints>
-		      <RowConstraints />
-		   </rowConstraints>
-		   <children>
-		
-		   </children>
+<AnchorPane onKeyPressed="#handleKeyPress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+	<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+		<GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" visible="true">
+		   	<columnConstraints>
+		    	<ColumnConstraints />
+		   	</columnConstraints>
+		   	<rowConstraints>
+				<RowConstraints />
+		    </rowConstraints>
 		</GridPane>
-   </children>
+		<Label fx:id="label" text="THIS IS THE MENU LABEL" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" minWidth="100" minHeight="120" visible="true"/>
+	</StackPane>
 </AnchorPane>
