@@ -96,6 +96,7 @@ public class DungeonController {
     
     private void initialiseMenu() {
     	FlowPane pane = new FlowPane(Orientation.VERTICAL);
+    	pane.setVgap(10);
     	Popup popup = new Popup();
     	Label label = new Label("Game Menu");
     	Button backToGame = new Button("Back to Game");
@@ -105,6 +106,7 @@ public class DungeonController {
     	popup.setAutoHide(true);
     	this.menu = popup;
     }
+    
     private void toggleMenu() {
     	if (!this.menu.isShowing()) {
     		menu.show(this.primaryStage);

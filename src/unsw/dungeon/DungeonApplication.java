@@ -31,6 +31,7 @@ public class DungeonApplication extends Application {
         
         
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("menustyles.css").toString());
         root.requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();
