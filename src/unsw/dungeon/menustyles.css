@@ -2,12 +2,18 @@
     -fx-padding: 10;
     -fx-background-color: rgba(72, 72, 72, 0.5);
     -fx-background-radius: 10;
+    -fx-vgap: 20px;
 }
 
 .button {
-
+    -fx-alignment: center;
+    -fx-pref-width: 200px;
 }
 
 .label {
-    font-color: white;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 200px;
+    -fx-alignment: center;
 }
