@@ -39,6 +39,15 @@ public class DungeonController {
     @FXML
     private Button BackToGameButton;
     
+    @FXML
+    private Button ResetProgressButton;
+    
+    @FXML
+    private Button SaveGameButton;
+    
+    @FXML
+    private Button QuitToTitleButton;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -73,10 +82,21 @@ public class DungeonController {
             squares.getChildren().add(entity);
         
         this.BackToGameButton.setOnAction(event -> {
-        	event.consume();
         	this.toggleMenu();
         	this.anchor.requestFocus();
         	
+        });
+        
+        this.ResetProgressButton.setOnAction(event -> {
+        	;
+        });
+        
+        this.SaveGameButton.setOnAction(event -> {
+        	;
+        });
+        
+        this.QuitToTitleButton.setOnAction(event -> {
+        	;
         });
         
         this.anchor.setOnKeyPressed(event -> {
