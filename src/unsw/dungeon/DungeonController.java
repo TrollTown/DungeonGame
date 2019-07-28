@@ -1,9 +1,16 @@
 package unsw.dungeon;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -27,12 +34,14 @@ public class DungeonController {
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
+        this.dungeon.setMainController(this);
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
     }
 
     @FXML
     public void initialize() {
+    	
         Image ground = new Image("/dirt_0_new.png");
 
         // Add the ground first so it is below all other entities
@@ -71,6 +80,35 @@ public class DungeonController {
         default:
             break;
         }
+    }
+    private void updateImage(Entity entity) {
+    	for (Node child: squares.getChildren()) {
+    		if (GridPane.getColumnIndex(child) == entity.getX() &&
+    			GridPane.getRowIndex(child) == entity.getY()) {
+    			
+    			
+    			((ImageView) child).imageProperty().set(new Image("/bomb_lit_4.png"));
+    			break;
+    		}
+    	}
+    }
+    
+    public void updateView(Entity entity) {
+    	if (entity instanceof LitBomb) {
+    		LitBomb bomb = (LitBomb) entity;
+    		if (bomb.getState() instanceof LitState) {
+    			Node newView = new ImageView("/bomb_lit_1.png");
+    			squares.add(newView, bomb.getX(), bomb.getY());
+    			bomb.hasExploded().addListener(new ChangeListener<Object>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Object> observable,
+                            Object oldValue, Object newValue) {
+                        updateImage(entity);
+                    }
+            	});
+    		}
+        	
+    	}
     }
 
 }
