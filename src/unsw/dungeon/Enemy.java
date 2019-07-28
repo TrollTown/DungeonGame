@@ -10,6 +10,7 @@ public class Enemy extends Entity {
 	}
 	// Kill the enemy
 	public void kill() {
+		super.setShow(false);
 		this.isAlive = false;
 	}
 	public boolean isDead() {
