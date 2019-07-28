@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane onKeyPressed="#handleKeyPress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane onKeyPressed="#handleKeyPress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@pp/../menustyles.css">
 	<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 		<GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" visible="true">
 		   	<columnConstraints>
@@ -18,6 +19,9 @@
 				<RowConstraints />
 		    </rowConstraints>
 		</GridPane>
-		<Label fx:id="label" text="THIS IS THE MENU LABEL" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" minWidth="100" minHeight="120" visible="true"/>
+		<FlowPane fx:id="flow" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" styleClass="flow" alignment="top_center">
+   			<Label text="Game Menu"/>
+   			<Button text="Back to Game"/>
+		</FlowPane> 
 	</StackPane>
 </AnchorPane>

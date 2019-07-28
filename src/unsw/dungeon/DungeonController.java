@@ -30,7 +30,7 @@ public class DungeonController {
     private GridPane squares;
     
     @FXML
-    private Label label;
+    private FlowPane flow;
     
     //private Popup menu;
 
@@ -125,11 +125,11 @@ public class DungeonController {
     
     @FXML
     private void toggleMenu() {
-    	if (this.label.isVisible()) {
-    		this.label.setVisible(false);
+    	if (this.flow.isVisible()) {
+    		this.flow.setVisible(false);
     	}
     	else {
-    		this.label.setVisible(true);
+    		this.flow.setVisible(true);
     	}
     }
 
