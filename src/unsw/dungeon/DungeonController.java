@@ -96,14 +96,15 @@ public class DungeonController {
     
     private void initialiseMenu() {
     	FlowPane pane = new FlowPane(Orientation.VERTICAL);
+    	pane.getStyleClass().add("menu-pane");
     	pane.setVgap(10);
     	Popup popup = new Popup();
     	Label label = new Label("Game Menu");
+    	label.getStyleClass().add("label");
     	Button backToGame = new Button("Back to Game");
-    	label.setStyle(" -fx-background-color: green");
+    	
     	pane.getChildren().addAll(label, backToGame);
     	popup.getContent().add(pane);
-    	popup.setAutoHide(true);
     	this.menu = popup;
     }
     
