@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +12,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -56,6 +64,7 @@ public class DungeonController {
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
+        this.dungeon.setMainController(this);
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
     }
@@ -167,6 +176,29 @@ public class DungeonController {
     	}
     	else {
     		this.flow.setVisible(true);
+    	}
+    }
+    public void updateView(Entity entity) {
+    	if (entity instanceof LitBomb) {
+    		LitBomb bomb = (LitBomb) entity;
+    		if (bomb.getState() instanceof LitState) {
+    			ImageView newView = new ImageView("/bomb_lit_1.png");
+    			squares.add(newView, bomb.getX(), bomb.getY());
+    	        bomb.getStateProperty().addListener(new ChangeListener<LitBombState>() {
+    	            @Override
+    	            public void changed(ObservableValue<? extends LitBombState> observable,
+    	                    LitBombState oldValue, LitBombState newValue) {
+    	            	if (newValue instanceof ExplodedState) {
+    	            		newView.setImage(new Image("/bomb_lit_4.png"));
+    	            	} else {
+    	            		newView.setVisible(false);
+    	            	}
+    	                
+    	            }
+    	        });
+    			
+    		}
+        	
     	}
     }
 }

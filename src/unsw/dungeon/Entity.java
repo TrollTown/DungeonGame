@@ -85,6 +85,9 @@ public abstract class Entity {
     public boolean checkGoal() {
     	return dungeon.checkGoal();
     }
+    public void updateView() {
+    	dungeon.getMainController().updateView(this);
+    }
     
     // Check if boulder is on top of this entity
     public boolean checkBoulderOnTop() {

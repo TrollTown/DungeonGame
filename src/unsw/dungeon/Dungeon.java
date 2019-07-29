@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+
 /**
  * A dungeon in the interactive dungeon player.
  *
@@ -24,6 +27,7 @@ public class Dungeon {
     private Player player;
     private GoalInterface goal;
     private boolean completedDungeon;
+    private DungeonController mainController;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -58,6 +62,9 @@ public class Dungeon {
     public void addEntity(Entity entity) {
     	if (entity != null) {
     		entity.setDungeon(this);
+    	}
+    	if (mainController != null) {
+    		mainController.updateView(entity);
     	}
         entities.add(entity);
     }
@@ -185,6 +192,7 @@ public class Dungeon {
         	if (entity instanceof Boulder) {
         		// destroy boulder
         		getEntities().remove(entity);
+        		((Boulder) entity).setShow(false);
         	}
     	}
 
@@ -275,5 +283,13 @@ public class Dungeon {
 				this.player.killPlayer();
 			}
 		}
+	}
+
+	public DungeonController getMainController() {
+		return mainController;
+	}
+
+	public void setMainController(DungeonController mainController) {
+		this.mainController = mainController;
 	}
 }

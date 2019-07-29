@@ -10,4 +10,8 @@ public class Bomb extends Item {
 	public void causeDamage() {
 		super.causeDamage();
 	}
+	
+	public void updateView() {
+		super.updateView();
+	}
 }
