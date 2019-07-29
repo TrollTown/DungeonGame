@@ -10,6 +10,8 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.beans.value.ChangeListener;
@@ -55,6 +57,9 @@ public class DungeonController {
     
     @FXML
     private Button QuitToTitleButton;
+    
+    @FXML
+    private FlowPane inventory;
     
     private List<ImageView> initialEntities;
 
@@ -111,7 +116,6 @@ public class DungeonController {
         this.anchor.setOnKeyPressed(event -> {
         	this.handleKeyPress(event);
         });
-        
     }
 
     @FXML
