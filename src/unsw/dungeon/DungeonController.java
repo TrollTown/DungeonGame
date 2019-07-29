@@ -148,31 +148,6 @@ public class DungeonController {
         }
     }
     
-//    private void initialiseMenu() {
-//    	//AnchorPane pane = new AnchorPane();
-//    	FlowPane pane = new FlowPane(Orientation.VERTICAL);
-//    	pane.getStyleClass().add("menu-pane");
-//    	pane.setVgap(10);
-//    	Popup popup = new Popup();
-//    	Label label = new Label("Game Menu");
-//    	label.getStyleClass().add("label");
-//    	Button backToGame = new Button("Back to Game");
-//    	pane.getChildren().addAll(label, backToGame);
-//    	popup.getContent().add(pane);
-//    	this.menu = popup;
-//    }
-//    
-//    private void toggleMenu() {
-//    	if (!this.menu.isShowing()) {
-//    		menu.show(this.primaryStage);
-//    		// TODO: implement pausing enemy AI movement (pause game) - using javafx timeline?
-//    	}
-//    	else {
-//    		menu.hide();
-//    	}
-//   	
-//    }
-    
     @FXML
     private void toggleMenu() {
     	if (this.flow.isVisible()) {
