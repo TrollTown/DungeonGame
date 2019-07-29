@@ -21,13 +21,13 @@
 					<Image url="@app/../../../../images/bomb_unlit.png"/>
 				</image>
 			</ImageView>
-			<Label fx:id="bombCount" text="57" maxWidth="30"/>
+			<Label fx:id="bombCount" text="0" maxWidth="30"/>
 			<ImageView fx:id="inventorySword" fitWidth="30">
 				<image>
 					<Image url="@app/../../../../images/greatsword_1_new.png"/>
 				</image>
 			</ImageView>
-			<Label fx:id="swordCount" text="5" maxWidth="30"/>
+			<Label fx:id="swordDurability" text="0" maxWidth="30"/>
 			<ImageView fx:id="inventoryInvincibility" fitWidth="30">
 				<image>
 					<Image url="@app/../../../../images/brilliant_blue_new.png"/>

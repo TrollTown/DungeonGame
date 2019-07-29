@@ -23,6 +23,14 @@ public class Inventory {
 		return this.bombCount;
 	}
 	
+	public int getSwordDurability() {
+		if (this.sword == null) {
+			return 0;
+		}
+		else {
+			return 5 - this.sword.getNumHits();
+		}
+	}
 	public void addKey(Key key) {
 		this.keys.add(key);
 	}
@@ -43,6 +51,7 @@ public class Inventory {
 	
 	public void addSword(Sword sword) {
 		this.sword = sword;
+		this.notifySwordObserver();
 	}
 	
 	public int getNumTreasure() {
@@ -106,12 +115,21 @@ public class Inventory {
 	}
 	
 	public void notifyBombObserver() {
-		for (Observer observer: observers) {
+		for (Observer observer : this.observers) {
 			if (observer instanceof BombObserver) {
 				observer.update();
 			}
 		}
 	}
+	
+	public void notifySwordObserver() {
+		for (Observer observer : this.observers) {
+			if (observer instanceof SwordObserver) {
+				observer.update();
+			}
+		}
+	}
+		
 	
 	public Player getPlayer() {
 		return this.player;

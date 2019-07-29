@@ -64,6 +64,9 @@ public class DungeonController {
     @FXML
     private Label bombCount;
     
+    @FXML
+    private Label swordDurability;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -162,8 +165,11 @@ public class DungeonController {
     }
     
     public void changeBombCount(int count) {
-    	bombCount.setText(Integer.toString(count));
-    	System.out.println("CALLED");
+    	this.bombCount.setText(Integer.toString(count));
+    }
+    
+    public void changeSwordDurability(int durability) {
+    	this.swordDurability.setText(Integer.toString(durability));
     }
     
     public void updateView(Entity entity) {

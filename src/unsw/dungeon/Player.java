@@ -79,9 +79,8 @@ public class Player extends Entity {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
-		
 		new BombObserver(this.inventory);
-		System.out.println("observer attached");
+		new SwordObserver(this.inventory);
 	}
 	
 	// Add an item to the inventory
@@ -128,6 +127,7 @@ public class Player extends Entity {
 		if (sword != null) { // If there is a sword
 			sword.increaseNumHits(); // increase number of hits
 			dungeon.killEnemies(getX(), getY());
+			this.inventory.notifySwordObserver();
 		}
 	}
 	
