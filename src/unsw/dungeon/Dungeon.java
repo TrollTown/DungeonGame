@@ -248,7 +248,10 @@ public class Dungeon {
 	
 	// Start the enemy AI
 	public void initiateEnemyAI() {
-		EnemyAITimer ai = new EnemyAITimer(1, this.getEnemies(), this.getPlayer());
+		for (Enemy enemy: this.enemies) {
+			enemy.runTimeline(player);
+		}
+		
 	}
 	
 	// Kill enemies around these coordinates

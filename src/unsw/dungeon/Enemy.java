@@ -1,7 +1,12 @@
 package unsw.dungeon;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 public class Enemy extends Entity {
 	private boolean isAlive;
+	private Timeline mainTimeline;
 	
 	public Enemy(int x, int y) {
 		super(x, y);
@@ -11,6 +16,7 @@ public class Enemy extends Entity {
 	// Kill the enemy
 	public void kill() {
 		super.setShow(false);
+		this.mainTimeline.stop();
 		this.isAlive = false;
 	}
 	public boolean isDead() {
@@ -89,4 +95,16 @@ public class Enemy extends Entity {
 		}
     	return distanceToPlayer;
     }
+    
+    public void runTimeline(Player player) {
+		mainTimeline = new Timeline(
+		    new KeyFrame(Duration.millis(1000), e -> {
+		        this.moveTowardsPlayer(player);
+		    })
+		);
+    	mainTimeline.setCycleCount(Timeline.INDEFINITE);
+    	mainTimeline.play();
+
+    }
+	
 }
