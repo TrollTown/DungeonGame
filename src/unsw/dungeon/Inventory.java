@@ -93,6 +93,7 @@ public class Inventory {
 		if (this.bombs.size() > 0) {
 			this.bombs.remove(0);
 			this.bombCount--;
+			this.notifyBombObserver();
 			return true;
 		}
 		return false;
