@@ -61,6 +61,9 @@ public class DungeonController {
     @FXML
     private FlowPane inventory;
     
+    @FXML
+    private Label bombCount;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -157,6 +160,12 @@ public class DungeonController {
     		this.flow.setVisible(true);
     	}
     }
+    
+    public void changeBombCount(int count) {
+    	bombCount.setText(Integer.toString(count));
+    	System.out.println("CALLED");
+    }
+    
     public void updateView(Entity entity) {
     	if (entity instanceof LitBomb) {
     		LitBomb bomb = (LitBomb) entity;

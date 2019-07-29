@@ -19,7 +19,7 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
-        this.setInventory(new Inventory());
+        this.setInventory(new Inventory(this));
         this.setAlive(true);
         this.invincibility = new InvincibilityStatus();
     }
@@ -79,6 +79,9 @@ public class Player extends Entity {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+		
+		new BombObserver(this.inventory);
+		System.out.println("observer attached");
 	}
 	
 	// Add an item to the inventory

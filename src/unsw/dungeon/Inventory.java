@@ -3,17 +3,26 @@ package unsw.dungeon;
 import java.util.ArrayList;
 
 public class Inventory {
+	private Player player;
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private ArrayList<Key> keys;
 	private ArrayList<UnlitBomb> bombs;
 	private ArrayList<Treasure> treasure;
 	private Sword sword;
+	private int bombCount;
 	
-	public Inventory() {
+	public Inventory(Player player) {
 		this.keys = new ArrayList<Key>();
 		this.bombs = new ArrayList<UnlitBomb>();
 		this.treasure = new ArrayList<Treasure>();
 		this.sword = null;
+		this.bombCount = 0;
+		this.player = player;
 	}
+	public int getBombCount() {
+		return this.bombCount;
+	}
+	
 	public void addKey(Key key) {
 		this.keys.add(key);
 	}
@@ -23,6 +32,8 @@ public class Inventory {
 	
 	public void addUnlitBomb(UnlitBomb bomb) {
 		this.bombs.add(bomb);
+		this.bombCount++;
+		this.notifyBombObserver();
 	}
 	
 	// Add treasure object
@@ -58,6 +69,7 @@ public class Inventory {
 		}
 		else if (item instanceof UnlitBomb) {
 			this.addUnlitBomb((UnlitBomb) item);
+			
 		}
 		else if (item instanceof Treasure) {
 			this.addTreasure((Treasure) item);
@@ -71,6 +83,7 @@ public class Inventory {
 	public boolean useBomb() {
 		if (this.bombs.size() > 0) {
 			this.bombs.remove(0);
+			this.bombCount--;
 			return true;
 		}
 		return false;
@@ -86,5 +99,21 @@ public class Inventory {
 		}
 		
 		return null;
+	}
+	
+	public void attach(Observer observer) {
+		this.observers.add(observer);
+	}
+	
+	public void notifyBombObserver() {
+		for (Observer observer: observers) {
+			if (observer instanceof BombObserver) {
+				observer.update();
+			}
+		}
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 }
