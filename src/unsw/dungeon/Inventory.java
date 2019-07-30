@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Inventory {
 	private Player player;
@@ -10,6 +11,7 @@ public class Inventory {
 	private ArrayList<Treasure> treasure;
 	private Sword sword;
 	private int bombCount;
+	private int keyCount;
 	
 	public Inventory(Player player) {
 		this.keys = new ArrayList<Key>();
@@ -18,6 +20,7 @@ public class Inventory {
 		this.sword = null;
 		this.bombCount = 0;
 		this.player = player;
+		this.keyCount = 0;
 	}
 	
 	public int getBombCount() {
@@ -37,9 +40,16 @@ public class Inventory {
 		return this.player.getInvincibilitySeconds();
 	}
 	
+	public int getKeyCount() {
+		return this.keyCount;
+	}
+	
 	public void addKey(Key key) {
 		this.keys.add(key);
+		this.keyCount++;
+		this.notifyKeyObserver();
 	}
+	
 	public ArrayList<UnlitBomb> getBombs() {
 		return this.bombs;
 	}
@@ -69,11 +79,15 @@ public class Inventory {
 	
 	// Check if keys match given id
 	public boolean checkKeys(int id) {
-		for (Key key: this.keys) {
+		Iterator<Key> iter = this.keys.iterator();
+		while (iter.hasNext()) {
+			Key key = iter.next();
 			if (key.getId() == id) {
+				iter.remove();
+				this.keyCount--;
+				this.notifyKeyObserver();
 				return true;
 			}
-			
 		}
 		return false;
 	}
@@ -144,9 +158,16 @@ public class Inventory {
 			}
 		}
 	}
-		
 	
+	public void notifyKeyObserver() {
+		for (Observer observer : this.observers) {
+			if (observer instanceof KeyObserver) {
+				observer.update();
+			}
+		}
+	}
+		
 	public Player getPlayer() {
 		return this.player;
-	}
+	}	
 }

@@ -20,7 +20,7 @@ public class DungeonApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("enemy.json");
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced2.json");
 
         DungeonController controller = dungeonLoader.loadController();
         //AnchorPane root = new AnchorPane();

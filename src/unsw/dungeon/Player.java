@@ -82,6 +82,7 @@ public class Player extends Entity {
 		new BombObserver(this.inventory);
 		new SwordObserver(this.inventory);
 		new InvincibilityObserver(this.inventory);
+		new KeyObserver(this.inventory);
 	}
 	
 	// Add an item to the inventory

@@ -70,6 +70,9 @@ public class DungeonController {
     @FXML
     private Label invincibilityTimer;
     
+    @FXML
+    private FlowPane inventoryKeys;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -177,6 +180,19 @@ public class DungeonController {
     
     public void updateInvincibilityTimer(int seconds) {
     	this.invincibilityTimer.setText(Integer.toString(seconds) + " s");
+    }
+    
+    public void updateInventoryKeys(int keyCount) {
+    	int existingKeyCount = this.inventoryKeys.getChildren().size();
+		while (existingKeyCount < keyCount) {
+			Image keyImage = new Image("/key.png");
+			this.inventoryKeys.getChildren().add(new ImageView(keyImage));
+			existingKeyCount++;
+		}
+		while (existingKeyCount > keyCount) {
+			this.inventoryKeys.getChildren().remove(0);
+			existingKeyCount--;
+		}
     }
     
     public void updateView(Entity entity) {
