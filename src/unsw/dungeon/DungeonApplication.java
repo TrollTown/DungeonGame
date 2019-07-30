@@ -1,6 +1,10 @@
 package unsw.dungeon;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,14 +20,21 @@ import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
 	private Stage stage;
+	private ArrayList<String> levels;
+	private int currentLevel;
+	private int levelCount;
+	
+	public DungeonApplication() {
+		this.levels = this.readLevels();
+		this.currentLevel = -1;
+	}
 	
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
         this.stage = primaryStage;
-        loadDungeonStage();
+        loadNextDungeon();
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {
@@ -38,11 +49,24 @@ public class DungeonApplication extends Application {
 //    	}	
 //    }
     
-    private void loadDungeonStage() {
+    private void loadDungeonStage(String dungeonFile) {
     	try {
-    		this.loadDungeonRoot("advanced2.json");
+    		this.loadDungeonRoot(dungeonFile);
     	} catch (Exception e) {
     		e.printStackTrace();
+    	}
+    }
+    
+    private void loadNextDungeon() {
+    	if (this.currentLevel == -1) {
+    		this.loadDungeonStage(this.levels.get(0));
+    		this.currentLevel++;
+    	}
+    	else {
+    		this.currentLevel++;
+    		if (this.currentLevel < this.levelCount) {
+    			this.loadDungeonStage(this.levels.get(this.currentLevel));
+    		}
     	}
     }
     
@@ -65,5 +89,25 @@ public class DungeonApplication extends Application {
     	}
     	stage.sizeToScene();
     	return newRoot;
+    }
+    
+    private ArrayList<String> readLevels(){
+    	ArrayList<String> levels = new ArrayList<String>();
+    	BufferedReader reader;
+    	try {
+    		int levelCount = 0;
+    		System.out.println(new File(".").getAbsoluteFile());
+    		reader = new BufferedReader(new FileReader("src/unsw/dungeon/levels.txt"));
+    		String line = reader.readLine();
+    		while (line != null) {
+    			levels.add(line);
+    			levelCount++;
+    			line = reader.readLine();
+    		}
+    		this.levelCount = levelCount;
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    	return levels;
     }
 }
