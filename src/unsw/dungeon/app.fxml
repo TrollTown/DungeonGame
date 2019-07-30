@@ -34,7 +34,7 @@
 				</image>
 			</ImageView>
 			<Label fx:id="invincibilityTimer" text="0 s" maxWidth="30"/>
-			<FlowPane fx:id="inventoryKeys" maxWidth="330">
+			<FlowPane fx:id="inventoryKeys" maxWidth="220">
 			</FlowPane>
 		</FlowPane>
 		<GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" visible="true">

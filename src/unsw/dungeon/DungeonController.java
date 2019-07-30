@@ -209,13 +209,10 @@ public class DungeonController {
     	            		newView.setImage(new Image("/bomb_lit_4.png"));
     	            	} else {
     	            		newView.setVisible(false);
-    	            	}
-    	                
+    	            	}               
     	            }
-    	        });
-    			
+    	        });			
     		}
-        	
     	}
     }
 }
