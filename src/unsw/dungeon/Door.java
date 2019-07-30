@@ -1,21 +1,27 @@
 package unsw.dungeon;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 public class Door extends PhysicalObject {
-	private TypeDoor type;
+	private ObjectProperty<TypeDoor> type;
 	public Door (int x, int y, int id) {
 		super(x, y, true);
-		this.setType(new ClosedDoor(id));
+		this.type = new SimpleObjectProperty<TypeDoor>(new ClosedDoor(id));
 		// By Default
 	}
+	public ObjectProperty<TypeDoor> getTypeProperty() {
+		return this.type;
+	}
 	public TypeDoor getType() {
-		return type;
+		return type.get();
 	}
 	public void setType(TypeDoor type) {
-		this.type = type;
+		this.type.set(type);;
 	}
 	
 	public int getId() {
-		return this.type.getID();
+		return this.type.get().getID();
 	}
 	
 	// Unlocks the door by setting a new type and allowing door to be moved through
@@ -27,7 +33,7 @@ public class Door extends PhysicalObject {
 	
 	// Is door locked?
 	public boolean Locked() {
-		return this.type.doorLocked();
+		return this.type.get().doorLocked();
 	}
 	
 	// If door is locked, check if player's key matches door id

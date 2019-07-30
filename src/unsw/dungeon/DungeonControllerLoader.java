@@ -72,6 +72,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Door door) {
         ImageView view = new ImageView(closedDoorImage);
+        changeDoorListener(door, view);
         addEntity(door, view);
     }
     
@@ -133,6 +134,16 @@ public class DungeonControllerLoader extends DungeonLoader {
         trackPosition(entity, view);
         hideEntity(entity, view);
         entities.add(view);
+    }
+    
+    private void changeDoorListener(Door door, ImageView node) {
+    	door.getTypeProperty().addListener(new ChangeListener<TypeDoor>() {
+    		@Override
+    		public void changed(ObservableValue<? extends TypeDoor> observable,
+    				TypeDoor oldValue, TypeDoor newValue) {
+    			node.setImage(new Image("/open_door.png"));
+    		}
+    	});
     }
     
     private void hideEntity(Entity entity, Node node) {

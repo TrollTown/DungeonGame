@@ -1,0 +1,5 @@
+1. doors
+2. inventory screen
+3. levels
+4. main menu
+5. dying
