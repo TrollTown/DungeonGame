@@ -1,7 +1,7 @@
 package unsw.dungeon;
 
 public class KeyObserver extends Observer {
-	public Inventory inventory;
+	private Inventory inventory;
 	
 	public KeyObserver(Inventory inventory) {
 		this.inventory = inventory;

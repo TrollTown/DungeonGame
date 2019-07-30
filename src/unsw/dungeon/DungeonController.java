@@ -78,6 +78,8 @@ public class DungeonController {
     private Player player;
 
     private Dungeon dungeon;
+    
+    private DungeonApplication application;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -132,7 +134,6 @@ public class DungeonController {
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
-    	System.out.println(event.getCode());
         switch (event.getCode()) {
         case UP:
             player.moveUp();
@@ -214,6 +215,14 @@ public class DungeonController {
     	        });			
     		}
     	} 
+    }
+    
+    public void setApplication(DungeonApplication app) {
+    	this.application = app;
+    }
+    
+    public DungeonApplication getApplication() {
+    	return this.application;
     }
 }
 

@@ -57,7 +57,7 @@ public class DungeonApplication extends Application {
     	}
     }
     
-    private void loadNextDungeon() {
+    public void loadNextDungeon() {
     	if (this.currentLevel == -1) {
     		this.loadDungeonStage(this.levels.get(0));
     		this.currentLevel++;
@@ -67,12 +67,18 @@ public class DungeonApplication extends Application {
     		if (this.currentLevel < this.levelCount) {
     			this.loadDungeonStage(this.levels.get(this.currentLevel));
     		}
+    		else {
+    			// Game completion
+    			System.out.println("Game Completed!");
+    			System.exit(0);
+    		}
     	}
     }
     
     private Parent loadDungeonRoot(String dungeon) throws IOException {
 		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
     	DungeonController controller = dungeonLoader.loadController();
+    	controller.setApplication(this);
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
     	loader.setController(controller);
     	Parent newRoot = loader.load();
@@ -86,6 +92,7 @@ public class DungeonApplication extends Application {
     	}
     	else {
     		stage.getScene().setRoot(newRoot);
+    		newRoot.requestFocus();
     	}
     	stage.sizeToScene();
     	return newRoot;

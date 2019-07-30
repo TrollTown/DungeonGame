@@ -28,6 +28,7 @@ public class Dungeon {
     private GoalInterface goal;
     private boolean completedDungeon;
     private DungeonController mainController;
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -227,13 +228,14 @@ public class Dungeon {
 		this.enemies = enemies;
 	}
 
-
 	public boolean isCompletedDungeon() {
 		return completedDungeon;
 	}
 
 	public void setCompletedDungeon(boolean completedDungeon) {
 		this.completedDungeon = completedDungeon;
+		System.out.println(completedDungeon);
+		this.notifyDungeonCompletionObservers();
 	}
 
 	
@@ -294,5 +296,17 @@ public class Dungeon {
 
 	public void setMainController(DungeonController mainController) {
 		this.mainController = mainController;
+	}
+	
+	public void attach(Observer observer) {
+		this.observers.add(observer);
+	}
+	
+	public void notifyDungeonCompletionObservers() {
+		for (Observer observer : observers) {
+			if (observer instanceof DungeonCompletionObserver) {
+				observer.update();
+			}
+		}
 	}
 }
