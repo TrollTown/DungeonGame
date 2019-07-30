@@ -15,26 +15,13 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
+	private Stage stage;
 	
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
-
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced2.json");
-
-        DungeonController controller = dungeonLoader.loadController();
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        
-        controller.setPrimaryStage(primaryStage);
-        
-        
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("menustyles.css").toString());
-        root.requestFocus();
-        primaryStage.setScene(scene);
+        this.stage = primaryStage;
+        loadDungeonStage();
         primaryStage.show();
 
     }
@@ -42,5 +29,41 @@ public class DungeonApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
+//    private void loadMainMenu() {
+//    	try {
+//    		this.changeScene("main_menu.fxml");
+//    	} catch (Exception e) {
+//    		e.printStackTrace();
+//    	}	
+//    }
+    
+    private void loadDungeonStage() {
+    	try {
+    		this.loadDungeonRoot("advanced2.json");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    private Parent loadDungeonRoot(String dungeon) throws IOException {
+		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
+    	DungeonController controller = dungeonLoader.loadController();
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
+    	loader.setController(controller);
+    	Parent newRoot = loader.load();
+    	controller.setPrimaryStage(this.stage);
+    	Scene scene = this.stage.getScene();
+    	if (scene == null) {
+    		scene = new Scene(newRoot);
+    		scene.getStylesheets().add(getClass().getResource("menustyles.css").toString());
+    		newRoot.requestFocus();
+    		this.stage.setScene(scene);
+    	}
+    	else {
+    		stage.getScene().setRoot(newRoot);
+    	}
+    	stage.sizeToScene();
+    	return newRoot;
+    }
 }
