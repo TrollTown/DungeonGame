@@ -33,7 +33,7 @@
 					<Image url="@app/../../../../images/brilliant_blue_new.png"/>
 				</image>
 			</ImageView>
-			<Label fx:id="invincibilityTimer" text="7 s" maxWidth="30"/>
+			<Label fx:id="invincibilityTimer" text="0 s" maxWidth="30"/>
 			<FlowPane fx:id="inventoryKeys" maxWidth="330">
 			</FlowPane>
 		</FlowPane>

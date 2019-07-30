@@ -19,6 +19,7 @@ public class Inventory {
 		this.bombCount = 0;
 		this.player = player;
 	}
+	
 	public int getBombCount() {
 		return this.bombCount;
 	}
@@ -31,6 +32,11 @@ public class Inventory {
 			return 5 - this.sword.getNumHits();
 		}
 	}
+	
+	public int getInvincibilitySeconds() {
+		return this.player.getInvincibilitySeconds();
+	}
+	
 	public void addKey(Key key) {
 		this.keys.add(key);
 	}
@@ -126,6 +132,14 @@ public class Inventory {
 	public void notifySwordObserver() {
 		for (Observer observer : this.observers) {
 			if (observer instanceof SwordObserver) {
+				observer.update();
+			}
+		}
+	}
+	
+	public void notifyInvincibilityObserver() {
+		for (Observer observer: this.observers) {
+			if (observer instanceof InvincibilityObserver) {
 				observer.update();
 			}
 		}

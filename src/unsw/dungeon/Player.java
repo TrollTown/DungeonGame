@@ -21,7 +21,7 @@ public class Player extends Entity {
         this.dungeon = dungeon;
         this.setInventory(new Inventory(this));
         this.setAlive(true);
-        this.invincibility = new InvincibilityStatus();
+        this.invincibility = new InvincibilityStatus(this);
     }
     
     // Player moves up
@@ -81,6 +81,7 @@ public class Player extends Entity {
 		this.inventory = inventory;
 		new BombObserver(this.inventory);
 		new SwordObserver(this.inventory);
+		new InvincibilityObserver(this.inventory);
 	}
 	
 	// Add an item to the inventory
@@ -134,5 +135,9 @@ public class Player extends Entity {
 	// Get whether player is still invincible
 	public boolean getInvincibilityStatus() {
 		return this.invincibility.getStatus();
+	}
+	
+	public int getInvincibilitySeconds() {
+		return this.invincibility.getInvincibilitySeconds();
 	}
 }

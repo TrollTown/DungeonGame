@@ -67,6 +67,9 @@ public class DungeonController {
     @FXML
     private Label swordDurability;
     
+    @FXML
+    private Label invincibilityTimer;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -170,6 +173,10 @@ public class DungeonController {
     
     public void changeSwordDurability(int durability) {
     	this.swordDurability.setText(Integer.toString(durability));
+    }
+    
+    public void updateInvincibilityTimer(int seconds) {
+    	this.invincibilityTimer.setText(Integer.toString(seconds) + " s");
     }
     
     public void updateView(Entity entity) {
