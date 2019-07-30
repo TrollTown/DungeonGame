@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -11,6 +15,8 @@ public class Player extends Entity {
     private Inventory inventory;
     private boolean isAlive;
     private InvincibilityStatus invincibility;
+    private Timeline mainTimeline;
+    private boolean delayMovement;
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -22,13 +28,27 @@ public class Player extends Entity {
         this.setInventory(new Inventory(this));
         this.setAlive(true);
         this.invincibility = new InvincibilityStatus(this);
+        this.delayMovement = false;
+        this.mainTimeline = new Timeline(
+		    new KeyFrame(Duration.millis(200), e -> {
+		    	delayMovement = false;
+		    })
+		);
+        this.mainTimeline.setCycleCount(1);
+    	
+    }
+    
+    private void delayMovement() {
+		this.delayMovement = true;
+		this.mainTimeline.play();
     }
     
     // Player moves up
     public void moveUp() {
     	// Checks if within dungeon height and width and if it can move to the square
-        if (getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP) && this.isAlive) {
-
+        if (this.delayMovement == false && getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP) 
+        		&& this.isAlive) {
+        	this.delayMovement();
             y().set(getY() - 1);
             // If the goal has been met
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
@@ -38,8 +58,9 @@ public class Player extends Entity {
     }
     // Below functions are similar to above
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN) && this.isAlive) {
-
+        if (this.delayMovement == false && getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN) 
+        		&& this.isAlive) {
+        	this.delayMovement();
         	y().set(getY() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.DOWN)) {
         		dungeon.setCompletedDungeon(true);
@@ -48,8 +69,10 @@ public class Player extends Entity {
     }
 
     public void moveLeft() {
-        if (getX() > 0 && dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT) && this.isAlive) {
-
+        if (this.delayMovement == false && getX() > 0 && 
+        		dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT) 
+        		&& this.isAlive) {
+        	this.delayMovement();
             x().set(getX() - 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
@@ -58,8 +81,10 @@ public class Player extends Entity {
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT) && this.isAlive) {
-
+        if (this.delayMovement == false && getX() < dungeon.getWidth() - 1
+        		&& dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT) && this.isAlive) {
+        	
+        	this.delayMovement();
         	x().set(getX() + 1);
         	if (dungeon.getGoal().hasMetGoal(this.dungeon, this, Direction.UP)) {
         		dungeon.setCompletedDungeon(true);
