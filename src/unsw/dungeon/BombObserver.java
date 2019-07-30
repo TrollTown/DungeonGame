@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 public class BombObserver extends Observer {
+	public Inventory inventory;
 	
 	public BombObserver(Inventory inventory) {
 		this.inventory = inventory;
