@@ -23,12 +23,11 @@ public class DungeonApplication extends Application {
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced2.json");
 
         DungeonController controller = dungeonLoader.loadController();
-        //AnchorPane root = new AnchorPane();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
-        //root.getChildren().add(dungeonGridPane);
+        
         controller.setPrimaryStage(primaryStage);
         
         
