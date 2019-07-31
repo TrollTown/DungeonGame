@@ -72,6 +72,8 @@ public class DungeonController {
     @FXML
     private GridPane saveTable;
     
+    @FXML
+    private Button confirmSaveButton;
     
     @FXML
     private Button backToInGameMenu;
@@ -83,6 +85,8 @@ public class DungeonController {
     private Dungeon dungeon;
     
     private DungeonApplication application;
+    
+    private int chosenSaveFile;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -254,6 +258,7 @@ public class DungeonController {
     }
     
     private void populateSavePanel() {
+    	this.chosenSaveFile = -1;
     	ArrayList<GameSave> saves = this.application.getSaveManager().getSavesList();
     	ArrayList<String> saveNames = new ArrayList<String>();
     	ArrayList<String> saveLevels = new ArrayList<String>();
@@ -283,13 +288,37 @@ public class DungeonController {
     				cell.setStyle("-fx-background-color: #ffb61e;");
     			}
     		}));
-    		node.setOnMouseExited(e -> this.saveTable.getChildren().forEach(c -> {
+    		node.setOnMouseExited(e -> this.saveTable.getChildren().forEach(cell -> {
     	        Integer targetIndex = GridPane.getRowIndex(node);
-    	        if (GridPane.getRowIndex(c) == targetIndex) {
-    	            c.setStyle("-fx-background-color: transparent;");
+    	        if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile)) {
+    	            cell.setStyle("-fx-background-color: transparent;");
     	        }
     	    }));
+    		
+    		node.setOnMouseClicked(e -> this.saveTable.getChildren().forEach(cell -> {
+    			Integer targetIndex = GridPane.getRowIndex(node);
+    			if (GridPane.getRowIndex(cell) == targetIndex) {
+    				cell.setStyle("-fx-background-color: #ffb61e;");
+    				this.showConfirmSaveButton();
+    				this.chosenSaveFile = targetIndex;
+    				this.clearHighlighting();
+    			}
+    		}));
     	}
+    	
+    	
+    }
+    
+    private void clearHighlighting() {
+    	this.saveTable.getChildren().forEach(cell -> {
+    		if (GridPane.getRowIndex(cell) != this.chosenSaveFile) {
+    			cell.setStyle("-fx-background-color: transparent;");
+    		}
+    	});
+    }
+    
+    private void showConfirmSaveButton() {
+    	this.confirmSaveButton.setVisible(true);
     }
 }
 
