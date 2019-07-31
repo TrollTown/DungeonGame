@@ -265,16 +265,15 @@ public class DungeonController {
     			saveTimestamps.add(saves.get(i).getTimeStamp());
     		}
     		else {
-    			saveNames.add("");
-    			saveLevels.add("");
-    			saveTimestamps.add("");
+    			saveNames.add("<<New Save>>");
+    			saveLevels.add("-");
+    			saveTimestamps.add("-");
     		}
     	}
     	for (int i = 0; i < 10; i++) {
     		this.saveTable.add(new Label(saveNames.get(i)), 0, i);
     		this.saveTable.add(new Label(saveLevels.get(i)), 1, i);
     		this.saveTable.add(new Label(saveTimestamps.get(i)), 2, i);
-    		
     	}
     	
     	for (Node node : this.saveTable.getChildren()) {
