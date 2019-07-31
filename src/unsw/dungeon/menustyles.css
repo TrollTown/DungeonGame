@@ -31,3 +31,12 @@
     -fx-vgap: 10px;
     -fx-background-color: #3d3d3d
 }
+
+#saveGameField {
+    -fx-background-color: #ff0000;
+}
+
+#gameSavedLabel {
+    -fx-font-size: 20px;
+    -fx-text-fill: #26A65B;
+}

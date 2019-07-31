@@ -58,9 +58,11 @@ public class DungeonApplication extends Application {
             this.stage.setTitle("Dungeon");
     		this.loadDungeonStage(this.levels.get(0));
     		this.currentLevel++;
+    		System.out.println(this.currentLevel);
     	}
     	else {
     		this.currentLevel++;
+    		System.out.println(this.currentLevel);
     		if (this.currentLevel < this.levelCount) {
     			this.loadDungeonStage(this.levels.get(this.currentLevel));
     		}
