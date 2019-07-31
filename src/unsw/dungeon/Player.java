@@ -30,7 +30,7 @@ public class Player extends Entity {
         this.invincibility = new InvincibilityStatus(this);
         this.delayMovement = false;
         this.mainTimeline = new Timeline(
-		    new KeyFrame(Duration.millis(200), e -> {
+		    new KeyFrame(Duration.millis(100), e -> {
 		    	delayMovement = false;
 		    })
 		);
