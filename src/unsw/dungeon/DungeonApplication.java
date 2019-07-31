@@ -70,6 +70,11 @@ public class DungeonApplication extends Application {
     	}
     }
     
+    public void resetLevelProgress(){
+    	this.currentLevel = -1;
+    	this.loadNextDungeon();
+    }
+    
     private Parent loadNewRoot(String dungeon) throws IOException {
     	Parent newRoot;
     	if (dungeon == "main_menu") {

@@ -93,19 +93,19 @@ public class DungeonController {
         this.BackToGameButton.setOnAction(event -> {
         	this.toggleMenu();
         	this.anchor.requestFocus();
-        	
         });
         
         this.ResetProgressButton.setOnAction(event -> {
-        	;
+        	this.resetProgress();
+        	this.anchor.requestFocus();
         });
         
         this.SaveGameButton.setOnAction(event -> {
-        	;
+        	this.anchor.requestFocus();
         });
         
         this.QuitToTitleButton.setOnAction(event -> {
-        	;
+        	this.application.loadMainMenu();
         });
         
         this.anchor.setOnKeyPressed(event -> {
@@ -204,6 +204,10 @@ public class DungeonController {
     
     public DungeonApplication getApplication() {
     	return this.application;
+    }
+    
+    public void resetProgress() {
+    	this.application.resetLevelProgress();
     }
 }
 
