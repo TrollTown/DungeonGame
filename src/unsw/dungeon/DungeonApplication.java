@@ -1,21 +1,14 @@
 package unsw.dungeon;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
@@ -34,6 +27,7 @@ public class DungeonApplication extends Application {
         primaryStage.setTitle("Main Menu");
         this.stage = primaryStage;
         this.loadMainMenu();
+//        this.loadNextDungeon();
         primaryStage.show();
     }
 
@@ -43,7 +37,7 @@ public class DungeonApplication extends Application {
     
     public void loadMainMenu() {
     	try {
-    		this.loadMainMenuRoot();
+    		this.loadNewRoot("main_menu");
     	} catch (Exception e) {
     		e.printStackTrace();
     	}	
@@ -51,7 +45,7 @@ public class DungeonApplication extends Application {
     
     private void loadDungeonStage(String dungeonFile) {
     	try {
-    		this.loadDungeonRoot(dungeonFile);
+    		this.loadNewRoot(dungeonFile);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -76,42 +70,32 @@ public class DungeonApplication extends Application {
     	}
     }
     
-    private Parent loadDungeonRoot(String dungeon) throws IOException {
-		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
-    	DungeonController controller = dungeonLoader.loadController();
-    	controller.setApplication(this);
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
-    	loader.setController(controller);
-    	Parent newRoot = loader.load();
-    	controller.setPrimaryStage(this.stage);
-    	Scene scene = this.stage.getScene();
-    	if (scene == null) {
-    		scene = new Scene(newRoot);
-    		scene.getStylesheets().add(getClass().getResource("menustyles.css").toString());
-    		newRoot.requestFocus();
-    		this.stage.setScene(scene);
+    private Parent loadNewRoot(String dungeon) throws IOException {
+    	Parent newRoot;
+    	if (dungeon == "main_menu") {
+    		MainMenuController controller = new MainMenuController();
+        	controller.setApplication(this);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("main_menu.fxml"));
+        	loader.setController(controller);
+        	newRoot = loader.load();
     	}
     	else {
-    		stage.getScene().setRoot(newRoot);
-    		newRoot.requestFocus();
+    		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
+        	DungeonController controller = dungeonLoader.loadController();
+        	controller.setApplication(this);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
+        	loader.setController(controller);
+        	newRoot = loader.load();
     	}
-    	stage.sizeToScene();
-    	return newRoot;
-    }
-    
-    private Parent loadMainMenuRoot() throws IOException {
-    	Parent newRoot = (Parent) FXMLLoader.load(getClass().getResource("main_menu.fxml"));
     	Scene scene = this.stage.getScene();
     	if (scene == null) {
     		scene = new Scene(newRoot);
-    		scene.getStylesheets().add(getClass().getResource("main_menu_styles.css").toString());
     		this.stage.setScene(scene);
-    		newRoot.requestFocus();
     	}
     	else {
     		this.stage.getScene().setRoot(newRoot);
-    		newRoot.requestFocus();
     	}
+    	newRoot.requestFocus();
     	this.stage.sizeToScene();
     	return newRoot;
     }

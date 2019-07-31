@@ -1,32 +1,19 @@
 package unsw.dungeon;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -34,8 +21,6 @@ import javafx.stage.Stage;
  *
  */
 public class DungeonController {
-	
-	private Stage primaryStage;
 	
 	@FXML
 	private AnchorPane anchor;
@@ -86,10 +71,6 @@ public class DungeonController {
         this.dungeon.setMainController(this);
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
-    }
-    
-    public void setPrimaryStage(Stage primaryStage) {
-    	this.primaryStage = primaryStage;
     }
 
     @FXML
