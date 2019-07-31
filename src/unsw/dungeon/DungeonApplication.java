@@ -31,9 +31,9 @@ public class DungeonApplication extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
+        primaryStage.setTitle("Main Menu");
         this.stage = primaryStage;
-        loadNextDungeon();
+        this.loadMainMenu();
         primaryStage.show();
     }
 
@@ -41,13 +41,13 @@ public class DungeonApplication extends Application {
         launch(args);
     }
     
-//    private void loadMainMenu() {
-//    	try {
-//    		this.changeScene("main_menu.fxml");
-//    	} catch (Exception e) {
-//    		e.printStackTrace();
-//    	}	
-//    }
+    public void loadMainMenu() {
+    	try {
+    		this.loadMainMenuRoot();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}	
+    }
     
     private void loadDungeonStage(String dungeonFile) {
     	try {
@@ -59,6 +59,7 @@ public class DungeonApplication extends Application {
     
     public void loadNextDungeon() {
     	if (this.currentLevel == -1) {
+            this.stage.setTitle("Dungeon");
     		this.loadDungeonStage(this.levels.get(0));
     		this.currentLevel++;
     	}
@@ -98,12 +99,28 @@ public class DungeonApplication extends Application {
     	return newRoot;
     }
     
+    private Parent loadMainMenuRoot() throws IOException {
+    	Parent newRoot = (Parent) FXMLLoader.load(getClass().getResource("main_menu.fxml"));
+    	Scene scene = this.stage.getScene();
+    	if (scene == null) {
+    		scene = new Scene(newRoot);
+    		scene.getStylesheets().add(getClass().getResource("main_menu_styles.css").toString());
+    		this.stage.setScene(scene);
+    		newRoot.requestFocus();
+    	}
+    	else {
+    		this.stage.getScene().setRoot(newRoot);
+    		newRoot.requestFocus();
+    	}
+    	this.stage.sizeToScene();
+    	return newRoot;
+    }
+    
     private ArrayList<String> readLevels(){
     	ArrayList<String> levels = new ArrayList<String>();
     	BufferedReader reader;
     	try {
     		int levelCount = 0;
-    		System.out.println(new File(".").getAbsoluteFile());
     		reader = new BufferedReader(new FileReader("src/unsw/dungeon/levels.txt"));
     		String line = reader.readLine();
     		while (line != null) {
