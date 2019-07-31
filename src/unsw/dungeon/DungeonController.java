@@ -6,14 +6,18 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -59,10 +63,14 @@ public class DungeonController {
     private FlowPane inventoryKeys;
     
     @FXML
-    private FlowPane saveGamePanel;
+    private Pane saveGamePanel;
     
     @FXML
     private Label saveGameLabel;
+    
+    @FXML
+    private GridPane saveTable;
+    
     
     @FXML
     private Button backToInGameMenu;
@@ -166,6 +174,7 @@ public class DungeonController {
     	}
     	else {
     		this.menu.setVisible(true);
+    		this.menu.requestFocus();
     	}
     }
     
@@ -175,6 +184,7 @@ public class DungeonController {
     		this.saveGamePanel.setVisible(false);
     	}
     	else {
+    		this.populateSavePanel();
     		this.saveGamePanel.setVisible(true);
     	}
     }
@@ -240,6 +250,31 @@ public class DungeonController {
     
     public void resetProgress() {
     	this.application.resetLevelProgress();
+    }
+    
+    private void populateSavePanel() {
+    	ArrayList<GameSave> saves = this.application.getSaveManager().getSavesList();
+    	ArrayList<String> saveNames = new ArrayList<String>();
+    	ArrayList<String> saveLevels = new ArrayList<String>();
+    	ArrayList<String> saveTimestamps = new ArrayList<String>();
+    	for (int i = 0; i < 10; i++) {
+    		if (i < saves.size()) {
+    			saveNames.add(saves.get(i).getSaveName());
+    			saveLevels.add(Integer.toString(saves.get(i).getSaveLevel()));
+    			saveTimestamps.add(saves.get(i).getTimeStamp());
+    		}
+    		else {
+    			saveNames.add("");
+    			saveLevels.add("");
+    			saveTimestamps.add("");
+    		}
+    	}
+    	for (int i = 0; i < 10; i++) {
+    		this.saveTable.add(new Label(saveNames.get(i)), 0, i);
+    		this.saveTable.add(new Label(saveLevels.get(i)), 1, i);
+    		this.saveTable.add(new Label(saveTimestamps.get(i)), 2, i);
+    		
+    	}
     }
 }
 

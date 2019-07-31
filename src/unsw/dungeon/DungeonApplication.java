@@ -16,10 +16,12 @@ public class DungeonApplication extends Application {
 	private ArrayList<String> levels;
 	private int currentLevel;
 	private int levelCount;
+	private SaveManager saveManager;
 	
 	public DungeonApplication() {
 		this.levels = this.readLevels();
 		this.currentLevel = -1;
+		this.saveManager = new SaveManager();
 	}
 	
     @Override
@@ -125,5 +127,9 @@ public class DungeonApplication extends Application {
     		e.printStackTrace();
     	}
     	return levels;
+    }
+    
+    public SaveManager getSaveManager() {
+    	return this.saveManager;
     }
 }

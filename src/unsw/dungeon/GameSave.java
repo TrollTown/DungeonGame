@@ -26,4 +26,13 @@ public class GameSave {
 	public String getTimeStamp() {
 		return this.timestamp;
 	}
+	
+	public String getSaveName() {
+		return this.saveName;
+	}
+	
+	public int getSaveLevel() {
+		return this.currentLevel;
+	}
 }
+

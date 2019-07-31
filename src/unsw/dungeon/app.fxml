@@ -1,64 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-		<FlowPane fx:id="inventory" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" visible="true" minHeight="600" alignment="bottom_left">
-			<ImageView fx:id="inventoryBomb" fitWidth="30">
-				<image>
-					<Image url="@app/../../../../images/bomb_unlit.png"/>
-				</image>
-			</ImageView>
-			<Label fx:id="bombCount" text="0" maxWidth="30"/>
-			<ImageView fx:id="inventorySword" fitWidth="30">
-				<image>
-					<Image url="@app/../../../../images/greatsword_1_new.png"/>
-				</image>
-			</ImageView>
-			<Label fx:id="swordDurability" text="0" maxWidth="30"/>
-			<ImageView fx:id="inventoryInvincibility" fitWidth="30">
-				<image>
-					<Image url="@app/../../../../images/brilliant_blue_new.png"/>
-				</image>
-			</ImageView>
-			<Label fx:id="invincibilityTimer" text="0 s" maxWidth="30"/>
-			<FlowPane fx:id="inventoryKeys" maxWidth="220">
+   		<FlowPane fx:id="inventory" alignment="bottom_left" minHeight="600" visible="true">
+   			<ImageView fx:id="inventoryBomb" fitWidth="30">
+   				<image>
+   					<Image url="@app/../../../../images/bomb_unlit.png" />
+   				</image>
+   			</ImageView>
+   			<Label fx:id="bombCount" maxWidth="30" text="0" />
+   			<ImageView fx:id="inventorySword" fitWidth="30">
+   				<image>
+   					<Image url="@app/../../../../images/greatsword_1_new.png" />
+   				</image>
+   			</ImageView>
+   			<Label fx:id="swordDurability" maxWidth="30" text="0" />
+   			<ImageView fx:id="inventoryInvincibility" fitWidth="30">
+   				<image>
+   					<Image url="@app/../../../../images/brilliant_blue_new.png" />
+   				</image>
+   			</ImageView>
+   			<Label fx:id="invincibilityTimer" maxWidth="30" text="0 s" />
+   			<FlowPane fx:id="inventoryKeys" maxWidth="220">
 			</FlowPane>
+   		</FlowPane>
+   		<GridPane fx:id="squares" visible="true">
+   		   	<columnConstraints>
+   		    	<ColumnConstraints />
+   		   	</columnConstraints>
+   		   	<rowConstraints>
+   				<RowConstraints />
+   		    </rowConstraints>
+   		</GridPane>
+		<FlowPane fx:id="menu" alignment="top_center" orientation="vertical" styleClass="flow" visible="false" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   			<Label styleClass="label" text="Game Menu" />
+   			<Button fx:id="BackToGameButton" styleClass="button" text="Back to Game" />
+   			<Button fx:id="ResetProgressButton" styleClass="button" text="Reset Progress" />
+   			<Button fx:id="SaveGameButton" styleClass="button" text="Save Game" />
+   			<Button fx:id="QuitToTitleButton" styleClass="button" text="Save and Quit to Title" />
 		</FlowPane>
-		<GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" visible="true">
-		   	<columnConstraints>
-		    	<ColumnConstraints />
-		   	</columnConstraints>
-		   	<rowConstraints>
-				<RowConstraints />
-		    </rowConstraints>
-		</GridPane>
-		<FlowPane fx:id="menu" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" styleClass="flow" alignment="top_center" visible="false">
-   			<Label text="Game Menu" styleClass="label"/>
-   			<Button text="Back to Game" fx:id="BackToGameButton" styleClass="button"/>
-   			<Button text="Reset Progress" fx:id="ResetProgressButton" styleClass="button"/>
-   			<Button text="Save Game" fx:id="SaveGameButton" styleClass="button"/>
-   			<Button text="Save and Quit to Title" fx:id="QuitToTitleButton" styleClass="button"/>
-		</FlowPane>
-		<FlowPane fx:id = "saveGamePanel" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" alignment="top_right" visible="false">
-			<Label fx:id ="saveGameLabel" text = "Save Game"/>
-			<Button fx:id="backToInGameMenu" text="Back"/>
-		</FlowPane>
+      <Pane fx:id="saveGamePanel" prefHeight="602.0" prefWidth="460.0" visible="false" StackPane.alignment="TOP_CENTER">
+         <children>
+   			<Label fx:id="saveGameLabel" layoutX="118.0" text="Save Game" />
+   			<Label fx:id="saveInstructions" layoutX="118.0" layoutY="30.0" text="Select save file..." />
+         			<GridPane fx:id="saveTable" alignment="top_center" layoutX="36.0" layoutY="46.0" prefHeight="386.0" prefWidth="336.0">
+         			<columnConstraints>
+         				<ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="0.0" prefWidth="111.0" />
+         				<ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="59.0" />
+         				<ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="140.0" prefWidth="140.0" />
+         			</columnConstraints>
+         			<rowConstraints>
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         			</rowConstraints>
+         			</GridPane>
+   		 	<Button fx:id="confirmSaveButton" layoutX="118.0" layoutY="495.0" text="Save to Slot" />
+   			<Button fx:id="backToInGameMenu" layoutX="118.0" layoutY="536.0" text="Back" />
+         </children>
+      </Pane>
 	</StackPane>
 	<stylesheets>
-		<URL value="@app/../menustyles.css"/>
-		<URL value="@app/../inventorystyles.css"/>
+		<URL value="@app/../menustyles.css" />
+		<URL value="@app/../inventorystyles.css" />
 	</stylesheets>
 </AnchorPane>
