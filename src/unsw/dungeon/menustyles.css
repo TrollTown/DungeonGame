@@ -1,4 +1,4 @@
-.flow {
+#menu {
     -fx-padding: 10;
     -fx-background-color: rgba(72, 72, 72, 0.5);
     -fx-vgap: 20px;
@@ -15,4 +15,8 @@
     -fx-font-weight: bold;
     -fx-pref-width: 200px;
     -fx-alignment: center;
+}
+
+#saveGameLabel {
+    -fx-background-color: #ff0000;
 }

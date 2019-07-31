@@ -75,6 +75,9 @@ public class DungeonApplication extends Application {
     	this.loadNextDungeon();
     }
     
+    public int getCurrentLevel() {
+    	return this.currentLevel;
+    }
     private Parent loadNewRoot(String dungeon) throws IOException {
     	Parent newRoot;
     	if (dungeon == "main_menu") {

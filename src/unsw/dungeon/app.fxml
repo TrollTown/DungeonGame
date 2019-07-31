@@ -45,13 +45,17 @@
 				<RowConstraints />
 		    </rowConstraints>
 		</GridPane>
-		<FlowPane fx:id="flow" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" styleClass="flow" alignment="top_center" visible="false">
+		<FlowPane fx:id="menu" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" styleClass="flow" alignment="top_center" visible="false">
    			<Label text="Game Menu" styleClass="label"/>
    			<Button text="Back to Game" fx:id="BackToGameButton" styleClass="button"/>
    			<Button text="Reset Progress" fx:id="ResetProgressButton" styleClass="button"/>
    			<Button text="Save Game" fx:id="SaveGameButton" styleClass="button"/>
    			<Button text="Save and Quit to Title" fx:id="QuitToTitleButton" styleClass="button"/>
-		</FlowPane> 
+		</FlowPane>
+		<FlowPane fx:id = "saveGamePanel" orientation="vertical" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" alignment="top_right" visible="false">
+			<Label fx:id ="saveGameLabel" text = "Save Game"/>
+			<Button fx:id="backToInGameMenu" text="Back"/>
+		</FlowPane>
 	</StackPane>
 	<stylesheets>
 		<URL value="@app/../menustyles.css"/>

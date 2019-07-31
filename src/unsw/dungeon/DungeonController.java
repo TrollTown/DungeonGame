@@ -29,7 +29,7 @@ public class DungeonController {
     private GridPane squares;
     
     @FXML
-    private FlowPane flow;
+    private FlowPane menu;
     
     @FXML
     private Button BackToGameButton;
@@ -57,6 +57,15 @@ public class DungeonController {
     
     @FXML
     private FlowPane inventoryKeys;
+    
+    @FXML
+    private FlowPane saveGamePanel;
+    
+    @FXML
+    private Label saveGameLabel;
+    
+    @FXML
+    private Button backToInGameMenu;
     
     private List<ImageView> initialEntities;
 
@@ -101,7 +110,7 @@ public class DungeonController {
         });
         
         this.SaveGameButton.setOnAction(event -> {
-        	this.anchor.requestFocus();
+        	this.toggleSaveGamePanel();
         });
         
         this.QuitToTitleButton.setOnAction(event -> {
@@ -110,6 +119,13 @@ public class DungeonController {
         
         this.anchor.setOnKeyPressed(event -> {
         	this.handleKeyPress(event);
+        	this.anchor.requestFocus();
+        });
+        
+        this.backToInGameMenu.setOnAction(event -> {
+        	this.backToMenu();
+        	this.menu.requestFocus();
+        	System.out.println("This worked");
         });
     }
 
@@ -144,12 +160,28 @@ public class DungeonController {
     
     @FXML
     private void toggleMenu() {
-    	if (this.flow.isVisible()) {
-    		this.flow.setVisible(false);
+    	if (this.menu.isVisible()) {
+    		this.menu.setVisible(false);
+    		this.saveGamePanel.setVisible(false);
     	}
     	else {
-    		this.flow.setVisible(true);
+    		this.menu.setVisible(true);
     	}
+    }
+    
+    @FXML
+    private void toggleSaveGamePanel() {
+    	if (this.saveGamePanel.isVisible()) {
+    		this.saveGamePanel.setVisible(false);
+    	}
+    	else {
+    		this.saveGamePanel.setVisible(true);
+    	}
+    }
+    
+    @FXML
+    private void backToMenu() {
+    	this.saveGamePanel.setVisible(false);
     }
     
     public void changeBombCount(int count) {
