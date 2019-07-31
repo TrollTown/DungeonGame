@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -274,6 +275,21 @@ public class DungeonController {
     		this.saveTable.add(new Label(saveLevels.get(i)), 1, i);
     		this.saveTable.add(new Label(saveTimestamps.get(i)), 2, i);
     		
+    	}
+    	
+    	for (Node node : this.saveTable.getChildren()) {
+    		node.setOnMouseEntered(e -> this.saveTable.getChildren().forEach(cell -> {
+    			Integer targetIndex = GridPane.getRowIndex(node);
+    			if (GridPane.getRowIndex(cell) == targetIndex) {
+    				cell.setStyle("-fx-background-color: #ffb61e;");
+    			}
+    		}));
+    		node.setOnMouseExited(e -> this.saveTable.getChildren().forEach(c -> {
+    	        Integer targetIndex = GridPane.getRowIndex(node);
+    	        if (GridPane.getRowIndex(c) == targetIndex) {
+    	            c.setStyle("-fx-background-color: transparent;");
+    	        }
+    	    }));
     	}
     }
 }
