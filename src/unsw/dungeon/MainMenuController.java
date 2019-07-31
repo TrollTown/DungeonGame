@@ -20,19 +20,24 @@ public class MainMenuController {
 	private Button quitGameButton;
 	
 	@FXML
-	public void initialise() {
+	public void initialize() {
 		 this.startGameButton.setOnAction(event -> {
-	        	;
-	        });
+        	this.startGame();
+	     });
 		 this.loadGameButton.setOnAction(event -> {
-	        	;
-	        });
+			 ;
+	     });
 		 this.quitGameButton.setOnAction(event -> {
-	        	System.exit(0);
-	        });
+	        System.exit(0);
+	     });
 	}
 	
 	public void setApplication(DungeonApplication application) {
 		this.application = application;
+	}
+	
+	private void startGame() {
+		this.application.loadNextDungeon();
+		System.out.println("BUTTON PRESSED");
 	}
 }

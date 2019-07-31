@@ -25,7 +25,7 @@
         </rowConstraints>
          <children>
             <Label fx:id="mainLabel" text="Main Menu" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id = "startGameButton" mnemonicParsing="false" text="Start Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="startGameButton" mnemonicParsing="false" text="Start Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="loadGameButton" mnemonicParsing="false" text="Load Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button fx:id="quitGameButton" mnemonicParsing="false" text="Quit Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
