@@ -2,3 +2,13 @@
     -fx-text-fill: #000000;
     -fx-background-color:#ff0000;
 }
+
+#loadGamePanel {
+    -fx-background-color:  #3d3d3d;
+}
+
+#loadGameLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
