@@ -28,6 +28,9 @@ public class MainMenuController {
 	private Pane loadGamePanel;
 	
 	@FXML
+	private Button backToMainMenuButton;
+	
+	@FXML
 	public void initialize() {
 		 this.startGameButton.setOnAction(event -> {
         	this.startGame();
@@ -38,6 +41,9 @@ public class MainMenuController {
 		 this.quitGameButton.setOnAction(event -> {
 	        System.exit(0);
 	     });
+		 this.backToMainMenuButton.setOnAction(event -> {
+			 this.toggleLoadGamePanel();
+		 });
 	}
 	
 	public void setApplication(DungeonApplication application) {
