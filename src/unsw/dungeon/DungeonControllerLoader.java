@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
  * connects them via listeners to the model, and creates a controller.
- * @author Robert Clifton-Everest
+ * @author William Shen and Edward Webb
  *
  */
 public class DungeonControllerLoader extends DungeonLoader {
@@ -37,6 +37,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image exitImage;
     private Image switchImage;
 
+    /**
+     * Constructor for the dungeon controller loader class
+     * @param filename The filename of the dungeon
+     * @throws FileNotFoundException
+     */
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
         super(filename);
@@ -57,13 +62,18 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
     
    
-    
+    /**
+     * Load the player
+     */
     @Override
     public void onLoad(Entity player) {
         ImageView view = new ImageView(playerImage);
         addEntity(player, view);
     }
 
+    /**
+     * Load a wall
+     */
     @Override
     public void onLoad(Wall wall) {
         ImageView view = new ImageView(wallImage);
@@ -76,23 +86,35 @@ public class DungeonControllerLoader extends DungeonLoader {
         addEntity(door, view);
     }
     
+    /**
+     * Load a boulder
+     */
     @Override
     public void onLoad(Boulder boulder) {
     	ImageView view = new ImageView(boulderImage);
     	addEntity(boulder, view);
     }
     
+    /**
+     * Load a treasure object
+     */
     @Override
     public void onLoad(Treasure treasure) {
     	ImageView view = new ImageView(treasureImage);
     	addEntity(treasure, view);
     }
+    /**
+     * Load an invincibility potion
+     */
     @Override
 	public void onLoad(Invincibility invincibility) {
     	ImageView view = new ImageView(invincibilityImage);
     	addEntity(invincibility, view);
     }
 	
+    /**
+     * Load a sword
+     */
     @Override
 	public void onLoad(Sword sword) {
     	ImageView view = new ImageView(swordImage);
@@ -105,12 +127,18 @@ public class DungeonControllerLoader extends DungeonLoader {
     	addEntity(key, view);
     }
     
+    /**
+     * Load a bomb
+     */
 	@Override
 	public void onLoad(UnlitBomb bomb) {
 		ImageView view = new ImageView(unlitBombImage);
 		addEntity(bomb, view);
 	}
 
+	/**
+	 * Load an enemy
+	 */
 	@Override
 	public void onLoad(Enemy enemy) {
 		ImageView view = new ImageView(enemyImage);
@@ -118,24 +146,40 @@ public class DungeonControllerLoader extends DungeonLoader {
 		
 	}
 	
+	/**
+	 * Load an exit
+	 */
 	@Override
 	public void onLoad(Exit exit) {
 		ImageView view = new ImageView(exitImage);
 		addEntity(exit, view);
 	}
 	
+	/**
+	 * Load a floor switch
+	 */
 	@Override
 	public void onLoad(FloorSwitch floorswitch) {
 		ImageView view = new ImageView(switchImage);
 		addEntity(floorswitch, view);
 	}
 
+	/**
+	 * Connect an entity and view and add the view
+	 * @param entity the entity
+	 * @param view the view
+	 */
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         hideEntity(entity, view);
         entities.add(view);
     }
     
+    /**
+     * Add a listener to the door so the view changes when unlocked
+     * @param door The door
+     * @param node The door's image
+     */
     private void changeDoorListener(Door door, ImageView node) {
     	door.getTypeProperty().addListener(new ChangeListener<TypeDoor>() {
     		@Override
@@ -146,6 +190,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     	});
     }
     
+    /**
+     * Hides an entity from the ui
+     * @param entity The entity
+     * @param node The entity's view
+     */
     private void hideEntity(Entity entity, Node node) {
     	entity.getShow().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -188,15 +237,10 @@ public class DungeonControllerLoader extends DungeonLoader {
     /**
      * Create a controller that can be attached to the DungeonView with all the
      * loaded entities.
-     * @return
+     * @return The dungeon controller
      * @throws FileNotFoundException
      */
     public DungeonController loadController() throws FileNotFoundException {
         return new DungeonController(load(), entities);
     }
-
-
-
-
-
 }

@@ -4,26 +4,47 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+/**
+ * Represents an enemy
+ * @author Edward Webb and William Shen
+ *
+ */
 public class Enemy extends Entity {
 	private boolean isAlive;
 	private Timeline mainTimeline;
 	
+	/**
+	 * Constructor for the enemy class
+	 * @param x The enemy's x-coord
+	 * @param y The enemy's y-coord
+	 */
 	public Enemy(int x, int y) {
 		super(x, y);
 		isAlive = true;
 		
 	}
-	// Kill the enemy
+	
+	/**
+	 * Kill the enemy
+	 */
 	public void kill() {
 		super.setShow(false);
 		this.mainTimeline.stop();
 		this.isAlive = false;
 	}
+	
+	/**
+	 * Get whether the enemy is dead or not
+	 * @return Whether the enemy is dead or not
+	 */
 	public boolean isDead() {
 		return !this.isAlive;
 	}
 	
-	// Move enemy towards player
+	/**
+	 * Move enemy towards player
+	 * @param player The player
+	 */
 	public void moveTowardsPlayer(Player player) {
 		
 		// Get distances in all four directions
@@ -71,7 +92,13 @@ public class Enemy extends Entity {
 		getDistanceToPlayer(player);
 	}
 	
-	// Simple path length calculator, using Manhattan Distance (planning to implement proper pathfinding algorithm later)
+	/**
+	 * Simple path length calculator, using Manhattan Distance
+	 * @param player The player
+	 * @param x The x-coord where the enemy might move to
+	 * @param y The y-coord where the enemy might move to
+	 * @return The length of the path
+	 */
 	private int computePathLength(Player player, int x, int y) {
 		if (isImmovableAtCoord(x, y)) {
 			return -1;
@@ -82,12 +109,18 @@ public class Enemy extends Entity {
 		return manhattanDistance;
 	}
 	
-	// Can move through enemy
+	/**
+	 * A player can move through enemy
+	 */
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
     
-    // Get the distance betwene enemy and player
+    /**
+     * Get the distance betwene enemy and player
+     * @param player The player
+     * @return The distance
+     */
     private int getDistanceToPlayer(Player player) {
     	int distanceToPlayer = this.computePathLength(player, this.getX(), this.getY());
     	if (distanceToPlayer == 0) {
@@ -96,6 +129,11 @@ public class Enemy extends Entity {
     	return distanceToPlayer;
     }
     
+    /**
+     * Move towards the player every second
+     * i.e. run moveTowardsPlayer every second
+     * @param player The player
+     */
     public void runTimeline(Player player) {
 		mainTimeline = new Timeline(
 		    new KeyFrame(Duration.millis(1000), e -> {

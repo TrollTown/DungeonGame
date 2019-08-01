@@ -13,13 +13,18 @@ import org.json.JSONTokener;
  * By extending this class, a subclass can hook into entity creation. This is
  * useful for creating UI elements with corresponding entities.
  *
- * @author Robert Clifton-Everest
+ * @author Edward Webb and William Shen
  *
  */
 public abstract class DungeonLoader {
 
     private JSONObject json;
 
+    /**
+     * The Dungeon Loader constructor
+     * @param filename The file name of the dungeon
+     * @throws FileNotFoundException
+     */
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
     }
@@ -46,6 +51,11 @@ public abstract class DungeonLoader {
         return dungeon;
     }
     
+    /**
+     * Loads the goals from a JSON object of goals
+     * @param dungeon The dungeon
+     * @param goals The goals in JSON format
+     */
     private void loadGoals(Dungeon dungeon, JSONObject goals) {
     	String mainGoal = goals.getString("goal");
     	switch (mainGoal) {
@@ -69,6 +79,11 @@ public abstract class DungeonLoader {
     		break;
     	}
     }
+    /**
+     * Loads an entity given the json object
+     * @param dungeon The dungeon
+     * @param json The json object
+     */
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
@@ -144,9 +159,6 @@ public abstract class DungeonLoader {
         dungeon.addEntity(entity);
     }
     
-    public void reloadDungeon(Dungeon dungeon) {
-    	;
-    }
 
     public abstract void onLoad(Entity player);
 
@@ -171,7 +183,5 @@ public abstract class DungeonLoader {
 	public abstract void onLoad(Exit exit);
 	
 	public abstract void onLoad(FloorSwitch floorswitch);
-	
-    // TODO Create additional abstract methods for the other entities
 
 }
