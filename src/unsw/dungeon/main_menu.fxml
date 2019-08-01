@@ -56,7 +56,7 @@
                      </rowConstraints>
                      </GridPane>
                
-               <Button fx:id="confirmLoadButton" layoutX="118.0" layoutY="495.0" text="Save to Slot" visible="false" />
+               <Button fx:id="confirmLoadButton" layoutX="118.0" layoutY="495.0" text="Load From Slot" visible="false" />
                <Button fx:id="backToMainMenuButton" layoutX="118.0" layoutY="536.0" text="Back" />
             </children>
          </Pane>

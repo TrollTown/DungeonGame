@@ -1,5 +1,5 @@
-#main_label {
-    -fx-text-fill: #000000;
+#mainLabel {
+    -fx-text-fill: #000000 !important;
     -fx-background-color:#ff0000;
 }
 
@@ -15,4 +15,12 @@
 
 #loadInstructions {
     -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 200px;
+    -fx-alignment: center;
 }
