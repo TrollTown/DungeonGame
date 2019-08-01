@@ -396,5 +396,9 @@ public class DungeonController {
     		}
     	});
     }
+    
+    public void reloadDungeon() {
+    	this.getApplication().reloadCurrentDungeon();
+    }
 }
 

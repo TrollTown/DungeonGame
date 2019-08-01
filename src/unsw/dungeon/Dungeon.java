@@ -245,7 +245,7 @@ public class Dungeon {
 	
 	// In the future, implement this function
 	public void reloadDungeon() {
-//		System.exit(0);
+		this.getMainController().reloadDungeon();
 	}
 	
 	// Start the enemy AI
