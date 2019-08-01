@@ -12,3 +12,7 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
+
+#loadInstruction {
+    -fx-text-fill: white;
+}
