@@ -105,7 +105,7 @@ public class DungeonApplication extends Application {
     		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
         	DungeonController controller = dungeonLoader.loadController();
         	controller.setApplication(this);
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("app - Copy.fxml"));
         	loader.setController(controller);
         	newRoot = loader.load();
     	}
