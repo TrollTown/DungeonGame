@@ -119,6 +119,7 @@ public class DungeonApplication extends Application {
     	}
     	newRoot.requestFocus();
     	this.stage.sizeToScene();
+    	this.stage.setResizable(Boolean.FALSE);
     	return newRoot;
     }
     

@@ -23,14 +23,23 @@
          <children>
             <BorderPane fx:id="border">
                <top>
-                  <FlowPane fx:id="goals" alignment="CENTER" prefHeight="150.0" BorderPane.alignment="CENTER">
+                  <FlowPane fx:id="goals" alignment="CENTER_LEFT" hgap="10.0" prefHeight="50.0" style="-fx-background-color: #26C281; -fx-padding: 20;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" text="Goal Pane" textAlignment="CENTER" />
+                        <Label fx:id="objectiveLabel" text="Objective:" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="goalString" text="objectiveString" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </FlowPane>
                </top>
                <bottom>
-                  <FlowPane fx:id="inventory" alignment="CENTER_LEFT" hgap="8.0" prefHeight="100.0" style="-fx-background-color: #26C281; -fx-padding: 10;" BorderPane.alignment="CENTER">
+                  <FlowPane fx:id="inventory" alignment="CENTER_LEFT" hgap="8.0" prefHeight="95.0" style="-fx-background-color: #26C281; -fx-padding: 10;" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fx:id="inventoryBomb" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>

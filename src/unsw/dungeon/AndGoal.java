@@ -49,7 +49,7 @@ public class AndGoal implements GoalInterface {
 	// For debugging
 	@Override
 	public String toString() {
-		return "AndGoal [goals=" + goals + "]";
+		return "(" + goals.get(0) + " AND " + goals.get(1) + ")";
 	}
 
 	// Check if both goals have been met

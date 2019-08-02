@@ -19,7 +19,6 @@ public class TreasureGoal implements GoalInterface {
 
 	@Override
 	public String toString() {
-		return "TreasureGoal []";
+		return "Collect all the treasure";
 	}
-
 }

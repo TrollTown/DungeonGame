@@ -98,6 +98,9 @@ public class DungeonController {
     @FXML
     private Button backToInGameMenu;
     
+    @FXML
+    private Label goalString;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -184,6 +187,8 @@ public class DungeonController {
         // Make the save game menu also fill up the entire stack pane
         this.saveGameStack.prefWidthProperty().bind(this.stack.widthProperty());
         this.saveGameStack.prefHeightProperty().bind(this.stack.heightProperty());
+        
+        this.displayGoals();
     }
 
     @FXML
@@ -441,6 +446,12 @@ public class DungeonController {
     
     public void reloadDungeon() {
     	this.getApplication().reloadCurrentDungeon();
+    }
+    
+    private void displayGoals() {
+    	String string = this.dungeon.getGoal().toString();
+    	System.out.println(string);
+    	this.goalString.setText(string);
     }
 }
 

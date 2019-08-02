@@ -58,7 +58,7 @@ public class OrGoal implements GoalInterface {
 
 	@Override
 	public String toString() {
-		return "OrGoal [goals=" + goals + "]";
+		return "(" + goals.get(0) + " OR " + goals.get(1) + ")";
 	}
 
 }

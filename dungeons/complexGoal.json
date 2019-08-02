@@ -1035,16 +1035,17 @@
     }
   ],
   "goal-condition": {
-    "goal": "OR",
-      "subgoals":
-        [{
-          "goal": "enemies"
-         },
-         {
-          "goal": "treasure"
-         }
-        ]
-      }
+    "goal": "AND", "subgoals":
+      [ 
+        { "goal": "OR", "subgoals":
+          [ {"goal": "enemies" },
+            {"goal": "treasure" }
+          ]
+        }, { "goal": "exit" }
+      ]
+    }
   }
+  
+  
 }
 

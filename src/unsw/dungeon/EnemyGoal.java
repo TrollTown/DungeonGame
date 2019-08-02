@@ -12,4 +12,11 @@ public class EnemyGoal implements GoalInterface {
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Kill all enemies";
+	}
+	
+	
 }
