@@ -75,6 +75,9 @@ public class DungeonController {
     private Pane saveGamePanel;
     
     @FXML
+    private StackPane saveGameStack;
+    
+    @FXML
     private Label saveGameLabel;
     
     @FXML
@@ -151,6 +154,7 @@ public class DungeonController {
         
         this.SaveGameButton.setOnAction(event -> {
         	this.toggleSaveGamePanel();
+        	this.anchor.requestFocus();
         });
         
         this.QuitToTitleButton.setOnAction(event -> {
@@ -164,17 +168,22 @@ public class DungeonController {
         
         this.backToInGameMenu.setOnAction(event -> {
         	this.backToMenu();
-        	this.menu.requestFocus();
-        	System.out.println("This worked");
+        	this.anchor.requestFocus();
         });
         
         this.confirmSaveButton.setOnAction(event -> {
         	this.saveGame();
+        	this.anchor.requestFocus();
         });
         
         // Make the in-game menu fill up the entire stack pane
         this.menu.prefWidthProperty().bind(this.stack.widthProperty());
         this.menu.prefHeightProperty().bind(this.stack.heightProperty());
+        
+        
+        // Make the save game menu also fill up the entire stack pane
+        this.saveGameStack.prefWidthProperty().bind(this.stack.widthProperty());
+        this.saveGameStack.prefHeightProperty().bind(this.stack.heightProperty());
     }
 
     @FXML
@@ -214,24 +223,24 @@ public class DungeonController {
     	}
     	else {
     		this.menu.setVisible(true);
-    		this.menu.requestFocus();
     	}
     }
     
     @FXML
     private void toggleSaveGamePanel() {
-    	if (this.saveGamePanel.isVisible()) {
-    		this.saveGamePanel.setVisible(false);
+    	if (this.saveGameStack.isVisible()) {
+    		this.saveGameStack.setVisible(false);
+    		
     	}
     	else {
     		this.populateSavePanel();
-    		this.saveGamePanel.setVisible(true);
+    		this.saveGameStack.setVisible(true);
     	}
     }
     
     @FXML
     private void backToMenu() {
-    	this.saveGamePanel.setVisible(false);
+    	this.saveGameStack.setVisible(false);
     	this.saveNameField.setVisible(false);
     	this.textfieldInstructions.setVisible(false);
     	this.confirmSaveButton.setVisible(false);
@@ -359,12 +368,33 @@ public class DungeonController {
     			this.saveTimestamps.add("-");
     		}
     	}
-    	for (int i = 0; i < 10; i++) {
-    		this.saveTable.add(new Label(this.saveNames.get(i)), 0, i);
-    		this.saveTable.add(new Label(this.saveLevels.get(i)), 1, i);
-    		this.saveTable.add(new Label(this.saveTimestamps.get(i)), 2, i);
+    		
+    	for (int i = 0; i < 11; i++) {
+    		Label newNameLabel;
+    		Label newLevelLabel;
+    		Label newTimestampLabel;
+    		if (i == 0) {
+    			newNameLabel = new Label("Save Name");
+        		newLevelLabel = new Label("Level");
+        		newTimestampLabel = new Label("Timestamp");
+    		}
+    		else {
+    			newNameLabel = new Label(this.saveNames.get(i-1));
+        		newLevelLabel = new Label(this.saveLevels.get(i-1));
+        		newTimestampLabel = new Label(this.saveTimestamps.get(i-1));
+    		}
+    		newNameLabel.getStyleClass().clear();
+    		newLevelLabel.getStyleClass().clear();
+    		newTimestampLabel.getStyleClass().clear();
+    		newNameLabel.getStyleClass().add("saveTableLabel");
+    		newLevelLabel.getStyleClass().add("saveTableLabel");
+    		newTimestampLabel.getStyleClass().add("saveTableLabel");
+    		saveTable.add(newNameLabel, 0, i);
+    		this.saveTable.add(newLevelLabel, 1, i);
+    		this.saveTable.add(newTimestampLabel , 2, i);
     	}
     	this.refreshGridMouseListeners();
+    	System.out.println("Grid refreshed");
     }
     
     private void refreshGridMouseListeners() {

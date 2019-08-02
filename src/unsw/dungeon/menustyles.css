@@ -4,40 +4,13 @@
     -fx-vgap: 20px;
 }
 
-.button {
+.menuButton {
     -fx-alignment: center;
     -fx-pref-width: 200px;
 }
 
-.label {
+.saveTableLabel {
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-pref-width: 200px;
-    -fx-alignment: center;
 }
-
-#saveGameLabel {
-    -fx-background-color: #ff0000;
-}
-
-#saveInstructions {
-    -fx-text-fill: white;
-    -fx-font-size: 11px;
-    -fx-alignment: center;
-}
-
-#saveGamePanel {
-    -fx-vgap: 10px;
-    -fx-background-color: #3d3d3d
-}
-
-#saveGameField {
-    -fx-background-color: #ff0000;
-}
-
-#gameSavedLabel {
-    -fx-font-size: 20px;
-    -fx-text-fill: #26A65B;
-}
-
