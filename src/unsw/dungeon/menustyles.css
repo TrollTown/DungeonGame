@@ -14,3 +14,22 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
+
+.saveTableHeading {
+    -fx-text-fill: white;
+    -fx-font: 16px Calibri;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#saveGameLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold; 
+}
+
+#gameSavedLabel {
+    -fx-text-fill: #2ecc71;
+    -fx-font: 18px Calibri;
+    -fx-font-weight: bold;
+}

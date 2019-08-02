@@ -218,8 +218,12 @@ public class DungeonController {
     @FXML
     private void toggleMenu() {
     	if (this.menu.isVisible()) {
-    		this.menu.setVisible(false);
-    		this.saveGamePanel.setVisible(false);
+    		if (this.saveGameStack.isVisible()) {
+    			this.saveGameStack.setVisible(false);
+    		}
+    		else {
+    			this.menu.setVisible(false);
+    		}
     	}
     	else {
     		this.menu.setVisible(true);
@@ -326,7 +330,7 @@ public class DungeonController {
     
     private void showSaveNameField() {
     	this.saveNameField.setVisible(true);
-    	this.saveNameField.setText(saveNames.get(this.chosenSaveFile));
+    	this.saveNameField.setText(saveNames.get(this.chosenSaveFile - 1));
     	this.textfieldInstructions.setVisible(true);
     	this.saveNameField.requestFocus();
     	// Arbitrary value - to the right of existing text
@@ -336,19 +340,19 @@ public class DungeonController {
     private void saveGame() {
     	String saveName = this.saveNameField.getText();
     	int currentLevel = this.application.getCurrentLevel();
-    	int saveSlot = this.chosenSaveFile;
+    	int saveSlot = this.chosenSaveFile - 1;
     	this.application.getSaveManager().save(saveName, currentLevel, saveSlot);
     	this.saveNameField.setVisible(false);
     	this.textfieldInstructions.setVisible(false);
     	this.confirmSaveButton.setVisible(false);
-    	this.saveNames.set(this.chosenSaveFile, saveName);
-    	this.saveLevels.set(this.chosenSaveFile, Integer.toString(currentLevel));
+    	this.saveNames.set(this.chosenSaveFile - 1, saveName);
+    	this.saveLevels.set(this.chosenSaveFile - 1, Integer.toString(currentLevel));
     	final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     	Date date = new Date();
 		String newTimeStamp = sdf.format(date);
-    	this.saveTimestamps.set(this.chosenSaveFile, newTimeStamp);
+    	this.saveTimestamps.set(this.chosenSaveFile - 1, newTimeStamp);
     	this.refreshGridValues();
-    	this.savedFileIndex = this.chosenSaveFile;
+    	this.savedFileIndex = this.chosenSaveFile - 1;
     	this.highlightSavedSlot();
     	this.gameSavedLabel.setVisible(true);
     	this.saveTable.requestFocus();
@@ -377,44 +381,44 @@ public class DungeonController {
     			newNameLabel = new Label("Save Name");
         		newLevelLabel = new Label("Level");
         		newTimestampLabel = new Label("Timestamp");
+        		newNameLabel.getStyleClass().add("saveTableHeading");
+        		newLevelLabel.getStyleClass().add("saveTableHeading");
+        		newTimestampLabel.getStyleClass().add("saveTableHeading");
     		}
     		else {
     			newNameLabel = new Label(this.saveNames.get(i-1));
         		newLevelLabel = new Label(this.saveLevels.get(i-1));
         		newTimestampLabel = new Label(this.saveTimestamps.get(i-1));
+        		newNameLabel.getStyleClass().add("saveTableLabel");
+        		newLevelLabel.getStyleClass().add("saveTableLabel");
+        		newTimestampLabel.getStyleClass().add("saveTableLabel");
     		}
-    		newNameLabel.getStyleClass().clear();
-    		newLevelLabel.getStyleClass().clear();
-    		newTimestampLabel.getStyleClass().clear();
-    		newNameLabel.getStyleClass().add("saveTableLabel");
-    		newLevelLabel.getStyleClass().add("saveTableLabel");
-    		newTimestampLabel.getStyleClass().add("saveTableLabel");
+    		
     		saveTable.add(newNameLabel, 0, i);
     		this.saveTable.add(newLevelLabel, 1, i);
     		this.saveTable.add(newTimestampLabel , 2, i);
     	}
     	this.refreshGridMouseListeners();
-    	System.out.println("Grid refreshed");
     }
     
     private void refreshGridMouseListeners() {
     	for (Node node : this.saveTable.getChildren()) {
     		node.setOnMouseEntered(e -> this.saveTable.getChildren().forEach(cell -> {
     			Integer targetIndex = GridPane.getRowIndex(node);
-    			if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile)) {
+    			if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile) && (targetIndex != 0)) {
     				cell.setStyle("-fx-background-color: #ffb61e;");
     			}
     		}));
     		node.setOnMouseExited(e -> this.saveTable.getChildren().forEach(cell -> {
     	        Integer targetIndex = GridPane.getRowIndex(node);
-    	        if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile)) {
+    	        if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile) && (targetIndex != 0)) {
     	            cell.setStyle("-fx-background-color: transparent;");
     	        }
     	    }));
     		
     		node.setOnMouseClicked(e -> this.saveTable.getChildren().forEach(cell -> {
     			Integer targetIndex = GridPane.getRowIndex(node);
-    			if (GridPane.getRowIndex(cell) == targetIndex) {
+    			if ((GridPane.getRowIndex(cell) == targetIndex) && (targetIndex != 0)) {
     				cell.setStyle("-fx-background-color: #ffb61e;");
     				this.gameSavedLabel.setVisible(false);
     				this.showConfirmSaveButton();
@@ -429,7 +433,7 @@ public class DungeonController {
     private void highlightSavedSlot() {
     	this.saveTable.getChildren().forEach(cell -> {
     		Integer rowIndex = GridPane.getRowIndex(cell);
-    		if (rowIndex == this.savedFileIndex) {
+    		if (rowIndex == this.savedFileIndex + 1) {
     			cell.setStyle("-fx-background-color: #26a65b;");
     		}
     	});

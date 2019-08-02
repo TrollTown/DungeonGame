@@ -88,21 +88,17 @@
             <Button fx:id="QuitToTitleButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Quit to Title" />
          </children>
       </FlowPane>
-      <StackPane fx:id="saveGameStack" style="-fx-background-color: #3d3d3d;" visible="false">
+      <StackPane fx:id="saveGameStack" style="-fx-background-color: #3498db;" visible="false">
          <children>
-            <Pane fx:id="saveGamePanel" maxHeight="450.0" maxWidth="400.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #ff0000;" StackPane.alignment="TOP_CENTER">
+            <Pane fx:id="saveGamePanel" maxHeight="450.0" maxWidth="400.0" prefHeight="450.0" prefWidth="400.0" StackPane.alignment="TOP_CENTER">
                <children>
-                  <Label fx:id="saveGameLabel" layoutX="172.0" layoutY="6.0" text="Save Game" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="saveInstructions" layoutX="164.0" layoutY="32.0" text="Select save file..." textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="saveGameLabel" layoutX="163.5" layoutY="6.0" text="Save Game" textAlignment="CENTER" />
+                  <Label fx:id="saveInstructions" layoutX="43.5" layoutY="32.0" text="Select save file..." textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="saveTable" layoutX="54.0" layoutY="58.0" prefHeight="260.0" prefWidth="322.0" vgap="5.0">
+                  <GridPane fx:id="saveTable" layoutX="43.5" layoutY="58.0" prefHeight="260.0" prefWidth="322.0" vgap="5.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="111.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="59.0" />
@@ -122,15 +118,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
-                  <TextField fx:id="saveNameField" layoutX="145.0" layoutY="325.0" />
-                  <Button fx:id="confirmSaveButton" layoutX="158.5" layoutY="366.0" mnemonicParsing="false" text="Save To Slot" />
+                  <TextField fx:id="saveNameField" layoutX="153.0" layoutY="325.0" maxWidth="203.0" minWidth="203.0" prefWidth="203.0" visible="false" />
+                  <Button fx:id="confirmSaveButton" layoutX="158.5" layoutY="366.0" mnemonicParsing="false" text="Save To Slot" visible="false" />
                   <Button fx:id="backToInGameMenu" layoutX="180.0" layoutY="403.0" mnemonicParsing="false" text="Back" />
-                  <Label fx:id="textfieldInstructions" layoutX="30.0" layoutY="329.0" text="Enter Save Name:" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="textfieldInstructions" layoutX="43.5" layoutY="329.0" text="Enter Save Name:" textAlignment="CENTER" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="gameSavedLabel" layoutX="182.0" layoutY="329.0" text="Game Saved!">
+                  <Label fx:id="gameSavedLabel" layoutX="152.0" layoutY="345.0" text="Game Saved!" visible="false">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
