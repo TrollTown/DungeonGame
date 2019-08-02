@@ -1,2 +1,3 @@
 maze.json
+many_bombs.json
 advanced.json

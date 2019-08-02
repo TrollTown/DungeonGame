@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,10 +14,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane>
+      <StackPane fx:id="stack">
          <children>
             <BorderPane fx:id="border">
                <top>
@@ -24,10 +28,43 @@
                      </children></FlowPane>
                </top>
                <bottom>
-                  <FlowPane fx:id="inventory" alignment="CENTER" prefHeight="150.0" BorderPane.alignment="CENTER">
+                  <FlowPane fx:id="inventory" alignment="CENTER_LEFT" hgap="8.0" prefHeight="100.0" style="-fx-background-color: #26C281; -fx-padding: 10;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" text="Inventory Pane" />
-                     </children></FlowPane>
+                        <ImageView fx:id="inventoryBomb" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/bomb_unlit.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="bombCount" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/greatsword_1_new.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="swordDurability" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/brilliant_blue_new.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="invincibilityTimer" text="0 s" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <FlowPane fx:id="inventoryKeys" maxWidth="220.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></FlowPane>
                </bottom>
                <center>
                   <GridPane fx:id="squares" visible="true" BorderPane.alignment="CENTER">
@@ -36,9 +73,13 @@
             </BorderPane>
          </children>
       </StackPane>
-      <FlowPane fx:id="menu" alignment="TOP_CENTER" orientation="VERTICAL" styleClass="flow" vgap="20.0" visible="false">
+      <FlowPane fx:id="menu" alignment="TOP_CENTER" orientation="VERTICAL" style="-fx-background-color: rgba(72, 72, 72, 0.5);" styleClass="flow" vgap="20.0" visible="false">
          <children>
-            <Label alignment="CENTER" prefWidth="200.0" text="Game Menu" textAlignment="CENTER" />
+            <Label alignment="CENTER" prefWidth="200.0" text="Game Menu" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
             <Button fx:id="BackToGameButton" mnemonicParsing="false" prefWidth="200.0" text="Back to Game" />
             <Button fx:id="ResetProgressButton" mnemonicParsing="false" prefWidth="200.0" text="Reset Progress" />
             <Button fx:id="SaveGameButton" mnemonicParsing="false" prefWidth="200.0" text="Save Game" />

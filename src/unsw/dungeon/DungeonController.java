@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -33,6 +34,9 @@ public class DungeonController {
 	
 	@FXML
 	private AnchorPane anchor;
+	
+	@FXML
+	private StackPane stack;
 
     @FXML
     private GridPane squares;
@@ -167,6 +171,10 @@ public class DungeonController {
         this.confirmSaveButton.setOnAction(event -> {
         	this.saveGame();
         });
+        
+        // Make the in-game menu fill up the entire stack pane
+        this.menu.prefWidthProperty().bind(this.stack.widthProperty());
+        this.menu.prefHeightProperty().bind(this.stack.heightProperty());
     }
 
     @FXML
