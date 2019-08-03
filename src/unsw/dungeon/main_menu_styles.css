@@ -24,12 +24,6 @@
     -fx-alignment: center;
 } */
 
-.labelInsideButton{
-    -fx-text-fill: blue;
-    -fx-background-color: red;
-    -fx-max-height: 50;
-}
-
 .loadTableLabel {
     -fx-text-fill: white;
     -fx-font-size: 14px;
@@ -44,7 +38,10 @@
 }
 
 .mainButton {
+    -fx-padding: 20px 0px 0px 0px;
+    -fx-pref-width: 250px;
+    -fx-text-fill: blue;
+    -fx-border-radius: 10%;
 }
-
 
 

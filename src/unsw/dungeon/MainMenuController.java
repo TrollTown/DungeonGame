@@ -28,9 +28,6 @@ public class MainMenuController {
 	private Button loadGameButton;
 	
 	@FXML
-	private Label loadGameButtonLabel;
-	
-	@FXML
 	private Button quitGameButton;
 	
 	@FXML
@@ -59,9 +56,12 @@ public class MainMenuController {
 	
 	@FXML
 	public void initialize() {
-		Font minecraftFont24 = 
+		 Font minecraftFont16 = 
                 Font.loadFont(getClass()
-                    .getResourceAsStream("Minecraftia-Regular.ttf"), 24);
+                    .getResourceAsStream("Minecraftia-Regular.ttf"), 16);
+		 Font minecraftFont36 = 
+	                Font.loadFont(getClass()
+	                    .getResourceAsStream("Minecraftia-Regular.ttf"), 36);
 		 this.saveNames = new ArrayList<String>();
          this.saveLevels = new ArrayList<String>();
          this.saveTimestamps = new ArrayList<String>();
@@ -83,10 +83,10 @@ public class MainMenuController {
 			 this.loadSavedDungeon();
 		 });
 		 
-		 this.mainLabel.setFont(minecraftFont24);
-		 //this.startGameButton.setFont(minecraftFont24);
-		 this.loadGameButtonLabel.setFont(minecraftFont24);
-		 this.quitGameButton.setFont(minecraftFont24);
+		 this.mainLabel.setFont(minecraftFont36);
+		 this.startGameButton.setFont(minecraftFont16);
+		 this.loadGameButton.setFont(minecraftFont16);
+		 this.quitGameButton.setFont(minecraftFont16);
 	}
 	
 	public void setApplication(DungeonApplication application) {
