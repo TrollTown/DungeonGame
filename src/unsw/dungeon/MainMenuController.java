@@ -63,10 +63,10 @@ public class MainMenuController {
 	
 	private int chosenLevelToLoad;
     
-    ArrayList<GameSave> saves;
-	ArrayList<String> saveNames;
-	ArrayList<String> saveLevels;
-	ArrayList<String> saveTimestamps;
+    private ArrayList<GameSave> saves;
+	private ArrayList<String> saveNames;
+	private ArrayList<String> saveLevels;
+	private ArrayList<String> saveTimestamps;
 	
 	/**
 	 * Initialise the scene
