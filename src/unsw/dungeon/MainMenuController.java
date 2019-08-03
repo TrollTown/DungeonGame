@@ -33,6 +33,12 @@ public class MainMenuController {
 	private Button loadGameButton;
 	
 	@FXML
+	private Label loadGameLabel;
+	
+	@FXML
+	private Label loadInstructions;
+	
+	@FXML
 	private Button quitGameButton;
 	
 	@FXML
@@ -67,12 +73,15 @@ public class MainMenuController {
 	 */
 	@FXML
 	public void initialize() {
-		Font minecraftFont12 = 
+		 Font minecraftFont12 = 
                 Font.loadFont(getClass()
                     .getResourceAsStream("Minecraftia-Regular.ttf"), 12);
 		 Font minecraftFont16 = 
                 Font.loadFont(getClass()
                     .getResourceAsStream("Minecraftia-Regular.ttf"), 16);
+		 Font minecraftFont24 = 
+	                Font.loadFont(getClass()
+	                    .getResourceAsStream("Minecraftia-Regular.ttf"), 24);
 		 Font minecraftFont36 = 
 	                Font.loadFont(getClass()
 	                    .getResourceAsStream("Minecraftia-Regular.ttf"), 36);
@@ -103,6 +112,11 @@ public class MainMenuController {
 		 this.quitGameButton.setFont(minecraftFont16);
 		 this.infoLabel.setFont(minecraftFont12);
 		 this.infoLabel2.setFont(minecraftFont12);
+		 this.loadGameLabel.setFont(minecraftFont24);
+		 this.loadInstructions.setFont(minecraftFont12);
+		 this.backToMainMenuButton.setFont(minecraftFont12);
+		 this.confirmLoadButton.setFont(minecraftFont12);
+		 
 	}
 	
 	/**

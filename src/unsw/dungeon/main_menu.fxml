@@ -48,10 +48,15 @@
          </GridPane>
          <StackPane fx:id="loadGameStack" alignment="TOP_CENTER" visible="false" StackPane.alignment="TOP_CENTER">
             <children>
+               <ImageView pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../images/background.jpg" />
+                  </image>
+               </ImageView>
                <Pane fx:id="loadGamePanel" maxHeight="450.0" maxWidth="400.0">
                   <children>
-                     <Label fx:id="loadGameLabel" layoutX="118.0" text="Load Game" />
-                     <Label fx:id="loadInstructions" layoutX="118.0" layoutY="30.0" text="Select save file to load from..." />
+                     <Label fx:id="loadGameLabel" layoutX="125.5" text="Load Game" />
+                     <Label fx:id="loadInstructions" layoutX="93.0" layoutY="30.0" text="Select save file to load from..." />
                            <GridPane fx:id="loadTable" alignment="TOP_CENTER" layoutX="36.0" layoutY="46.0" prefHeight="386.0" prefWidth="336.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="0.0" prefWidth="111.0" />
