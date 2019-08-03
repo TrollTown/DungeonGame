@@ -1,9 +1,9 @@
 #mainLabel {
-    -fx-text-fill: #000000 !important;
-    -fx-background-color:#ff0000;
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
 }
 
-#loadGamePanel {
+#loadGameStack {
     -fx-background-color:  #3d3d3d;
 }
 

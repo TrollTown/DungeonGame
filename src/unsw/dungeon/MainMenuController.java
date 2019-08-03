@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class MainMenuController {
 	private DungeonApplication application;
@@ -30,6 +31,9 @@ public class MainMenuController {
 	
 	@FXML
 	private Pane loadGamePanel;
+	
+	@FXML
+	private StackPane loadGameStack;
 	
 	@FXML
 	private GridPane loadTable;
@@ -59,12 +63,14 @@ public class MainMenuController {
 	     });
 		 this.loadGameButton.setOnAction(event -> {
 			 this.toggleLoadGamePanel();
+			 this.anchor.requestFocus();
 	     });
 		 this.quitGameButton.setOnAction(event -> {
 	        System.exit(0);
 	     });
 		 this.backToMainMenuButton.setOnAction(event -> {
 			 this.toggleLoadGamePanel();
+			 this.anchor.requestFocus();
 		 });
 		 this.confirmLoadButton.setOnAction(event -> {
 			 this.loadSavedDungeon();
@@ -81,14 +87,13 @@ public class MainMenuController {
 	}
 	
 	private void toggleLoadGamePanel() {
-		if (this.loadGamePanel.isVisible()) {
+		if (this.loadGameStack.isVisible()) {
+			this.loadGameStack.setVisible(false);
 			this.loadGamePanel.setVisible(false);
-			this.anchor.requestFocus();
 		}
 		else {
-			this.loadGamePanel.setVisible(true);
+			this.loadGameStack.setVisible(true);
 			this.populateSavePanel();
-			this.loadGamePanel.requestFocus();
 		}
 	}
 	
