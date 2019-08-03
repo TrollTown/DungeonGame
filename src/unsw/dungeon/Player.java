@@ -67,6 +67,8 @@ public class Player extends Entity {
         	}
         }
     }
+    
+    
 
     public void moveLeft() {
         if (this.delayMovement == false && getX() > 0 && 
@@ -165,5 +167,18 @@ public class Player extends Entity {
 	
 	public int getInvincibilitySeconds() {
 		return this.invincibility.getInvincibilitySeconds();
+	}
+	
+	public int getTreasureCount() {
+		int count = 0;
+		System.out.println(dungeon.getEntities());
+		for (Entity entity: dungeon.getEntities()) {
+			System.out.println(entity);
+			if (entity instanceof Treasure) {
+				count++;
+			}
+			
+		}
+		return count;
 	}
 }
