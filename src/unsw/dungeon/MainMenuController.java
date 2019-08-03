@@ -89,7 +89,6 @@ public class MainMenuController {
 	private void toggleLoadGamePanel() {
 		if (this.loadGameStack.isVisible()) {
 			this.loadGameStack.setVisible(false);
-			this.loadGamePanel.setVisible(false);
 		}
 		else {
 			this.loadGameStack.setVisible(true);
