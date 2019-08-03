@@ -43,11 +43,13 @@ with open("fakeDung.txt", 'rU') as f:
 	fw = open('newJSON.txt', 'a')
 	for line in f:
 		for char in line:
+			if char is None:
+				continue
 			print(char)
-			if (char == 'F'):
+			if (char == 'F' or char == 'f'):
 				xCoord += 1
 				continue
-			elif (char == '\n'):
+			elif (char == '\n' or char == ''):
 				break
 			fw.write('{\n')
 			fw.write('  "x": ' + str(xCoord) + ',\n')

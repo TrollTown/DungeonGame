@@ -1,4 +1,8 @@
 {
+  "width": 20,
+  "height": 12,
+  "entities": [
+{
   "x": 0,
   "y": 0,
   "type": "wall"
@@ -391,7 +395,8 @@
 {
   "x": 16,
   "y": 6,
-  "type": "door"
+  "type": "door",
+  "id": 1,
 },
 {
   "x": 17,
@@ -571,7 +576,8 @@
 {
   "x": 1,
   "y": 10,
-  "type": "key"
+  "type": "key",
+  "id": 1,
 },
 {
   "x": 2,
@@ -743,3 +749,22 @@
   "y": 11,
   "type": "wall"
 },
+
+],
+  "goal-condition": {
+    "goal": "AND", "subgoals":
+      [ 
+        { "goal": "boulders"}, 
+			  { "goal": "AND", "subgoals":
+			      [ 
+			        { "goal": "treasure"},
+			        { "goal": "exit" }
+			      ]
+			    }
+
+      ]
+    }
+  }
+  
+  
+}
