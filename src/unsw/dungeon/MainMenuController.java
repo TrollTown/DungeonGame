@@ -103,7 +103,7 @@ public class MainMenuController {
     	this.refreshGridValues();
     }
 	
-    private void refreshGridValues() {
+	private void refreshGridValues() {
     	this.loadTable.getChildren().clear();
     	for (int i = 0; i < 10; i++) {
     		if (i < this.saves.size()) {
@@ -117,36 +117,57 @@ public class MainMenuController {
     			this.saveTimestamps.add("-");
     		}
     	}
-    	for (int i = 0; i < 10; i++) {
-    		this.loadTable.add(new Label(this.saveNames.get(i)), 0, i);
-    		this.loadTable.add(new Label(this.saveLevels.get(i)), 1, i);
-    		this.loadTable.add(new Label(this.saveTimestamps.get(i)), 2, i);
+    		
+    	for (int i = 0; i < 11; i++) {
+    		Label newNameLabel;
+    		Label newLevelLabel;
+    		Label newTimestampLabel;
+    		if (i == 0) {
+    			newNameLabel = new Label("Save Name");
+        		newLevelLabel = new Label("Level");
+        		newTimestampLabel = new Label("Timestamp");
+        		newNameLabel.getStyleClass().add("saveTableHeading");
+        		newLevelLabel.getStyleClass().add("saveTableHeading");
+        		newTimestampLabel.getStyleClass().add("saveTableHeading");
+    		}
+    		else {
+    			newNameLabel = new Label(this.saveNames.get(i-1));
+        		newLevelLabel = new Label(this.saveLevels.get(i-1));
+        		newTimestampLabel = new Label(this.saveTimestamps.get(i-1));
+        		newNameLabel.getStyleClass().add("saveTableLabel");
+        		newLevelLabel.getStyleClass().add("saveTableLabel");
+        		newTimestampLabel.getStyleClass().add("saveTableLabel");
+    		}
+    		
+    		this.loadTable.add(newNameLabel, 0, i);
+    		this.loadTable.add(newLevelLabel, 1, i);
+    		this.loadTable.add(newTimestampLabel , 2, i);
     	}
     	this.refreshGridMouseListeners();
     }
     
-    private void refreshGridMouseListeners() {
+	private void refreshGridMouseListeners() {
     	for (Node node : this.loadTable.getChildren()) {
     		node.setOnMouseEntered(e -> this.loadTable.getChildren().forEach(cell -> {
     			Integer targetIndex = GridPane.getRowIndex(node);
-    			if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile)) {
+    			if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile) && (targetIndex != 0)) {
     				cell.setStyle("-fx-background-color: #ffb61e;");
     			}
     		}));
     		node.setOnMouseExited(e -> this.loadTable.getChildren().forEach(cell -> {
     	        Integer targetIndex = GridPane.getRowIndex(node);
-    	        if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile)) {
+    	        if ((GridPane.getRowIndex(cell) == targetIndex) && (GridPane.getRowIndex(cell) != this.chosenSaveFile) && (targetIndex != 0)) {
     	            cell.setStyle("-fx-background-color: transparent;");
     	        }
     	    }));
     		
     		node.setOnMouseClicked(e -> this.loadTable.getChildren().forEach(cell -> {
     			Integer targetIndex = GridPane.getRowIndex(node);
-    			if (GridPane.getRowIndex(cell) == targetIndex) {
-    				this.confirmLoadButton.setVisible(true);
+    			if ((GridPane.getRowIndex(cell) == targetIndex) && (targetIndex != 0)) {
     				cell.setStyle("-fx-background-color: #ffb61e;");
+    				this.confirmLoadButton.setVisible(true);
     				this.chosenSaveFile = targetIndex;
-    				this.chosenLevelToLoad = Integer.parseInt(this.saveLevels.get(this.chosenSaveFile));
+    				this.chosenLevelToLoad = Integer.parseInt(this.saveLevels.get(this.chosenSaveFile - 1));
     				this.clearHighlighting();
     			}
     		}));
