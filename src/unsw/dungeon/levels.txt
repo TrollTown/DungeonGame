@@ -1,3 +1,6 @@
+dungeon1.json
+dungeon2.json
+dungeon3.json
 complexGoal.json
 advanced.json
 maze.json

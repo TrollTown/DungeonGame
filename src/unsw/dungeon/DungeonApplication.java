@@ -12,6 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Represents the dungeon application, used by JavaFX
+ * @author Edward Webb and William Shen
+ *
+ */
 public class DungeonApplication extends Application {
 	private Stage stage;
 	private ArrayList<String> levels;
@@ -19,12 +24,19 @@ public class DungeonApplication extends Application {
 	private int levelCount;
 	private SaveManager saveManager;
 	
+	/**
+	 * The constructor for the dungeon application
+	 */
 	public DungeonApplication() {
 		this.levels = this.readLevels();
 		this.currentLevel = -1;
 		this.saveManager = new SaveManager();
 	}
 	
+	/**
+	 * Function used to start the dungeon UI
+	 * Used by JavaFX
+	 */
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Main Menu");
@@ -34,10 +46,18 @@ public class DungeonApplication extends Application {
         primaryStage.show();
     }
 
+    /**
+     * The main function
+     * Launch is used by javafx
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }
     
+    /**
+     * Loads the main menu
+     */
     public void loadMainMenu() {
     	try {
     		this.loadNewRoot("main_menu");
@@ -46,6 +66,10 @@ public class DungeonApplication extends Application {
     	}	
     }
     
+    /**
+     * Given the dungeon file, loads the stage
+     * @param dungeonFile
+     */
     private void loadDungeonStage(String dungeonFile) {
     	try {
     		this.loadNewRoot(dungeonFile);
@@ -54,6 +78,9 @@ public class DungeonApplication extends Application {
     	}
     }
     
+    /**
+     * Load the next dungeon in the levels.txt file
+     */
     public void loadNextDungeon() {
     	if (this.currentLevel == -1) {
             this.stage.setTitle("Dungeon");
@@ -75,11 +102,20 @@ public class DungeonApplication extends Application {
     	}
     }
     
+    /**
+     * Reset the level progress
+     */
     public void resetLevelProgress(){
     	this.currentLevel = -1;
     	this.loadNextDungeon();
     }
     
+    /**
+     * Loads the scene
+     * @param dungeon A file to be loaded
+     * @return The parent root
+     * @throws IOException
+     */
     public int getCurrentLevel() {
     	return this.currentLevel;
     }
@@ -124,6 +160,10 @@ public class DungeonApplication extends Application {
     	return newRoot;
     }
     
+    /**
+     * Reads the levels from levels.txt
+     * @return The list of dungeon names
+     */
     private ArrayList<String> readLevels(){
     	ArrayList<String> levels = new ArrayList<String>();
     	BufferedReader reader;

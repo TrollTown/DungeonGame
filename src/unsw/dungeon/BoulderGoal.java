@@ -1,8 +1,15 @@
 package unsw.dungeon;
 
+/**
+ * Represents the goal where all floor switches are activated
+ * @author Edward Webb and William Shen
+ *
+ */
 public class BoulderGoal implements GoalInterface {
 	
-	// If all switches are activated, then goal has been met
+	/**
+	 * If all switches have been activated, then this function will return true
+	 */
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (Entity entity: dungeon.getEntities()) {
