@@ -21,26 +21,29 @@
                <Image url="@../../../images/background.jpg" />
             </image>
          </ImageView>
-         <GridPane prefHeight="523.0" prefWidth="732.0">
+         <GridPane prefHeight="523.0" prefWidth="993.0">
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
             </columnConstraints>
             <rowConstraints>
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                <Label fx:id="mainLabel" text="Main  Menu" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                <Button fx:id="startGameButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" mnemonicParsing="false" styleClass="mainButton" text="Start  Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-               <Button fx:id="loadGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-alignment: CENTER_CENTER;" styleClass="mainButton" text="Load  Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <Button fx:id="loadGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="mainButton" text="Load  Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                   <opaqueInsets>
                      <Insets top="20.0" />
                   </opaqueInsets></Button>
                <Button fx:id="quitGameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="mainButton" text="Quit  Game" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+               <Label fx:id="infoLabel" text="COMP2511  19T2  Project  -  Team  Outki" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+               <Label fx:id="infoLabel2" text="Edward  Jonathon  Webb  and  William  Yi  Nan  Shen  2019" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
             </children>
          </GridPane>
          <StackPane fx:id="loadGameStack" alignment="TOP_CENTER" visible="false" StackPane.alignment="TOP_CENTER">

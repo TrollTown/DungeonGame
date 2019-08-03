@@ -44,4 +44,12 @@
     -fx-border-radius: 10%;
 }
 
+#infoLabel {
+    -fx-text-fill: white;
+    -fx-padding: 0px 0px 0px 10px;
+    -fx-border-insets: 0px 0px 15px 0px;
+}
 
+#infoLabel2 {
+    -fx-text-fill: white;
+}

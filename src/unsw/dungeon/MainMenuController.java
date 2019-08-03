@@ -45,6 +45,9 @@ public class MainMenuController {
 	@FXML
 	private Button backToMainMenuButton;
 	
+	@FXML
+	private Label infoLabel, infoLabel2;
+	
 	private int chosenSaveFile;
 	
 	private int chosenLevelToLoad;
@@ -56,6 +59,9 @@ public class MainMenuController {
 	
 	@FXML
 	public void initialize() {
+		Font minecraftFont12 = 
+                Font.loadFont(getClass()
+                    .getResourceAsStream("Minecraftia-Regular.ttf"), 12);
 		 Font minecraftFont16 = 
                 Font.loadFont(getClass()
                     .getResourceAsStream("Minecraftia-Regular.ttf"), 16);
@@ -87,6 +93,8 @@ public class MainMenuController {
 		 this.startGameButton.setFont(minecraftFont16);
 		 this.loadGameButton.setFont(minecraftFont16);
 		 this.quitGameButton.setFont(minecraftFont16);
+		 this.infoLabel.setFont(minecraftFont12);
+		 this.infoLabel2.setFont(minecraftFont12);
 	}
 	
 	public void setApplication(DungeonApplication application) {
