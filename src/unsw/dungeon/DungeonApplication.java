@@ -60,6 +60,7 @@ public class DungeonApplication extends Application {
      */
     public void loadMainMenu() {
     	try {
+    		this.currentLevel = -1;
     		this.loadNewRoot("main_menu");
     	} catch (Exception e) {
     		e.printStackTrace();
