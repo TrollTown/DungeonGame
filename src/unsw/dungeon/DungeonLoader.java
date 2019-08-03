@@ -116,6 +116,7 @@ public abstract class DungeonLoader {
         	Treasure treasure = new Treasure(x, y);
         	onLoad(treasure);
         	entity = treasure;
+        	dungeon.increaseTreasureCount();
         	break;
         case "invincibility":
         	Invincibility invincibility = new Invincibility(x, y);

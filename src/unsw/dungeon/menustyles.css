@@ -1,18 +1,35 @@
-.flow {
+#menu {
     -fx-padding: 10;
     -fx-background-color: rgba(72, 72, 72, 0.5);
     -fx-vgap: 20px;
 }
 
-.button {
+.menuButton {
     -fx-alignment: center;
     -fx-pref-width: 200px;
 }
 
-.label {
+.saveTableLabel {
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-pref-width: 200px;
-    -fx-alignment: center;
+}
+
+.saveTableHeading {
+    -fx-text-fill: white;
+    -fx-font: 16px Calibri;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#saveGameLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold; 
+}
+
+#gameSavedLabel {
+    -fx-text-fill: #2ecc71;
+    -fx-font: 18px Calibri;
+    -fx-font-weight: bold;
 }

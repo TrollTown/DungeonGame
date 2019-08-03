@@ -29,7 +29,8 @@ public class Dungeon {
     private boolean completedDungeon;
     private DungeonController mainController;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
-
+    private int treasureCount;
+    
     /**
      * The Dungeon constructor
      * @param width The dungeon's width
@@ -43,6 +44,8 @@ public class Dungeon {
         this.player = null;
         this.goal = null;
         this.setCompletedDungeon(false);
+        this.treasureCount = 0;
+        
     }
 
     /**
@@ -331,7 +334,7 @@ public class Dungeon {
 	 * Reloads the dungeon
 	 */
 	public void reloadDungeon() {
-//		System.exit(0);
+		this.getMainController().reloadDungeon();
 	}
 	
 	/**
@@ -418,5 +421,13 @@ public class Dungeon {
 				observer.update();
 			}
 		}
+	}
+
+	public int getTreasureCount() {
+		return treasureCount;
+	}
+
+	public void increaseTreasureCount() {
+		this.treasureCount++;
 	}
 }

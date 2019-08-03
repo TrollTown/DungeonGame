@@ -30,7 +30,7 @@ public class ExitGoal implements GoalInterface {
 	 */
 	@Override
 	public String toString() {
-		return "ExitGoal []";
+		return "Reach the exit";
 	}
 
 }

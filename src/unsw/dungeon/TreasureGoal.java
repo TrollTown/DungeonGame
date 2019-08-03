@@ -5,13 +5,10 @@ public class TreasureGoal implements GoalInterface {
 	// If number of treasure in inventory equals number of treasure in dungeon
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
-		int countTreasure = 0;
-		for (Entity entity: dungeon.getEntities()) {
-			if (entity instanceof Treasure) {
-				countTreasure++;
-			}
-		}
-		if (player.getInventory().getNumTreasure() == countTreasure) {
+		System.out.println("playTreasure: " + player.getInventory().getNumTreasure());
+		System.out.println("dungTreasure: " + dungeon.getTreasureCount());
+		if (player.getInventory().getNumTreasure() >= dungeon.getTreasureCount()) {
+			
 			return true;
 		}
 		return false;
@@ -19,7 +16,6 @@ public class TreasureGoal implements GoalInterface {
 
 	@Override
 	public String toString() {
-		return "TreasureGoal []";
+		return "Collect all the treasure";
 	}
-
 }

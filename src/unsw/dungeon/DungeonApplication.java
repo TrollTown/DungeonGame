@@ -21,6 +21,7 @@ public class DungeonApplication extends Application {
 	private ArrayList<String> levels;
 	private int currentLevel;
 	private int levelCount;
+	private SaveManager saveManager;
 	
 	/**
 	 * The constructor for the dungeon application
@@ -28,6 +29,7 @@ public class DungeonApplication extends Application {
 	public DungeonApplication() {
 		this.levels = this.readLevels();
 		this.currentLevel = -1;
+		this.saveManager = new SaveManager();
 	}
 	
 	/**
@@ -83,9 +85,11 @@ public class DungeonApplication extends Application {
             this.stage.setTitle("Dungeon");
     		this.loadDungeonStage(this.levels.get(0));
     		this.currentLevel++;
+    		System.out.println(this.currentLevel);
     	}
     	else {
     		this.currentLevel++;
+    		System.out.println(this.currentLevel);
     		if (this.currentLevel < this.levelCount) {
     			this.loadDungeonStage(this.levels.get(this.currentLevel));
     		}
@@ -111,6 +115,19 @@ public class DungeonApplication extends Application {
      * @return The parent root
      * @throws IOException
      */
+    public int getCurrentLevel() {
+    	return this.currentLevel;
+    }
+    
+    public void reloadCurrentDungeon() {
+    	this.currentLevel--;
+    	this.loadNextDungeon();
+    }
+    
+    public void setCurrentLevel(int currentLevel) {
+    	this.currentLevel = currentLevel;
+    }
+    
     private Parent loadNewRoot(String dungeon) throws IOException {
     	Parent newRoot;
     	if (dungeon == "main_menu") {
@@ -124,7 +141,7 @@ public class DungeonApplication extends Application {
     		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeon);
         	DungeonController controller = dungeonLoader.loadController();
         	controller.setApplication(this);
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("app.fxml"));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("app - Copy.fxml"));
         	loader.setController(controller);
         	newRoot = loader.load();
     	}
@@ -138,6 +155,7 @@ public class DungeonApplication extends Application {
     	}
     	newRoot.requestFocus();
     	this.stage.sizeToScene();
+    	this.stage.setResizable(Boolean.FALSE);
     	return newRoot;
     }
     
@@ -162,5 +180,9 @@ public class DungeonApplication extends Application {
     		e.printStackTrace();
     	}
     	return levels;
+    }
+    
+    public SaveManager getSaveManager() {
+    	return this.saveManager;
     }
 }

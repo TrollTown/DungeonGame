@@ -24,7 +24,6 @@ public class DungeonCompletionObserver extends Observer {
 	public void update() {
 		if (this.dungeon.isCompletedDungeon()) {
 			this.dungeon.getMainController().getApplication().loadNextDungeon();
-			System.out.println("TRIPPED");
 		}
 	}
 }

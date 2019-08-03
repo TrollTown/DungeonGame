@@ -19,5 +19,9 @@ public class BoulderGoal implements GoalInterface {
 		}
 		return true;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Activate all floor switches with boulders";
+	}
 }

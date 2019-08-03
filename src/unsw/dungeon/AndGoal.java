@@ -64,7 +64,7 @@ public class AndGoal implements GoalInterface {
 	 */
 	@Override
 	public String toString() {
-		return "AndGoal [goals=" + goals + "]";
+		return "(" + goals.get(0) + " AND " + goals.get(1) + ")";
 	}
 
 	/**
@@ -75,9 +75,11 @@ public class AndGoal implements GoalInterface {
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {
 			if (goal.hasMetGoal(dungeon, player, directionMovingTowards) == false) {
+				System.out.println("Returned false");
 				return false;
 			}
 		}
+		System.out.println("returned true");
 		return true;
 	}
 
