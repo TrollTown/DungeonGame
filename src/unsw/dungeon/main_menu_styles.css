@@ -24,3 +24,12 @@
     -fx-pref-width: 200px;
     -fx-alignment: center;
 }
+
+.mainButton {
+    -fx-text-fill: blue;
+    -fx-min-width: 400px;
+    -fx-max-height: 30px;
+}
+
+
+
