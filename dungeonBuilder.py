@@ -45,6 +45,7 @@ with open("fakeDung.txt", 'rU') as f:
 		for char in line:
 			print(char)
 			if (char == 'F'):
+				xCoord += 1
 				continue
 			elif (char == '\n'):
 				break
@@ -55,4 +56,5 @@ with open("fakeDung.txt", 'rU') as f:
 			fw.write('},' + '\n')
 			xCoord += 1
 		yCoord += 1
+		xCoord = 0
 	fw.close()

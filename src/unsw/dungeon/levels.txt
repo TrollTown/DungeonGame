@@ -1,4 +1,5 @@
 dungeon1.json
+dungeon2.json
 complexGoal.json
 advanced.json
 maze.json
