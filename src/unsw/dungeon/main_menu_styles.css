@@ -1,6 +1,5 @@
 #mainLabel {
     -fx-text-fill: white;
-    -fx-font-size: 30px;
 }
 
 #loadGameStack {
@@ -17,18 +16,34 @@
     -fx-text-fill: white;
 }
 
-.label {
+/* .label {
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-pref-width: 200px;
     -fx-alignment: center;
+} */
+
+.labelInsideButton{
+    -fx-text-fill: blue;
+    -fx-background-color: red;
+    -fx-max-height: 50;
+}
+
+.loadTableLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.loadTableHeading {
+    -fx-text-fill: white;
+    -fx-font: 16px Calibri;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
 }
 
 .mainButton {
-    -fx-text-fill: blue;
-    -fx-min-width: 400px;
-    -fx-max-height: 30px;
 }
 
 

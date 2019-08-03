@@ -28,6 +28,9 @@ public class MainMenuController {
 	private Button loadGameButton;
 	
 	@FXML
+	private Label loadGameButtonLabel;
+	
+	@FXML
 	private Button quitGameButton;
 	
 	@FXML
@@ -79,8 +82,10 @@ public class MainMenuController {
 		 this.confirmLoadButton.setOnAction(event -> {
 			 this.loadSavedDungeon();
 		 });
+		 
+		 this.mainLabel.setFont(minecraftFont24);
 		 //this.startGameButton.setFont(minecraftFont24);
-		 this.loadGameButton.setFont(minecraftFont24);
+		 this.loadGameButtonLabel.setFont(minecraftFont24);
 		 this.quitGameButton.setFont(minecraftFont24);
 	}
 	
@@ -132,17 +137,17 @@ public class MainMenuController {
     			newNameLabel = new Label("Save Name");
         		newLevelLabel = new Label("Level");
         		newTimestampLabel = new Label("Timestamp");
-        		newNameLabel.getStyleClass().add("saveTableHeading");
-        		newLevelLabel.getStyleClass().add("saveTableHeading");
-        		newTimestampLabel.getStyleClass().add("saveTableHeading");
+        		newNameLabel.getStyleClass().add("loadTableHeading");
+        		newLevelLabel.getStyleClass().add("loadTableHeading");
+        		newTimestampLabel.getStyleClass().add("loadTableHeading");
     		}
     		else {
     			newNameLabel = new Label(this.saveNames.get(i-1));
         		newLevelLabel = new Label(this.saveLevels.get(i-1));
         		newTimestampLabel = new Label(this.saveTimestamps.get(i-1));
-        		newNameLabel.getStyleClass().add("saveTableLabel");
-        		newLevelLabel.getStyleClass().add("saveTableLabel");
-        		newTimestampLabel.getStyleClass().add("saveTableLabel");
+        		newNameLabel.getStyleClass().add("loadTableLabel");
+        		newLevelLabel.getStyleClass().add("loadTableLabel");
+        		newTimestampLabel.getStyleClass().add("loadTableLabel");
     		}
     		
     		this.loadTable.add(newNameLabel, 0, i);
