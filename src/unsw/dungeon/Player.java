@@ -6,7 +6,7 @@ import javafx.util.Duration;
 
 /**
  * The player entity
- * @author Robert Clifton-Everest
+ * @author Edward Webb and William Shen
  *
  */
 public class Player extends Entity {
@@ -35,15 +35,21 @@ public class Player extends Entity {
 		    })
 		);
         this.mainTimeline.setCycleCount(1);
+        System.out.println("Initialising player");
     	
     }
     
+    /**
+     * Delays the player's movement
+     */
     private void delayMovement() {
 		this.delayMovement = true;
 		this.mainTimeline.play();
     }
     
-    // Player moves up
+    /**
+     * Player moves up
+     */
     public void moveUp() {
     	// Checks if within dungeon height and width and if it can move to the square
         if (this.delayMovement == false && getY() > 0 && dungeon.moveEntityCheck(getX(), getY() - 1, Direction.UP) 
@@ -56,7 +62,10 @@ public class Player extends Entity {
         	}
         }
     }
-    // Below functions are similar to above
+    
+    /**
+     * Player moves down
+     */
     public void moveDown() {
         if (this.delayMovement == false && getY() < dungeon.getHeight() - 1 && dungeon.moveEntityCheck(getX(), getY() + 1, Direction.DOWN) 
         		&& this.isAlive) {
@@ -69,7 +78,9 @@ public class Player extends Entity {
     }
     
     
-
+    /**
+     * Player moves left
+     */
     public void moveLeft() {
         if (this.delayMovement == false && getX() > 0 && 
         		dungeon.moveEntityCheck(getX() -1, getY(), Direction.LEFT) 
@@ -82,6 +93,9 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Player moves right
+     */
     public void moveRight() {
         if (this.delayMovement == false && getX() < dungeon.getWidth() - 1
         		&& dungeon.moveEntityCheck(getX() + 1, getY(), Direction.RIGHT) && this.isAlive) {
@@ -94,16 +108,27 @@ public class Player extends Entity {
         }
     }
     
-    // Check if any keys in inventory match the id given
+    /**
+     * Check if any keys in inventory match the id given
+     * @param id The id
+     * @return Whether any keys match
+     */
     public boolean checkKeys(int id) {
     	return this.inventory.checkKeys(id);
     }
-
-
+    
+    /**
+     * Gets the inventory
+     * @return the inventory
+     */
 	public Inventory getInventory() {
 		return inventory;
 	}
 
+	/**
+	 * Sets the inventory
+	 * @param inventory The inventory
+	 */
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 		new BombObserver(this.inventory);
@@ -112,7 +137,10 @@ public class Player extends Entity {
 		new KeyObserver(this.inventory);
 	}
 	
-	// Add an item to the inventory
+	/**
+	 * Add an item to the inventory
+	 * @param item The item
+	 */
 	public void addItem(Item item) {
 		// If invincibility potion
 		if (item instanceof Invincibility) {
@@ -120,7 +148,10 @@ public class Player extends Entity {
 		}
 		this.inventory.addItem(item);
 	}
-	// Places a bomb
+	
+	/**
+	 * Places a bomb
+	 */
 	public void placeBomb() {
 		if (this.inventory.useBomb() == true) {
 			LitBomb bomb = new LitBomb(this.getX(), this.getY());
@@ -130,26 +161,44 @@ public class Player extends Entity {
 		}
 	}
 
-	// This function is implemented due to polymorphism and how Player inherits from Entity
+	/**
+	 * This function is implemented due to polymorphism and how Player inherits from Entity
+	 */
     public boolean moveEntityCheck(int x, int y, Direction direction, Inventory inventory) {
     	return true;
     }
 
-	// Kill the player
+	/**
+	 * Kill the player
+	 */
 	public void killPlayer() {
+		System.out.println("Killing player");
 		super.setShow(false);
 		this.setAlive(false);
+		for (Enemy enemy: dungeon.getEnemies()) {
+			enemy.getMainTimeline().stop();
+		}
 		this.dungeon.reloadDungeon();
 	}
 
+	/**
+	 * Is the player alive?
+	 * @return whether the player is alive
+	 */
 	public boolean isAlive() {
 		return isAlive;
 	}
-
+	/**
+	 * Set whether the player is alive
+	 * @param isAlive Alive property
+	 */
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
 	
+	/**
+	 * Use a sword
+	 */
 	public void useSword() {
 		
 		Sword sword = this.inventory.containsSword();
@@ -160,15 +209,26 @@ public class Player extends Entity {
 		}
 	}
 	
-	// Get whether player is still invincible
+	/**
+	 * Get whether player is still invincible
+	 * @return Whether the player is invincible
+	 */
 	public boolean getInvincibilityStatus() {
 		return this.invincibility.getStatus();
 	}
 	
+	/**
+	 * Get number of seconds remaining for invincibility effect
+	 * @return Number of seconds
+	 */
 	public int getInvincibilitySeconds() {
 		return this.invincibility.getInvincibilitySeconds();
 	}
 	
+	/**
+	 * Get number of treasure in dungeon
+	 * @return Number of treasure
+	 */
 	public int getTreasureCount() {
 		int count = 0;
 		System.out.println(dungeon.getEntities());

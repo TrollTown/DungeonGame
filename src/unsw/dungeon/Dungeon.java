@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
  * A dungeon can contain many entities, each occupy a square. More than one
  * entity can occupy the same square.
  *
- * @author Robert Clifton-Everest
+ * @author Edward Webb and William Shen
  *
  */
 public class Dungeon {
@@ -30,7 +30,12 @@ public class Dungeon {
     private DungeonController mainController;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private int treasureCount;
-  
+    
+    /**
+     * The Dungeon constructor
+     * @param width The dungeon's width
+     * @param height The dungeon's height
+     */
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -43,26 +48,50 @@ public class Dungeon {
         
     }
 
+    /**
+     * Gets the list of entities
+     * @return The list of entities
+     */
     public List<Entity> getEntities() {
     	return this.entities;
     }
+    
+    /**
+     * Gets the dungeon's width
+     * @return The dungeon's width
+     */
     public int getWidth() {
         return width;
     }
-
+    
+    /**
+     * Gets the dungeon's height
+     * @return the dungeon's height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Gets the dungeon's main player
+     * @return The player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Sets the dungeon's main player
+     * @param player The player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
     
-    // Adds an entity to the dungeon
+    /**
+     * Adds an entity to the dungeon
+     * @param entity
+     */
     public void addEntity(Entity entity) {
     	if (entity != null) {
     		entity.setDungeon(this);
@@ -73,8 +102,12 @@ public class Dungeon {
         entities.add(entity);
     }
     
-    // Makes a copy of an entity list
-    // Used to avoid the co-modification error that the Timer class kept producing
+    /**
+     * Makes a copy of an entity list
+     * Used to avoid the co-modification error that the Timer class kept producing
+     * @param entityList The entity list
+     * @return A copy of the entity list
+     */
     private ArrayList<Entity> copyEntityList(List<Entity> entityList) {
     	ArrayList<Entity> newEntityList = new ArrayList<Entity>(entityList.size());
     	for (Entity entity: entityList) {
@@ -83,7 +116,12 @@ public class Dungeon {
     	return newEntityList;
     }
     
-    // Gets a list of all the entities at this coordinate
+    /**
+     * Gets a list of all the entities at this coordinate
+     * @param x The x-coord
+     * @param y The y-coord
+     * @return The list of entities at this coord
+     */
     public List<Entity> getEntityAtCoord(int x, int y) {
     	List<Entity> listEntity = new ArrayList<Entity>();
     	
@@ -99,7 +137,13 @@ public class Dungeon {
     	}
     	return listEntity;
     }
-    // Checks if the player can move on the same square as the entity on this square
+    
+    /**
+     * Checks if the player can move on the same square as the entity on this square
+     * @param x The x-coord
+     * @param y The y-coord
+     * @return Whether the player can move to this square
+     */
     public boolean isImmovableAtCoord(int x, int y) {
     	List<Entity> listOfEntities = getEntityAtCoord(x, y);
     	if (listOfEntities.isEmpty()) {
@@ -116,14 +160,23 @@ public class Dungeon {
     	
     	return false;
     }
-    // Pick up an entity
+    /**
+     * Pick up an entity
+     * @param item The item to pick up
+     */
     public void pickUpItem(Item item) {
     	item.setShow(false);
     	player.addItem(item);
     }
     
-    // Run every time the player moves
-    // Checks if the player can move to the square it wants to go to
+    /**
+     * Run every time the player moves
+     * Checks if the player can move to the square it wants to go to
+     * @param x the x-coord
+     * @param y the y-coord
+     * @param direction The player's direction it wants to move towards
+     * @return Whether the player can move to this square or not
+     */
     public boolean moveEntityCheck(int x, int y, Direction direction) {
     	
     	List<Entity> entitiesAtCoord = this.getEntityAtCoord(x, y);
@@ -154,8 +207,12 @@ public class Dungeon {
     	return true;
     }
     
-    // Given coords, causes damage on everything around that coordinate
-    // Bombs use this
+    /**
+     * Given coords, causes damage on everything around that coordinate
+     * Bombs use this
+     * @param x The x-coord
+     * @param y The y-coord
+     */
     public void causeDamage(int x, int y) {
     	if (tileInDungeon(x, y-1)) {
     		processDamage(x, y-1);
@@ -173,7 +230,12 @@ public class Dungeon {
     	processDamage(x,y);
     }
     
-    // If the tile exists within the dungeon's width and height
+    /**
+     * If the tile exists within the dungeon's width and height
+     * @param x The x-coord
+     * @param y The y-coord
+     * @return Whether the tile exists within the dungeon's width and height
+     */
     private boolean tileInDungeon(int x, int y) {
     	if (x < 0 || y < 0 || x >= width || y >= width) {
     		return false;
@@ -181,7 +243,11 @@ public class Dungeon {
     	return true;
     }
     
-    // Causes damage at a specific coordinate
+    /**
+     * Causes damage at a specific coordinate
+     * @param x The x-coord
+     * @param y The y-coord
+     */
     public void processDamage(int x, int y) {
     	List<Entity> entities = getEntityAtCoord(x,y);
     	for (Entity entity: entities) {
@@ -202,22 +268,34 @@ public class Dungeon {
 
     }
 
-    // Gets dungeon's goal
+    /**
+     * Gets dungeon's goal
+     * @return The dungeon's goal
+     */
     public GoalInterface getGoal() {
     	return this.goal;
     }
     
-    // Sets dungeon's goal
+    /**
+     * Sets dungeon's goal
+     * @param goal The goal
+     */
 	public void setGoal(GoalInterface goal) {
 		this.goal = goal;
 	}
 	
-	// Gets dungeon's enemies
+	/**
+	 * Gets dungeon's enemies
+	 * @return The dungeon's enemies
+	 */
 	public List<Enemy> getEnemies() {
 		return this.enemies;
 	}
 	
-	// Checks if dungeon's goal has been met
+	/**
+	 * Checks if dungeon's goal has been met
+	 * @return if goal has been met or not
+	 */
 	public boolean checkGoal() {
 		if (this.isCompletedDungeon()) {
 			return true;
@@ -226,7 +304,10 @@ public class Dungeon {
 		}
 	}
 
-	
+	/**
+	 * Set the dungeon's enemies
+	 * @param enemies The enemies
+	 */
 	public void setEnemies(List<Enemy> enemies) {
 		this.enemies = enemies;
 	}
@@ -241,17 +322,24 @@ public class Dungeon {
 		this.notifyDungeonCompletionObservers();
 	}
 
-	
+	/**
+	 * Add an enemy to the dungeon
+	 * @param enemy The enemy
+	 */
 	public void addEnemy(Enemy enemy) {
 		this.enemies.add(enemy);
 	}
 	
-	// In the future, implement this function
+	/**
+	 * Reloads the dungeon
+	 */
 	public void reloadDungeon() {
 		this.getMainController().reloadDungeon();
 	}
 	
-	// Start the enemy AI
+	/**
+	 * Start the enemy AI
+	 */
 	public void initiateEnemyAI() {
 		for (Enemy enemy: this.enemies) {
 			enemy.runTimeline(player);
@@ -259,13 +347,16 @@ public class Dungeon {
 		
 	}
 	
-	// Kill enemies around these coordinates
-	// This is why there are two for loops:
-	
-//	    X
-//	 X  X  X
-//	    X
-	// The middle coordinate is the coordinate given, and it kills everything at these coordinates
+	/**
+	 * 	// Kill enemies around these coordinates
+	 * This is why there are two for loops:
+	 *    X
+     * X  X  X
+     *    X
+	 * The middle coordinate is the coordinate given, and it kills everything at these coordinates
+	 * @param x The x-coord
+	 * @param y The y-coord
+	 */
 	public void killEnemies(int x, int y) {
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (Enemy enemy: enemies) {
@@ -281,7 +372,11 @@ public class Dungeon {
 		}
 	}
 
-	// Process player and enemy colliding
+	/**
+	 * Process player and enemy colliding
+	 * @param player The player
+	 * @param enemy The enemy
+	 */
 	public void processPlayerEnemyCollision(Player player, Enemy enemy) {
 		if (!enemy.isDead()) {
 			if (this.player.getInvincibilityStatus() == true) {
@@ -293,18 +388,33 @@ public class Dungeon {
 		}
 	}
 
+	/**
+	 * Gets the dungeon's main controller
+	 * @return The controller
+	 */
 	public DungeonController getMainController() {
 		return mainController;
 	}
-
+	
+	/**
+	 * Sets the dungeon's main controller
+	 * @param mainController The main controller
+	 */
 	public void setMainController(DungeonController mainController) {
 		this.mainController = mainController;
 	}
 	
+	/**
+	 * Attach an observer to the dungeon
+	 * @param observer The observer
+	 */
 	public void attach(Observer observer) {
 		this.observers.add(observer);
 	}
 	
+	/**
+	 * Notify observers that dungeon has been completed
+	 */
 	public void notifyDungeonCompletionObservers() {
 		for (Observer observer : observers) {
 			if (observer instanceof DungeonCompletionObserver) {

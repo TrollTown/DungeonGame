@@ -9,13 +9,27 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Responsible for managing saves
+ * @author Edward Webb and William Shen
+ *
+ */
 public class SaveManager {
 	private ArrayList<GameSave> saves;
 	
+	/**
+	 * Constructor for SaveManager
+	 */
 	public SaveManager() {
 		this.saves = this.loadAllSaves();
 	}
 	
+	/**
+	 * Saves a dungeon
+	 * @param saveName The name of the save
+	 * @param currentLevel The current level
+	 * @param saveSlot Which slot to put the save in
+	 */
 	public void save(String saveName, int currentLevel, int saveSlot) {
 		GameSave newGameSave = new GameSave(saveName, currentLevel, "");
 		this.saves.set(saveSlot, newGameSave);
@@ -34,6 +48,11 @@ public class SaveManager {
 		}
 	}
 	
+	/**
+	 * Load a save
+	 * @param saveFile The save file
+	 * @return The actual game save
+	 */
 	private GameSave load(String saveFile) {
 		ArrayList<String> fileContents = new ArrayList<String>();
 		BufferedReader reader;
@@ -55,6 +74,10 @@ public class SaveManager {
 		return loadedSave;
 	}
 	
+	/**
+	 * Loads the list of saves
+	 * @return The list of saves
+	 */
 	private ArrayList<GameSave> loadAllSaves() {
 		ArrayList<GameSave> saves = new ArrayList<GameSave>();
 		final File folder = new File("saves");
@@ -68,6 +91,10 @@ public class SaveManager {
 		return saves;
 	}
 	
+	/**
+	 * Gets the list of saves
+	 * @return The list of saves
+	 */
 	public ArrayList<GameSave> getSavesList(){
 		return this.saves;
 	}

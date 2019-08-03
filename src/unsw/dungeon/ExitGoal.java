@@ -1,8 +1,16 @@
 package unsw.dungeon;
 
+/**
+ * Represents the goal of reaching the exit
+ * @author William Shen and Edward Webb
+ *
+ */
 public class ExitGoal implements GoalInterface {
 
-	// If Player is at Exit
+	/**
+	 * If Player is at Exit
+	 * Goal has been met
+	 */
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		if (directionMovingTowards == null) {
@@ -17,6 +25,9 @@ public class ExitGoal implements GoalInterface {
 		
 	}
 
+	/**
+	 * For printing out this goal
+	 */
 	@Override
 	public String toString() {
 		return "Reach the exit";

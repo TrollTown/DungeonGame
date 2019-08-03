@@ -5,18 +5,31 @@ import java.util.List;
 
 import org.json.JSONArray;
 
-// Composite pattern
-// This is a "group" of goals
+/**
+ * Composite pattern which contains two goals,
+ * these two goals must both be met for the whole goal to be met
+ * @author Edward Webb
+ *
+ */
 public class AndGoal implements GoalInterface {
 	private List<GoalInterface> goals;
 	
+	/**
+	 * Constructor for the And Goal class
+	 * @param goal1 The first goal
+	 * @param goal2 The second goal
+	 */
 	public AndGoal(GoalInterface goal1, GoalInterface goal2) {
 		this.goals = new ArrayList<GoalInterface>();
 		this.goals.add(goal1);
 		this.goals.add(goal2);
 	}
 	
-	// Set up the goals given JSON array
+	/**
+	 * Second constructor for the AndGoal class,
+	 * given a json array, will read the subgoals from it
+	 * @param subgoals the JSONArray
+	 */
 	public AndGoal(JSONArray subgoals) {
 		this.goals = new ArrayList<GoalInterface>();
 		for (int i = 0; i < subgoals.length(); i++) {
@@ -46,13 +59,18 @@ public class AndGoal implements GoalInterface {
 		
 	}
 
-	// For debugging
+	/**
+	 * Prints out each goal in the class
+	 */
 	@Override
 	public String toString() {
 		return "(" + goals.get(0) + " AND " + goals.get(1) + ")";
 	}
 
-	// Check if both goals have been met
+	/**
+	 * Returns whether the goal has been met by checking
+	 * if the goals within the class have been met
+	 */
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {

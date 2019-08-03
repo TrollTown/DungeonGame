@@ -27,7 +27,7 @@ import javafx.scene.layout.StackPane;
 
 /**
  * A JavaFX controller for the dungeon.
- * @author Robert Clifton-Everest
+ * @author Edward Webb and William Shen
  *
  */
 public class DungeonController {
@@ -118,6 +118,11 @@ public class DungeonController {
 	ArrayList<String> saveLevels;
 	ArrayList<String> saveTimestamps;
 
+    /**
+     * Constructor for the dungeon controller
+     * @param dungeon the dungeon
+     * @param initialEntities the dungeon's entities
+     */
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.dungeon.setMainController(this);
@@ -128,6 +133,9 @@ public class DungeonController {
         this.saveTimestamps = new ArrayList<String>();
     }
 
+    /**
+     * Initialises the controller
+     */
     @FXML
     public void initialize() {
     	// Initialise the menu popup
@@ -191,6 +199,10 @@ public class DungeonController {
         this.displayGoals();
     }
 
+    /**
+     * Handles a key press
+     * @param event an event eg. a key press
+     */
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
@@ -220,6 +232,9 @@ public class DungeonController {
         }
     }
     
+    /**
+     * Toggles the menu to show/hide
+     */
     @FXML
     private void toggleMenu() {
     	if (this.menu.isVisible()) {
@@ -235,6 +250,10 @@ public class DungeonController {
     	}
     }
     
+    /**
+     * Updates the bomb count in the inventory UI
+     * @param count
+     */
     @FXML
     private void toggleSaveGamePanel() {
     	if (this.saveGameStack.isVisible()) {
@@ -260,14 +279,26 @@ public class DungeonController {
     	this.bombCount.setText(Integer.toString(count));
     }
     
+    /**
+     * Updates the number of hits the sword has remaining
+     * @param durability The durability of the sword
+     */
     public void changeSwordDurability(int durability) {
     	this.swordDurability.setText(Integer.toString(durability));
     }
     
+    /**
+     * Updates the number of seconds remaining for the invincibility effect
+     * @param seconds The number of seconds remaining
+     */
     public void updateInvincibilityTimer(int seconds) {
     	this.invincibilityTimer.setText(Integer.toString(seconds) + " s");
     }
     
+    /**
+     * Updates the number of keys remaining
+     * @param keyCount number of keys remaining
+     */
     public void updateInventoryKeys(int keyCount) {
     	int existingKeyCount = this.inventoryKeys.getChildren().size();
 		while (existingKeyCount < keyCount) {
@@ -281,6 +312,10 @@ public class DungeonController {
 		}
     }
     
+    /**
+     * Updates the bomb's view when a bomb is placed
+     * @param entity The bomb
+     */
     public void updateView(Entity entity) {
     	if (entity instanceof LitBomb) {
     		LitBomb bomb = (LitBomb) entity;
@@ -302,14 +337,25 @@ public class DungeonController {
     	} 
     }
     
+    /**
+     * Sets the dungeon application property
+     * @param app The dungeon application
+     */
     public void setApplication(DungeonApplication app) {
     	this.application = app;
     }
     
+    /**
+     * Gets the dungeon application
+     * @return The dungeon application
+     */
     public DungeonApplication getApplication() {
     	return this.application;
     }
     
+    /**
+     * Resets the dungeon progress
+     */
     public void resetProgress() {
     	this.application.resetLevelProgress();
     }
