@@ -11,6 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Controller for the main menu
+ * @author William Shen and Edward Webb
+ *
+ */
 public class MainMenuController {
 	private DungeonApplication application;
 	
@@ -53,6 +58,9 @@ public class MainMenuController {
 	ArrayList<String> saveLevels;
 	ArrayList<String> saveTimestamps;
 	
+	/**
+	 * Initialise the scene
+	 */
 	@FXML
 	public void initialize() {
 		 this.saveNames = new ArrayList<String>();
@@ -77,15 +85,25 @@ public class MainMenuController {
 		 });
 	}
 	
+	/**
+	 * Set the application so this controller can access it
+	 * @param application
+	 */
 	public void setApplication(DungeonApplication application) {
 		this.application = application;
 	}
 	
+	/**
+	 * Start the game
+	 */
 	private void startGame() {
 		this.application.loadNextDungeon();
 		System.out.println("BUTTON PRESSED");
 	}
 	
+	/**
+	 * Toggle the game panel
+	 */
 	private void toggleLoadGamePanel() {
 		if (this.loadGameStack.isVisible()) {
 			this.loadGameStack.setVisible(false);
@@ -96,12 +114,18 @@ public class MainMenuController {
 		}
 	}
 	
+	/**
+	 * Fill the save panel with saves
+	 */
 	private void populateSavePanel() {
     	this.saves = this.application.getSaveManager().getSavesList();
     	this.chosenSaveFile = -1;
     	this.refreshGridValues();
     }
 	
+	/**
+	 * Update the view with save/levels/other values
+	 */
 	private void refreshGridValues() {
     	this.loadTable.getChildren().clear();
     	for (int i = 0; i < 10; i++) {
@@ -145,6 +169,9 @@ public class MainMenuController {
     	this.refreshGridMouseListeners();
     }
     
+	/**
+	 * Refresh the mouse listener functions
+	 */
 	private void refreshGridMouseListeners() {
     	for (Node node : this.loadTable.getChildren()) {
     		node.setOnMouseEntered(e -> this.loadTable.getChildren().forEach(cell -> {
@@ -173,6 +200,9 @@ public class MainMenuController {
     	}
     }
     
+	/**
+	 * Clear highlighting
+	 */
     private void clearHighlighting() {
     	this.loadTable.getChildren().forEach(cell -> {
     		if (GridPane.getRowIndex(cell) != this.chosenSaveFile) {
@@ -181,6 +211,9 @@ public class MainMenuController {
     	});
     }
     
+    /**
+     * Load the saved dungeon
+     */
     private void loadSavedDungeon() {
     	this.application.setCurrentLevel(this.chosenLevelToLoad - 1);
     	this.application.loadNextDungeon();

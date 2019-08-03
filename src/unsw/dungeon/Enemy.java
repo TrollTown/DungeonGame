@@ -116,7 +116,15 @@ public class Enemy extends Entity {
     	return true;
     }
     
-    /**
+    public Timeline getMainTimeline() {
+		return mainTimeline;
+	}
+
+	public void setMainTimeline(Timeline mainTimeline) {
+		this.mainTimeline = mainTimeline;
+	}
+
+	/**
      * Get the distance betwene enemy and player
      * @param player The player
      * @return The distance
