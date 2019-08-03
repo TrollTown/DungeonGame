@@ -10,14 +10,6 @@
     -fx-text-fill: white;
 }
 
-/* .label {
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-pref-width: 200px;
-    -fx-alignment: center;
-} */
-
 .loadTableLabel {
     -fx-text-fill: white;
     -fx-font-size: 14px;
@@ -46,4 +38,16 @@
 
 #infoLabel2 {
     -fx-text-fill: white;
+}
+
+#confirmLoadButton {
+    -fx-text-fill: blue;
+    -fx-padding: 15px 0px 0px 0px;
+    -fx-min-width: 150px;
+}
+
+#backToMainMenuButton {
+    -fx-text-fill: blue;
+    -fx-padding: 15px 0px 0px 0px;
+    -fx-min-width: 150px;
 }

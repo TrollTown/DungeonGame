@@ -55,9 +55,9 @@
                </ImageView>
                <Pane fx:id="loadGamePanel" maxHeight="450.0" maxWidth="400.0">
                   <children>
-                     <Label fx:id="loadGameLabel" layoutX="125.5" text="Load Game" />
-                     <Label fx:id="loadInstructions" layoutX="93.0" layoutY="30.0" text="Select save file to load from..." />
-                           <GridPane fx:id="loadTable" alignment="TOP_CENTER" layoutX="36.0" layoutY="46.0" prefHeight="386.0" prefWidth="336.0">
+                     <Label fx:id="loadGameLabel" layoutX="125.5" text="Load  Game" />
+                     <Label fx:id="loadInstructions" layoutX="93.0" layoutY="40.0" text="Select  save  file  to  load  from..." />
+                           <GridPane fx:id="loadTable" alignment="TOP_CENTER" layoutX="36.0" layoutY="56.0" prefHeight="386.0" prefWidth="336.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="0.0" prefWidth="111.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="59.0" />
@@ -78,8 +78,8 @@
                            </rowConstraints>
                            </GridPane>
                      
-                     <Button fx:id="confirmLoadButton" layoutX="158.5" layoutY="495.0" text="Load From Slot" visible="false" />
-                     <Button fx:id="backToMainMenuButton" layoutX="118.0" layoutY="536.0" text="Back to Main Menu" />
+                     <Button fx:id="confirmLoadButton" layoutX="125.0" layoutY="475.0" text="Load  from  Slot" visible="false" />
+                     <Button fx:id="backToMainMenuButton" layoutX="125.0" layoutY="536.0" text="Back  to  Main  Menu" />
                   </children>
                </Pane>
             </children>
