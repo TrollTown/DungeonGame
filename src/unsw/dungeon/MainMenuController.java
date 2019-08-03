@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 
 public class MainMenuController {
 	private DungeonApplication application;
@@ -25,6 +26,9 @@ public class MainMenuController {
 	
 	@FXML
 	private Button loadGameButton;
+	
+	@FXML
+	private Label loadGameButtonLabel;
 	
 	@FXML
 	private Button quitGameButton;
@@ -55,6 +59,9 @@ public class MainMenuController {
 	
 	@FXML
 	public void initialize() {
+		Font minecraftFont24 = 
+                Font.loadFont(getClass()
+                    .getResourceAsStream("Minecraftia-Regular.ttf"), 24);
 		 this.saveNames = new ArrayList<String>();
          this.saveLevels = new ArrayList<String>();
          this.saveTimestamps = new ArrayList<String>();
@@ -75,6 +82,11 @@ public class MainMenuController {
 		 this.confirmLoadButton.setOnAction(event -> {
 			 this.loadSavedDungeon();
 		 });
+		 
+		 this.mainLabel.setFont(minecraftFont24);
+		 //this.startGameButton.setFont(minecraftFont24);
+		 this.loadGameButtonLabel.setFont(minecraftFont24);
+		 this.quitGameButton.setFont(minecraftFont24);
 	}
 	
 	public void setApplication(DungeonApplication application) {
@@ -89,7 +101,6 @@ public class MainMenuController {
 	private void toggleLoadGamePanel() {
 		if (this.loadGameStack.isVisible()) {
 			this.loadGameStack.setVisible(false);
-			this.loadGamePanel.setVisible(false);
 		}
 		else {
 			this.loadGameStack.setVisible(true);
@@ -126,17 +137,17 @@ public class MainMenuController {
     			newNameLabel = new Label("Save Name");
         		newLevelLabel = new Label("Level");
         		newTimestampLabel = new Label("Timestamp");
-        		newNameLabel.getStyleClass().add("saveTableHeading");
-        		newLevelLabel.getStyleClass().add("saveTableHeading");
-        		newTimestampLabel.getStyleClass().add("saveTableHeading");
+        		newNameLabel.getStyleClass().add("loadTableHeading");
+        		newLevelLabel.getStyleClass().add("loadTableHeading");
+        		newTimestampLabel.getStyleClass().add("loadTableHeading");
     		}
     		else {
     			newNameLabel = new Label(this.saveNames.get(i-1));
         		newLevelLabel = new Label(this.saveLevels.get(i-1));
         		newTimestampLabel = new Label(this.saveTimestamps.get(i-1));
-        		newNameLabel.getStyleClass().add("saveTableLabel");
-        		newLevelLabel.getStyleClass().add("saveTableLabel");
-        		newTimestampLabel.getStyleClass().add("saveTableLabel");
+        		newNameLabel.getStyleClass().add("loadTableLabel");
+        		newLevelLabel.getStyleClass().add("loadTableLabel");
+        		newTimestampLabel.getStyleClass().add("loadTableLabel");
     		}
     		
     		this.loadTable.add(newNameLabel, 0, i);

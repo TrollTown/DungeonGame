@@ -29,7 +29,8 @@ public class Dungeon {
     private boolean completedDungeon;
     private DungeonController mainController;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
-
+    private int treasureCount;
+  
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -38,6 +39,8 @@ public class Dungeon {
         this.player = null;
         this.goal = null;
         this.setCompletedDungeon(false);
+        this.treasureCount = 0;
+        
     }
 
     public List<Entity> getEntities() {
@@ -308,5 +311,13 @@ public class Dungeon {
 				observer.update();
 			}
 		}
+	}
+
+	public int getTreasureCount() {
+		return treasureCount;
+	}
+
+	public void increaseTreasureCount() {
+		this.treasureCount++;
 	}
 }
