@@ -169,5 +169,6 @@ public class Inventory {
 		
 	public Player getPlayer() {
 		return this.player;
-	}	
+	}
+
 }
