@@ -372,6 +372,9 @@ public class DungeonController {
     	this.application.resetLevelProgress();
     }
     
+    /**
+     * Fill the save panel with saves
+     */
     private void populateSavePanel() {
     	this.savedFileIndex = -1;
     	this.saves = this.application.getSaveManager().getSavesList();
@@ -379,6 +382,9 @@ public class DungeonController {
     	this.refreshGridValues();
     }
     
+    /**
+     * Clear the highlighting for the save files
+     */
     private void clearHighlighting() {
     	this.saveTable.getChildren().forEach(cell -> {
     		if (GridPane.getRowIndex(cell) != this.chosenSaveFile) {
@@ -387,10 +393,16 @@ public class DungeonController {
     	});
     }
     
+    /**
+     * Show the confirm button
+     */
     private void showConfirmSaveButton() {
     	this.confirmSaveButton.setVisible(true);
     }
     
+    /**
+     * Show the field to type a name for the save
+     */
     private void showSaveNameField() {
     	this.saveNameField.setVisible(true);
     	this.saveNameField.setText(saveNames.get(this.chosenSaveFile - 1));
@@ -400,6 +412,9 @@ public class DungeonController {
     	this.saveNameField.positionCaret(1000);
     }
     
+    /**
+     * Save the game
+     */
     private void saveGame() {
     	String saveName = this.saveNameField.getText();
     	int currentLevel = this.application.getCurrentLevel();
@@ -421,6 +436,9 @@ public class DungeonController {
     	this.saveTable.requestFocus();
     }
     
+    /**
+     * Reload the view
+     */
     private void refreshGridValues() {
     	this.saveTable.getChildren().clear();
     	for (int i = 0; i < 10; i++) {
@@ -464,6 +482,9 @@ public class DungeonController {
     	this.refreshGridMouseListeners();
     }
     
+    /**
+     * Reload mouse listeners
+     */
     private void refreshGridMouseListeners() {
     	for (Node node : this.saveTable.getChildren()) {
     		node.setOnMouseEntered(e -> this.saveTable.getChildren().forEach(cell -> {
@@ -493,6 +514,9 @@ public class DungeonController {
     	}
     }
     
+    /**
+     * Highlight a save
+     */
     private void highlightSavedSlot() {
     	this.saveTable.getChildren().forEach(cell -> {
     		Integer rowIndex = GridPane.getRowIndex(cell);
@@ -502,10 +526,16 @@ public class DungeonController {
     	});
     }
     
+    /**
+     * Reload the dungeon
+     */
     public void reloadDungeon() {
     	this.getApplication().reloadCurrentDungeon();
     }
     
+    /**
+     * Display the dungeon goal
+     */
     private void displayGoals() {
     	String string = this.dungeon.getGoal().toString();
     	System.out.println(string);
