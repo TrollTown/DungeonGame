@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
@@ -28,7 +28,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image closedDoorImage;
     private Image boulderImage;
     private Image keyImage;
-    private Image openDoorImage;
+    //private Image openDoorImage;
     private Image treasureImage;
     private Image invincibilityImage;
     private Image swordImage;
@@ -49,7 +49,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         playerImage = new Image("/human_new.png");
         wallImage = new Image("/brick_brown_0.png");
         closedDoorImage = new Image("/closed_door.png");
-        openDoorImage = new Image("/open_door.png");
+        //openDoorImage = new Image("/open_door.png");
         boulderImage = new Image("/boulder.png");
         keyImage = new Image("/key.png");
         treasureImage = new Image("/gold_pile.png");

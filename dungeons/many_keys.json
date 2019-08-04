@@ -1,0 +1,142 @@
+{
+  "width": 5,
+  "height": 5,
+  "entities": [
+    {
+        "x": 0,
+        "y": 0,
+        "type": "key"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "type": "key"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "type": "key"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "type": "bomb"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "type": "bomb"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "type": "bomb"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "type": "player"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "type": "bomb"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "type": "bomb"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "type": "bomb"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "type": "bomb"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "type": "bomb"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "type": "bomb"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "type": "bomb"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "type": "bomb"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "type": "bomb"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "type": "bomb"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "type": "bomb"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "type": "bomb"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "type": "bomb"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "type": "bomb"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "type": "bomb"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "type": "bomb"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "type": "bomb"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "type": "bomb"
+      }
+  ],
+  "goal-condition": {
+    "goal": "AND",
+    "subgoals": [
+      {
+        "goal": "enemies"
+      },
+      {
+        "goal": "treasure"
+      }
+    ]
+  }
+}

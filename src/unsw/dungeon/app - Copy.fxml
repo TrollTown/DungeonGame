@@ -55,7 +55,7 @@
                            <children>
                               <ImageView fx:id="inventoryBomb" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/bomb_unlit.png" />
+                                    <Image url="/bomb_unlit.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="bombCount" text="0" textFill="WHITE">
@@ -65,7 +65,7 @@
                               </Label>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/greatsword_1_new.png" />
+                                    <Image url="/greatsword_1_new.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="swordDurability" text="0" textFill="WHITE">
@@ -75,7 +75,7 @@
                               </Label>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/brilliant_blue_new.png" />
+                                    <Image url="/brilliant_blue_new.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="invincibilityTimer" text="0 s" textFill="WHITE">

@@ -1,15 +1,21 @@
 package unsw.dungeon;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -26,8 +32,9 @@ public class DungeonApplication extends Application {
 	
 	/**
 	 * The constructor for the dungeon application
+	 * @throws URISyntaxException 
 	 */
-	public DungeonApplication() {
+	public DungeonApplication() throws URISyntaxException {
 		this.levels = this.readLevels();
 		this.currentLevel = -1;
 		this.saveManager = new SaveManager();
@@ -162,13 +169,16 @@ public class DungeonApplication extends Application {
     /**
      * Reads the levels from levels.txt
      * @return The list of dungeon names
+     * @throws URISyntaxException 
      */
-    private ArrayList<String> readLevels(){
+    private ArrayList<String> readLevels() throws URISyntaxException{
     	ArrayList<String> levels = new ArrayList<String>();
     	BufferedReader reader;
     	try {
     		int levelCount = 0;
-    		reader = new BufferedReader(new FileReader("src/unsw/dungeon/levels.txt"));
+    		InputStream in = getClass().getResourceAsStream("levels.txt");
+    		reader = new BufferedReader(new InputStreamReader(
+    				in, StandardCharsets.UTF_8));
     		String line = reader.readLine();
     		while (line != null) {
     			levels.add(line);
@@ -176,6 +186,7 @@ public class DungeonApplication extends Application {
     			line = reader.readLine();
     		}
     		this.levelCount = levelCount;
+    		in.close();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}

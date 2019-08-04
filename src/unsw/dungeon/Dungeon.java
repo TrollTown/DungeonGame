@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-
 /**
  * A dungeon in the interactive dungeon player.
  *

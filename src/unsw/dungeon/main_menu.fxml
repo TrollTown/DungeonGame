@@ -18,7 +18,7 @@
       <StackPane fx:id="menuStack" prefHeight="577.0" prefWidth="732.0">
          <ImageView pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../../../images/background.jpg" />
+               <Image url="/background.jpg" />
             </image>
          </ImageView>
          <GridPane prefHeight="523.0" prefWidth="993.0">
@@ -50,7 +50,7 @@
             <children>
                <ImageView pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../../../images/background.jpg" />
+                     <Image url="/background.jpg" />
                   </image>
                </ImageView>
                <Pane fx:id="loadGamePanel" maxHeight="450.0" maxWidth="400.0">

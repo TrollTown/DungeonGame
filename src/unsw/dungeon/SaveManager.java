@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -79,6 +81,9 @@ public class SaveManager {
 	private ArrayList<GameSave> loadAllSaves() {
 		ArrayList<GameSave> saves = new ArrayList<GameSave>();
 		final File folder = new File("saves");
+		if (! folder.exists()) {
+			folder.mkdir();
+		}
 		for (final File fileEntry : folder.listFiles()) {
 			if (fileEntry.isFile()) {
 				GameSave saveFile = this.load(fileEntry.getAbsolutePath());
