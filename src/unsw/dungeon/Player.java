@@ -35,7 +35,6 @@ public class Player extends Entity {
 		    })
 		);
         this.mainTimeline.setCycleCount(1);
-        System.out.println("Initialising player");
     	
     }
     
@@ -172,7 +171,6 @@ public class Player extends Entity {
 	 * Kill the player
 	 */
 	public void killPlayer() {
-		System.out.println("Killing player");
 		super.setShow(false);
 		this.setAlive(false);
 		for (Enemy enemy: dungeon.getEnemies()) {
@@ -231,9 +229,7 @@ public class Player extends Entity {
 	 */
 	public int getTreasureCount() {
 		int count = 0;
-		System.out.println(dungeon.getEntities());
 		for (Entity entity: dungeon.getEntities()) {
-			System.out.println(entity);
 			if (entity instanceof Treasure) {
 				count++;
 			}

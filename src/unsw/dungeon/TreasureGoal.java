@@ -12,8 +12,6 @@ public class TreasureGoal implements GoalInterface {
 	 */
 	@Override
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
-		System.out.println("playTreasure: " + player.getInventory().getNumTreasure());
-		System.out.println("dungTreasure: " + dungeon.getTreasureCount());
 		if (player.getInventory().getNumTreasure() >= dungeon.getTreasureCount()) {
 			
 			return true;

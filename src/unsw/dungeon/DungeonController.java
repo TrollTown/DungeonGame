@@ -538,7 +538,6 @@ public class DungeonController {
      */
     private void displayGoals() {
     	String string = this.dungeon.getGoal().toString();
-    	System.out.println(string);
     	this.goalString.setText(string);
     }
 }

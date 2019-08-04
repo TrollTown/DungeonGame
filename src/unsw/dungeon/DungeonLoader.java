@@ -45,7 +45,6 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
-        System.out.println("Initiating Dungeon");
         new DungeonCompletionObserver(dungeon);
         dungeon.initiateEnemyAI();
         return dungeon;
