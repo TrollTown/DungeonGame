@@ -103,6 +103,11 @@ public class Enemy extends Entity {
 		if (isImmovableAtCoord(x, y)) {
 			return -1;
 		}
+		if (x != this.getX() || y != this.getY()) {
+			if (isEnemy(x, y)) {
+				return -1;
+			}
+		}
 		int playerX = player.getX();
 		int playerY = player.getY();
 		int manhattanDistance = Math.abs(playerX - x) + Math.abs(playerY - y);

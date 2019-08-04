@@ -160,6 +160,15 @@ public class Dungeon {
     	
     	return false;
     }
+    
+    public boolean isEnemy(int x, int y) {
+    	for (Enemy enemy: this.getEnemies()) {
+    		if (enemy.getX() == x && enemy.getY() == y) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     /**
      * Pick up an entity
      * @param item The item to pick up

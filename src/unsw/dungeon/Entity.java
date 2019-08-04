@@ -108,6 +108,16 @@ public abstract class Entity {
 	}
 	
 	/**
+	 * Get if enemy is at this coord
+	 * @param x the x-coord
+	 * @param y the y-coord
+	 * @return whether enemy is here
+	 */
+	public boolean isEnemy(int x, int y) {
+		return dungeon.isEnemy(x, y);
+	}
+	
+	/**
 	 * Gets the dungeon's width
 	 * @return The dungeon width
 	 */
