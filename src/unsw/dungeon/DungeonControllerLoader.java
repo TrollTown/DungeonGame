@@ -92,7 +92,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Boulder boulder) {
     	ImageView view = new ImageView(boulderImage);
+    	view.toFront();
     	addEntity(boulder, view);
+    	setToFront(boulder, view);
     }
     
     /**
@@ -232,6 +234,25 @@ public class DungeonControllerLoader extends DungeonLoader {
                 GridPane.setRowIndex(node, newValue.intValue());
             }
         });
+    }
+    
+    private void setToFront(Entity entity, ImageView view) {
+    	entity.x().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> observable,
+    				Number oldValue, Number newValue) {
+    			view.toFront();
+    		}
+    		
+    	});
+    	entity.y().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> observable,
+    				Number oldValue, Number newValue) {
+    			view.toFront();
+    		}
+    		
+    	});
     }
 
     /**

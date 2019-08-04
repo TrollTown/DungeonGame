@@ -107,6 +107,11 @@ public abstract class DungeonLoader {
         	onLoad(door);
         	entity = door;
         	break;
+        case "switch":
+        	FloorSwitch floorswitch = new FloorSwitch(x, y);
+        	onLoad(floorswitch);
+        	entity = floorswitch;
+        	break;
         case "boulder":
         	Boulder boulder = new Boulder(x, y);
         	onLoad(boulder);
@@ -149,11 +154,7 @@ public abstract class DungeonLoader {
         	onLoad(exit);
         	entity = exit;
         	break;
-        case "switch":
-        	FloorSwitch floorswitch = new FloorSwitch(x, y);
-        	onLoad(floorswitch);
-        	entity = floorswitch;
-        	break;
+
         // TODO Handle other possible entities
         }
         
