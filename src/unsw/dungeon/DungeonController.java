@@ -3,6 +3,7 @@ package unsw.dungeon;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -101,6 +105,22 @@ public class DungeonController {
     @FXML
     private Label goalString;
     
+    @FXML
+    private VBox instructionBox;
+    
+    @FXML
+    private StackPane instructionStack;
+    
+    @FXML
+    private Text instructText1, instructText2, instructText3, instructText4;
+    @FXML
+    private Text instructText5, instructText6, instructText7, instructText8;
+    @FXML
+    private Text instructText9, instructText10, instructText11, instructText12;
+    
+    @FXML
+    private Text instructionTopLabel, instructionControlLabel, generalInstructLabel, instructionsObjectiveLabel;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -138,8 +158,12 @@ public class DungeonController {
      */
     @FXML
     public void initialize() {
-    	// Initialise the menu popup
-    	//this.initialiseMenu();
+    	Font minecraftFont12 = 
+                Font.loadFont(getClass()
+                    .getResourceAsStream("Minecraftia-Regular.ttf"), 12);
+    	Font minecraftFont18 = 
+                Font.loadFont(getClass()
+                    .getResourceAsStream("Minecraftia-Regular.ttf"), 18);
     	
         Image ground = new Image("/dirt_0_new.png");
 
@@ -197,6 +221,22 @@ public class DungeonController {
         this.saveGameStack.prefHeightProperty().bind(this.stack.heightProperty());
         
         this.displayGoals();
+        
+        List<Text> textInstructions = Arrays.asList(this.instructText1, this.instructText2, this.instructText3, this.instructText4,
+        		this.instructText5, this.instructText6, this.instructText7, this.instructText8,
+        		this.instructText9, this.instructText10, this.instructText11, this.instructText12);
+        
+        for (Text text : textInstructions) {
+        	text.setFont(minecraftFont12);
+        	text.setStyle("-fx-fill: white;");
+        }
+        
+        List<Text> instructionLabels = Arrays.asList(instructionTopLabel, instructionControlLabel, generalInstructLabel, instructionsObjectiveLabel);
+        
+        for (Text text : instructionLabels) {
+        	text.setFont(minecraftFont18);
+        	text.setStyle("-fx-fill: white;");
+        }
     }
 
     /**
@@ -239,6 +279,9 @@ public class DungeonController {
         case ESCAPE:
         	this.toggleMenu();
         	break;
+        case F1:
+        	this.toggleHelpScreen();
+        	break;
         default:
             break;
         }
@@ -255,10 +298,12 @@ public class DungeonController {
     		}
     		else {
     			this.menu.setVisible(false);
+    			this.resumeGame();
     		}
     	}
     	else {
     		this.menu.setVisible(true);
+    		this.pauseGame();
     	}
     }
     
@@ -539,6 +584,29 @@ public class DungeonController {
     private void displayGoals() {
     	String string = this.dungeon.getGoal().toString();
     	this.goalString.setText(string);
+    }
+    
+    private void toggleHelpScreen() {
+    	if (this.instructionStack.isVisible()) {
+    		this.instructionStack.setVisible(false);
+    		this.anchor.requestFocus();
+    		if (this.menu.isVisible() == false) {
+    			this.resumeGame();
+    		}
+    	}
+    	else {
+    		this.pauseGame();
+    		this.instructionStack.setVisible(true);
+    		this.anchor.requestFocus();
+    	}
+    }
+    
+    private void pauseGame() {
+    	this.dungeon.suspendEnemyMovement();
+    }
+    
+    private void resumeGame() {
+    	this.dungeon.resumeEnemyMovement();
     }
 }
 

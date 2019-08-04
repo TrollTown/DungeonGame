@@ -33,3 +33,7 @@
     -fx-font: 18px Calibri;
     -fx-font-weight: bold;
 }
+
+.text {
+    -fx-text-fill: white;
+}

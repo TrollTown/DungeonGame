@@ -438,4 +438,20 @@ public class Dungeon {
 	public void increaseTreasureCount() {
 		this.treasureCount++;
 	}
+	
+	public void suspendEnemyMovement() {
+		for (Enemy enemy : this.enemies) {
+			if (enemy.isDead() == false) {
+				enemy.getMainTimeline().stop();
+			}
+		}
+	}
+	
+	public void resumeEnemyMovement() {
+		for (Enemy enemy : this.enemies) {
+			if (enemy.isDead() == false) {
+				enemy.runTimeline(this.player);
+			}
+		}
+	}
 }

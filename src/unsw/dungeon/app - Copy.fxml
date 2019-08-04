@@ -15,9 +15,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane fx:id="stack">
          <children>
@@ -43,122 +45,155 @@
                               </FlowPane>
                            </children>
                         </FlowPane>
-                        <FlowPane prefHeight="37.0" prefWidth="396.0">
-                           <children>
-                              <Label prefHeight="0.0" prefWidth="396.0" text="Controls: K to Use Sword, E to use bomb, ESC to open menu" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </FlowPane>
                      </children>
                   </FlowPane>
                </top>
                <bottom>
-                  <FlowPane fx:id="inventory" alignment="CENTER_LEFT" hgap="8.0" prefHeight="95.0" style="-fx-background-color: #26C281; -fx-padding: 10;" BorderPane.alignment="CENTER">
+                  <VBox fx:id="botPaneVbox" alignment="CENTER" style="-fx-background-color: #26C281;" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fx:id="inventoryBomb" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/bomb_unlit.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="bombCount" text="0" textFill="WHITE">
+                        <FlowPane fx:id="inventory" alignment="CENTER_LEFT" hgap="8.0" prefHeight="95.0" style="-fx-background-color: #26C281; -fx-padding: 10;">
+                           <children>
+                              <ImageView fx:id="inventoryBomb" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/bomb_unlit.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="bombCount" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/greatsword_1_new.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="swordDurability" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/brilliant_blue_new.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="invincibilityTimer" text="0 s" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <FlowPane fx:id="inventoryKeys" maxWidth="220.0" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </FlowPane>
+                        <Label minHeight="30.0" prefHeight="0.0" prefWidth="396.0" text="Controls: K to use Sword, E to use bomb, ESC to open menu" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="16.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/greatsword_1_new.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="swordDurability" text="0" textFill="WHITE">
+                        <Label minHeight="30.0" text="F1: Help and Instructions" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="16.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/brilliant_blue_new.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="invincibilityTimer" text="0 s" textFill="WHITE">
-                           <font>
-                              <Font name="Calibri Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <FlowPane fx:id="inventoryKeys" maxWidth="220.0" />
                      </children>
                      <opaqueInsets>
                         <Insets />
-                     </opaqueInsets></FlowPane>
+                     </opaqueInsets>
+                  </VBox>
                </bottom>
                <center>
                   <GridPane fx:id="squares" visible="true" BorderPane.alignment="CENTER">
                   </GridPane>
                </center>
             </BorderPane>
-         </children>
-      </StackPane>
-      <FlowPane fx:id="menu" alignment="TOP_CENTER" orientation="VERTICAL" style="-fx-background-color: rgba(72, 72, 72, 0.5);" styleClass="flow" vgap="20.0" visible="false">
-         <children>
-            <Label alignment="CENTER" prefWidth="200.0" text="Game Menu" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="BackToGameButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Back to Game" />
-            <Button fx:id="ResetProgressButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Reset Progress" />
-            <Button fx:id="SaveGameButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Save Game" />
-            <Button fx:id="QuitToTitleButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Quit to Title" />
-         </children>
-      </FlowPane>
-      <StackPane fx:id="saveGameStack" style="-fx-background-color: #3498db;" visible="false">
-         <children>
-            <Pane fx:id="saveGamePanel" maxHeight="450.0" maxWidth="400.0" prefHeight="450.0" prefWidth="400.0" StackPane.alignment="TOP_CENTER">
+            <FlowPane fx:id="menu" alignment="TOP_CENTER" orientation="VERTICAL" style="-fx-background-color: rgba(72, 72, 72, 0.5);" styleClass="flow" vgap="20.0" visible="false">
                <children>
-                  <Label fx:id="saveGameLabel" layoutX="163.5" layoutY="6.0" text="Save Game" textAlignment="CENTER" />
-                  <Label fx:id="saveInstructions" layoutX="43.5" layoutY="32.0" text="Select save file..." textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="CENTER" prefWidth="200.0" text="Game Menu" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Bold" size="14.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="saveTable" layoutX="43.5" layoutY="58.0" prefHeight="260.0" prefWidth="322.0" vgap="5.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="111.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="59.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="145.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-                  <TextField fx:id="saveNameField" layoutX="153.0" layoutY="325.0" maxWidth="203.0" minWidth="203.0" prefWidth="203.0" visible="false" />
-                  <Button fx:id="confirmSaveButton" layoutX="158.5" layoutY="366.0" mnemonicParsing="false" text="Save To Slot" visible="false" />
-                  <Button fx:id="backToInGameMenu" layoutX="180.0" layoutY="403.0" mnemonicParsing="false" text="Back" />
-                  <Label fx:id="textfieldInstructions" layoutX="43.5" layoutY="329.0" text="Enter Save Name:" textAlignment="CENTER" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="Calibri Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="gameSavedLabel" layoutX="152.0" layoutY="345.0" text="Game Saved!" visible="false">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
+                  <Button fx:id="BackToGameButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Back to Game" />
+                  <Button fx:id="ResetProgressButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Reset Progress" />
+                  <Button fx:id="SaveGameButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Save Game" />
+                  <Button fx:id="QuitToTitleButton" mnemonicParsing="false" prefWidth="200.0" styleClass="menuButton" text="Quit to Title" />
                </children>
-            </Pane>
+            </FlowPane>
+            <StackPane fx:id="saveGameStack" style="-fx-background-color: #3498db;" visible="false">
+               <children>
+                  <Pane fx:id="saveGamePanel" maxHeight="450.0" maxWidth="400.0" prefHeight="450.0" prefWidth="400.0" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <Label fx:id="saveGameLabel" layoutX="163.5" layoutY="6.0" text="Save Game" textAlignment="CENTER" />
+                        <Label fx:id="saveInstructions" layoutX="43.5" layoutY="32.0" text="Select save file..." textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <GridPane fx:id="saveTable" layoutX="43.5" layoutY="58.0" prefHeight="260.0" prefWidth="322.0" vgap="5.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="111.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="59.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="145.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <TextField fx:id="saveNameField" layoutX="153.0" layoutY="325.0" maxWidth="203.0" minWidth="203.0" prefWidth="203.0" visible="false" />
+                        <Button fx:id="confirmSaveButton" layoutX="158.5" layoutY="366.0" mnemonicParsing="false" text="Save To Slot" visible="false" />
+                        <Button fx:id="backToInGameMenu" layoutX="180.0" layoutY="403.0" mnemonicParsing="false" text="Back" />
+                        <Label fx:id="textfieldInstructions" layoutX="43.5" layoutY="329.0" text="Enter Save Name:" textAlignment="CENTER" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="gameSavedLabel" layoutX="152.0" layoutY="345.0" text="Game Saved!" visible="false">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <StackPane fx:id="instructionStack" style="-fx-background-color: #2c2c54;" visible="false">
+               <children>
+                  <VBox fx:id="instructionBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text fx:id="instructionTopLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Help and Instructions:" />
+                        <Text fx:id="instructionControlLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls:" />
+                        <Text fx:id="instructText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Movement: Arrow Keys or (WASD)" />
+                        <Text fx:id="instructText2" strokeType="OUTSIDE" strokeWidth="0.0" text="Use Bomb: E" />
+                        <Text fx:id="instructText3" strokeType="OUTSIDE" strokeWidth="0.0" text="Swing Sword: K" />
+                        <Text fx:id="instructText4" strokeType="OUTSIDE" strokeWidth="0.0" text="Open in-game Menu: ESC" />
+                        <Text fx:id="instructText5" strokeType="OUTSIDE" strokeWidth="0.0" text="Toggle Help Menu: F1" />
+                        <Text fx:id="generalInstructLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="General Instructions:" />
+                        <Text fx:id="instructText6" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress through the game by completing the objective of each dungeon. " />
+                        <Text fx:id="instructText7" strokeType="OUTSIDE" strokeWidth="0.0" text="The objective is displayed at the top of the screen." />
+                        <Text fx:id="instructionsObjectiveLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Basic objectives are: " />
+                        <Text fx:id="instructText8" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Killing all enemies" />
+                        <Text fx:id="instructText9" layoutX="176.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Collecting all the treasure" />
+                        <Text fx:id="instructText10" layoutX="156.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Placing a boulder on every floor switch in the dungeon" />
+                        <Text fx:id="instructText11" layoutX="79.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Reaching the exit" />
+                        <Text fx:id="instructText12" layoutX="178.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A dungeon's goal can be a combination of the above objectives." />
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
          </children>
       </StackPane>
    </children>
