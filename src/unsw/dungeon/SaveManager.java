@@ -35,7 +35,6 @@ public class SaveManager {
 		this.saves.set(saveSlot, newGameSave);
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		System.out.println("Current relative path is: " + s);
 		String saveFilePath = s + "/saves/save" + Integer.toString(saveSlot) + ".dat";
 		try {
 			FileWriter fw = new FileWriter(saveFilePath, false);
@@ -57,7 +56,6 @@ public class SaveManager {
 		ArrayList<String> fileContents = new ArrayList<String>();
 		BufferedReader reader;
     	try {
-    		System.out.println(saveFile);
     		reader = new BufferedReader(new FileReader(saveFile));
     		String line = reader.readLine();
     		while (line != null) {
@@ -81,7 +79,6 @@ public class SaveManager {
 	private ArrayList<GameSave> loadAllSaves() {
 		ArrayList<GameSave> saves = new ArrayList<GameSave>();
 		final File folder = new File("saves");
-		System.out.println(folder.getAbsolutePath());
 		for (final File fileEntry : folder.listFiles()) {
 			if (fileEntry.isFile()) {
 				GameSave saveFile = this.load(fileEntry.getAbsolutePath());

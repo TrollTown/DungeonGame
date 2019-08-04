@@ -132,7 +132,6 @@ public class MainMenuController {
 	 */
 	private void startGame() {
 		this.application.loadNextDungeon();
-		System.out.println("BUTTON PRESSED");
 	}
 	
 	/**

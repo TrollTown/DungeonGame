@@ -327,7 +327,6 @@ public class Dungeon {
 
 	public void setCompletedDungeon(boolean completedDungeon) {
 		this.completedDungeon = completedDungeon;
-		System.out.println(completedDungeon);
 		this.notifyDungeonCompletionObservers();
 	}
 

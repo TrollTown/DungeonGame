@@ -75,11 +75,9 @@ public class AndGoal implements GoalInterface {
 	public boolean hasMetGoal(Dungeon dungeon, Player player, Direction directionMovingTowards) {
 		for (GoalInterface goal: this.goals) {
 			if (goal.hasMetGoal(dungeon, player, directionMovingTowards) == false) {
-				System.out.println("Returned false");
 				return false;
 			}
 		}
-		System.out.println("returned true");
 		return true;
 	}
 

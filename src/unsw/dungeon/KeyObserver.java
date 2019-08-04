@@ -24,7 +24,6 @@ public class KeyObserver extends Observer {
 	public void update() {
 		int keyCount = this.inventory.getKeyCount();
 		this.inventory.getPlayer().getDungeon().getMainController().updateInventoryKeys(keyCount);
-		System.out.println("OBSERVER CALLED");
 	}
 
 }
