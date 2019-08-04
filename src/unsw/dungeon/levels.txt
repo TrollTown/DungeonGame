@@ -1,7 +1,5 @@
 dungeon1.json
 dungeon2.json
 dungeon3.json
-complexGoal.json
-advanced.json
-maze.json
-many_bombs.json
+dungeon4.json
+dungeon5.json

@@ -1,4 +1,8 @@
 {
+  "width": 20,
+  "height": 10,
+  "entities": [
+{
   "x": 0,
   "y": 0,
   "type": "wall"
@@ -428,3 +432,10 @@
   "y": 9,
   "type": "wall"
 },
+
+
+  ],
+  "goal-condition": {
+    "goal": "enemies"
+  }
+}
